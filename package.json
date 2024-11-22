@@ -1,0 +1,30 @@
+{
+  "name": "hyperliflip",
+  "version": "1.0.0",
+  "description": "A gamble app build on HyperEVM",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farau/hyperliflip.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/farau/hyperliflip/issues"
+  },
+  "homepage": "https://github.com/farau/hyperliflip#readme",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.4",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "jsonwebtoken": "^9.0.2",
+    "path": "^0.12.7"
+  }
+}

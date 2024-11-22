@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperliflip</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/logo_hyperliquid/HL logo_dark green.svg" type="image/png">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" /> <!-- Fonts awesome pour les socials-->
+</head>
+
+<body class="w-full">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top w-100">
+        <div class="container">
+            <a class="navbar-brand" href="/index">
+                <img src="img/logo_hyperliquid/HL logo_dark green.svg" height="70" class="d-inline-block align-top" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item d-sm-block d-lg-inline">
+                        <div class="dropdown">
+                            <button id="connectWallet">Connect Wallet</button>
+                            <div id="walletInfo" class="dropdown-content" style="display: none;">                       
+                                <p id="logoutWallet" style="display: none;">Logout</p>
+                            </div>
+                        </div>
+                    </li>
+                
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="networkModal" class="network-modal">
+        <div class="network-modal-content">
+            <img src="img/logo_hyperliquid/HL symbol_dark green.svg" height="70" class="img-fluid d-inline-block align-top">
+            <p>Wrong network. Please change the network.</p>
+            <button id="changeNetworkButton">Change</button>
+        </div>
+    </div>
+    
+    <!-- Game Canvas Container -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Colonne pour le canvas -->
+            <div class="col-md-6 order-0 order-md-0 position-relative" >
+                <button id="playButton" class="btn btn-primary" style="display: flex; justify-content: center; align-items: center; position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%);">Play</button>
+                <div id="canvasContainer" style="height: 500px;">
+                    <canvas id="backgroundCanvas" width="500" height="500"></canvas>
+                    <canvas id="gameCanvas" width="500" height="500"></canvas>
+                    <canvas id="explosionCanvas" width="500" height="500"></canvas>
+                </div> 
+            </div>
+
+            <!-- Colonne pour le texte -->
+            <div class="col-md-6 order-1 order-md-1 mt-0 mb-5" id="conceptDescription" style="margin-top: 500px;">
+                <h3 class="text-center">How to play ?</h3>
+                <br>
+                <p>Connect your wallet, bridge your HL funds to HyperEVM and gamble to win big!</p> 
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Game Over Modal -->
+    <div class="modal" id="gameOverModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal header -->
+                <div class="modal-header text-center">
+                    <h4 class="modal-title mx-auto"><img src="img/logo_hyperliquid/HL symbol_dark green.svg" height="70" class="img-fluid d-inline-block align-top" alt="Logo"></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p class="text-center">Your score: <span id="finalScore"></span></p>
+                    <!-- Twitter Share Button -->
+                    <a href="#" class="btn btn-success d-block mx-auto mt-3" id="shareTwitterBtn">Share on Twitter</a>
+                    <button id="transactionButton" class="btn btn-success d-block mx-auto mt-3">Get your PAC BOOM points !</button>
+                    <p class="text-center">
+                        Price: <span id="entryFeeGame"></span> <img src="img/logo_hyperliquid/HL symbol_dark green.svg" alt="Blast logo" style="width: 20px; height: 20px;">
+                    </p>                    
+                    <p class="text-center">Don't close the modal until the transaction is finished!</p>
+                    <span id="txHash"></span><br/>
+                    <span id="infosUser" style="color: #FCFC03;" class="text-center"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Not logged Modal -->
+    <div class="modal" id="gameOverModalNotLogged">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal header -->
+                <div class="modal-header text-center">
+                    <h4 class="modal-title mx-auto"><img src="img/logo_hyperliquid/HL symbol_dark green.svg" height="70" class="img-fluid d-inline-block align-top" alt="Logo"></h4>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p class="text-center">Connect your wallet to score and claim PAC BOOM Points !</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <!-- Partie gauche -->
+                    <p>&copy; 2024 Hyperliflip<br/>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <!-- Partie centrale avec la musique et le texte -->
+                    <a href="" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-telegram" style="font-size: 36px; color: #ffffff; margin: 0 10px;"></i>
+                    </a>
+                    <a href="" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-discord" style="font-size: 36px; color: #ffffff; margin: 0 10px;"></i>
+                    </a>
+                    <a href="" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter" style="font-size: 36px; color: #ffffff; margin: 0 10px;"></i>
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                    <!-- Partie droite avec le logo -->
+                    <div class="logo text-right">
+                        <img src="img/logo_hyperliquid/HL logo_dark green.svg" alt="Logo Hyperliquid" style="max-width: 200px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript for game and Twitter login handling -->   
+    <script type="module" src="./js/ethers-5.2.umd.min.js"></script>
+    <script src="./js/config.js"></script> <!-- Import config -->
+    <script type="module" src="./js/metamask.js"></script> <!-- Import Metamask js -->
+    <!-- Load jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+
+    <script>
+
+
+        // Function to show the game over modal
+        function showGameOverModal(score) {
+            // Vérifier s'il y a du contenu précédent dans l'élément finalScore
+            const finalScoreElement = document.getElementById("finalScore");
+            if (finalScoreElement) {
+                finalScoreElement.textContent = ""; // Effacer le contenu précédent
+                finalScoreElement.textContent = score; // Afficher le nouveau score
+            }
+
+            document.getElementById("transactionButton").innerText = 'Claim PAC BOOM Points !';
+          
+            // Show the modal
+            $('#gameOverModal').modal('show');
+
+            // Event handler for the Twitter share button
+            document.getElementById("shareTwitterBtn").addEventListener("click", function(event) {
+                // URL for sharing on Twitter with the score
+                let tweetUrl = `https://twitter.com/intent/tweet?text=My+score+in+PacBoom+is+${finalScoreElement.textContent}+!&hashtags=PacBoom+&hashtags=Blast+&hashtags=Konk+@pacboon_`;
+
+                // Open a new window to share on Twitter
+                window.open(tweetUrl, '_blank');
+            });
+
+        }
+
+        // Function to show the game over modal
+        function showGameOverModalNotLogged() {
+            // Show the modal
+            $('#gameOverModalNotLogged').modal('show');
+        }
+    </script>
+
+</body>
+</html>

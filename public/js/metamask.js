@@ -1,8 +1,9 @@
+import { balanceUser, initializeClient, getEthBalanceEvm, getTokenBalanceEvm } from './hyperliquid.js';
 
 const connectWallet = document.getElementById('connectWallet')
 
 // Définition du fournisseur de signer (provider) Ethereum
-const provider = new ethers.providers.Web3Provider(window.ethereum);
+const provider = new ethers.BrowserProvider(window.ethereum);
 
 // Chargement de l'adresse du contrat du NFT PacNUB et de l'ABI depuis le fichier de configuration
 const contractAddress = config.hyperliflipAddress; 
@@ -12,13 +13,13 @@ const abi = config.hyperliflipAbi;
 const contract = new ethers.Contract(contractAddress, abi, provider);
 
 // Récupération de l'adresse Ethereum actuellement connectée
-const signerAddress = provider.getSigner().getAddress();
+const signer = await provider.getSigner();
+const signerAddress = await signer.getAddress();
 
 // Vérification si l'adresse est connectée
 if (!signerAddress) {
     console.error("No Ethereum address connected. Please connect with your wallet.");
 }
-
 
 // Fonction pour écouter les changements de compte MetaMask
 async function handleAccountsChanged(accounts) {
@@ -47,7 +48,7 @@ function checkInstalled() {
 
 // Fonction pour vérifier si l'utilisateur est déjà connecté
 export async function checkIfUserConnected() {
-    const transactionButtonElement = document.getElementById('transactionButton');
+    const transactionButtonElement = document.getElementById('betButton');
     const userAddress = localStorage.getItem('userAddress');
     const connectWalletButton = document.getElementById('connectWallet');
 
@@ -83,33 +84,34 @@ export async function checkIfUserConnected() {
                     
                     // Vérifier le réseau et activer le bouton de transaction si valide
                     if (checkNetwork() && transactionButtonElement) {
+                        transactionButtonElement.innerHTML = "Bet!";
                         transactionButtonElement.disabled = false;
                     }
 
-                    //await nubLogin();
+                    // On initialise le client qui sera utilisé pour faire les appels API sur Hyperliquid testner
+                    await initializeClient();
+
                     return true; // L'utilisateur est connecté
                 } else {
                     // Gérer les erreurs si le champ address est manquant
                     console.error('Adresse not found in the response.');
-                    //await nubLogout()
                     return false; // L'utilisateur n'est pas connecté
                 }
             } else {
                 // Gérer les erreurs de réponse non OK
                 const errorText = await response.text();
                 console.error('Error during processing of JWT:', errorText);
-                //await nubLogout();
                 return false; // L'utilisateur n'est pas connecté
             }
         } catch (error) {
             // Gérer les erreurs de la requête fetch
             console.error('Error during processing of JWT:', error);
-            //await nubLogout();
             return false; // L'utilisateur n'est pas connecté
         }
     } else {
         if (transactionButtonElement) {
             transactionButtonElement.disabled = true;
+            transactionButtonElement.innerHTML = "Connect your wallet";
         }
         //await nubLogout();
         return false; // L'utilisateur n'est pas connecté
@@ -118,7 +120,7 @@ export async function checkIfUserConnected() {
 
 
 // Génére le JWT en appelant la route /loginUser sur le serveur
-function loginUser(address) {
+async function loginUser(address) {
     return fetch('/loginUser', {
         method: 'POST',
         headers: {
@@ -139,7 +141,7 @@ function loginUser(address) {
 }
 
 // Détruit le JWT en appelant la route /logout sur le serveur
-function logoutUser() {
+async function logoutUser() {
     return fetch('/logoutUser', {
         method: 'POST',
         headers: {
@@ -158,6 +160,23 @@ function logoutUser() {
     });
 }
 
+// Fonction pour signer un message
+async function signMessage(welcomeMessage) {
+    try {
+        // Obtenir le signer
+        const signer = await provider.getSigner();
+
+        // Signer le message
+        const signature = await signer.signMessage(welcomeMessage);
+
+        console.log("Signature:", signature);
+        return signature;
+    } catch (error) {
+        console.error("Erreur lors de la signature du message :", error);
+        throw error;
+    }
+}
+
 // Fonction qui vérifie la connexion via le wallet 
 async function connectWalletwithMetaMask() {
     if (typeof window.ethereum !== 'undefined') {
@@ -165,9 +184,9 @@ async function connectWalletwithMetaMask() {
             // Vérifier si l'utilisateur est déjà connecté en consultant le stockage local
             const isUserConnected = localStorage.getItem('isUserConnected');
             const userSignature = localStorage.getItem('userSignature');
-
+ 
             // Demander l'autorisation d'accéder au compte Ethereum
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const accounts = await provider.send("eth_requestAccounts", []);
 
             if (!accounts) { return; }
 
@@ -175,10 +194,7 @@ async function connectWalletwithMetaMask() {
 
             // Message à signer
             const welcomeMessage = "Welcome to Hyperliflip! Play and gamble your token to earn more on HyperEVM!";
-            const signature = await window.ethereum.request({
-                method: 'personal_sign',
-                params: [welcomeMessage, address],
-            });
+            const signature = await signMessage(welcomeMessage);
 
             // Si le message n'est pas signé, on quitte la fonction
             if (!signature) {
@@ -214,9 +230,10 @@ async function connectWalletwithMetaMask() {
             localStorage.setItem('userSignature', signature);
 
             // Vous pouvez maintenant utiliser la signature comme nécessaire dans votre application
-            await checkUserSignatureDeleted(); // Attendre la réponse
+            checkUserSignatureDeleted(); // Attendre la réponse
 
-            // On MAJ le canvas et les boutons associés au canvas
+            // On initialise le client qui sera utilisé pour faire les appels API sur Hyperliquid testner
+            await initializeClient();
 
         } catch (error) {
             console.error(error.message);
@@ -258,7 +275,6 @@ async function signOutOfMetaMask() {
             // Il faut aussi supprimer la signature de l'user et le jwt token
             localStorage.removeItem('userSignature');
             localStorage.removeItem('username');
-            localStorage.removeItem('username_discord'); // discord username
 
             // Réinitialiser le bouton connectWallet pour qu'il demande la connexion la prochaine fois
             connectWallet.innerHTML = 'Connect Wallet';
@@ -273,8 +289,9 @@ async function signOutOfMetaMask() {
             // Vérifiez que la signature utilisateur est supprimée
             checkUserSignatureDeleted();
 
-            // On MAJ les éléments réactifs : canvas et boutons
+            // On MAJ les éléments réactifs
             await checkIfUserConnected();
+
 
         }
     } catch (error) {
@@ -283,11 +300,52 @@ async function signOutOfMetaMask() {
     }
 }
 
+// Fonction pour changer de réseau
+async function switchNetwork(provider, chainId) {
+    try {
+        await provider.send("wallet_switchEthereumChain", [
+            { chainId }, // ID de la chaîne en hexadécimal, exemple : '0x3e6'
+        ]);
+        // Recharger la page après avoir changé de réseau
+        //window.location.reload();
+    } catch (switchError) {
+        if (switchError.code === 4902) {
+            // Si la chaîne n'est pas ajoutée dans MetaMask
+            try {
+                await window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [
+                        {
+                            chainId: config.chain_id, // ID de la chaîne (hexadécimal)
+                            chainName: 'HyperEVM Testnet', // Nom lisible de la chaîne
+                            nativeCurrency: {
+                                name: 'TESTH', // Nom de la monnaie native
+                                symbol: 'TESTH', // Symbole abrégé de la monnaie native
+                                decimals: 18, // Décimales (généralement 18 pour Ethereum)
+                            },
+                            rpcUrls: [config.rpc_url], // URL de l'endpoint RPC
+                            blockExplorerUrls: [], // URL de l'explorateur (optionnel)
+                        },
+                    ],
+                });
+                // Réessayer de basculer sur la chaîne nouvellement ajoutée
+                await provider.send("wallet_switchEthereumChain", [
+                    { chainId }, // ID de la chaîne en hexadécimal, exemple : '0x3e6'
+                ]);
+                window.location.reload();
+            } catch (addError) {
+                console.error('Erreur lors de l\'ajout du réseau:', addError);
+            }
+        } else {
+            console.error('Erreur lors du changement de réseau:', switchError);
+        }
+    }
+}
 
 // Gestion de la chain sélectionnée
 function checkNetwork() {
     // Vérifier si MetaMask est installé et disponible
-    const transactionButtonElement = document.getElementById('transactionButton');
+    const transactionButtonElement = document.getElementById('betButton');
 
     if (typeof window.ethereum !== 'undefined') {
         const ethereum = window.ethereum;
@@ -296,53 +354,11 @@ function checkNetwork() {
         ethereum.request({ method: 'eth_chainId' })
             .then(chainId => {
                 if (chainId !== config.chain_id) { // Vérifier si le chainId correspond à HyperEVM 
-                    console.log("gameover ratax");
-                    console.log("chain id ???", chainId);
                     // Afficher un message d'erreur ou désactiver les boutons de transaction
                     document.getElementById('networkModal').style.display = 'block';
-                    
                     // Ajouter un écouteur pour le bouton de changement de réseau
                     document.getElementById('changeNetworkButton').addEventListener('click', async () => {
-                        try {
-                            await window.ethereum.request({
-                                method: 'wallet_switchEthereumChain',
-                                params: [{ chainId: config.chain_id }], // ID de la chaîne en hexadécimal, exemple : '0x3e6'
-                            });
-                            // Recharger la page après avoir changé de réseau
-                            window.location.reload();
-                        } catch (switchError) {
-                            if (switchError.code === 4902) {
-                                // Si la chaîne n'est pas ajoutée dans MetaMask
-                                try {
-                                    await window.ethereum.request({
-                                        method: 'wallet_addEthereumChain',
-                                        params: [
-                                            {
-                                                chainId: config.chain_id, // ID de la chaîne (hexadécimal)
-                                                chainName: 'HyperEVM Testnet', // Nom lisible de la chaîne
-                                                nativeCurrency: {
-                                                    name: 'TESTH', // Nom de la monnaie native
-                                                    symbol: 'TESTH', // Symbole abrégé de la monnaie native
-                                                    decimals: 18, // Décimales (généralement 18 pour Ethereum)
-                                                },
-                                                rpcUrls: [config.rpc_url], // URL de l'endpoint RPC
-                                                blockExplorerUrls: [], // URL de l'explorateur (optionnel)
-                                            },
-                                        ],
-                                    });
-                                    // Réessayer de basculer sur la chaîne nouvellement ajoutée
-                                    await window.ethereum.request({
-                                        method: 'wallet_switchEthereumChain',
-                                        params: [{ chainId: config.chain_id }],
-                                    });
-                                    window.location.reload();
-                                } catch (addError) {
-                                    console.error('Erreur lors de l\'ajout du réseau:', addError);
-                                }
-                            } else {
-                                console.error('Erreur lors du changement de réseau:', switchError);
-                            }
-                        }
+                    await switchNetwork(provider, config.chain_id);
                     });
                     
                     // Désactiver les boutons de transaction (exemple avec un bouton ayant l'ID "transactionButton")
@@ -375,15 +391,17 @@ function checkNetwork() {
 // Fonction pour vérifier si userSignature est supprimé de la mémoire locale
 function checkUserSignatureDeleted() {
     const userSignature = localStorage.getItem('userSignature');
-    const transactionButtonElement = document.getElementById('transactionButton');
+    const transactionButtonElement = document.getElementById('betButton');
     if (!userSignature) {
         // Désactiver le bouton de transaction si userSignature est supprimé
         if (transactionButtonElement) {
+            transactionButtonElement.innerHTML = "Connect your wallet";
             transactionButtonElement.disabled = true;
         }
     } else {
         // Activer le bouton de transaction si userSignature est présent
         if (transactionButtonElement) {
+            transactionButtonElement.innerHTML = "Bet!";
             transactionButtonElement.disabled = false;
         }
     }
@@ -391,24 +409,49 @@ function checkUserSignatureDeleted() {
 
 // Fonction pour afficher/masquer le menu déroulant au clic sur walletAddress
 export async function toggleWalletInfo() {
-    const address = localStorage.getItem("userAddress");
     const walletInfo = document.getElementById('walletInfo');
-    if (walletInfo.style.display === 'none' || walletInfo.style.display === '') {
-        walletInfo.style.display = 'block'; // Affiche le contenu
-        document.getElementById('logoutWallet').style.display = 'block'; // Affiche le bouton logout
+    const logoutWalletButton = document.getElementById('logoutWallet');
+    const usdcBalanceElement = document.getElementById('usdcBalance');
+    const testhBalanceElement = document.getElementById('testhBalance');
+
+    try {
+
+        // Toggle affichage walletInfo
+        if (walletInfo.style.display === 'none' || walletInfo.style.display === '') {
+            walletInfo.style.display = 'block';
+            logoutWalletButton.style.display = 'block';
+            usdcBalanceElement.style.display = 'block';
+            testhBalanceElement.style.display = 'block';
 
 
-    } else {
-        walletInfo.style.display = 'none'; // Masque le contenu
+            const usdcBalance = await getTokenBalanceEvm(config.usdcAddressEvm);
+            const testhBalance = await getEthBalanceEvm();
+
+            // Mise à jour des éléments DOM
+            usdcBalanceElement.innerHTML = `USDC : ${usdcBalance}`;
+            testhBalanceElement.innerHTML = `TESTH : ${testhBalance}`;
+
+        } else {
+            walletInfo.style.display = 'none';
+        }
+    } catch (error) {
+        console.error("Erreur lors de la récupération ou de l'affichage des informations du portefeuille :", error);
+
+        // Masque walletInfo en cas d'erreur
+        walletInfo.style.display = 'none';
+        logoutWalletButton.style.display = 'none';
+
+        // Optionnel : Ajouter un message d'erreur à l'utilisateur
+        usdcBalanceElement.innerHTML = "USDC : Erreur";
+        testhBalanceElement.innerHTML = "TESTH : Erreur";
     }
 }
 
 
-window.addEventListener('DOMContentLoaded', () => {
-    checkInstalled();
-    checkIfUserConnected();
-    window.ethereum.on('accountsChanged', handleAccountsChanged);
-    // Écouter les changements de réseau MetaMask
-    checkNetwork();
-    window.ethereum.on('chainChanged', checkNetwork);
-})
+
+checkInstalled();
+checkIfUserConnected();
+window.ethereum.on('accountsChanged', handleAccountsChanged);
+// Écouter les changements de réseau MetaMask
+checkNetwork();
+window.ethereum.on('chainChanged', checkNetwork);

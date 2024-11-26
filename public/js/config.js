@@ -4,6 +4,8 @@ const config = {
     chain_id : '0x3e6', //Hyperliquid testnet
 	rpc_url : 'https://api.hyperliquid-testnet.xyz/evm',
 	hyperliflipAddress: '0x17a51b837db44c390159218d30174ebeda2675f4',
+	usdcTokenId : 0,
+	testhTokenId : 619, //testnet
     hyperliflipAbi : [
 		{
 		  "inputs": [
@@ -1336,5 +1338,9 @@ const config = {
 		  "stateMutability": "nonpayable",
 		  "type": "function"
 		}
-	  ]
+	  ],
+	erc20Abi : [
+		"function balanceOf(address owner) view returns (uint256)",
+	],
+	usdcAddressEvm : '0x24ac48bf01fd6CB1C3836D08b3EdC70a9C4380cA', // testnet
 };

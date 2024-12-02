@@ -49,6 +49,7 @@ function checkInstalled() {
 // Fonction pour vérifier si l'utilisateur est déjà connecté
 export async function checkIfUserConnected() {
     const transactionButtonElement = document.getElementById('betButton');
+    const spotSendElement = document.getElementById('sendSpot');
     const userAddress = localStorage.getItem('userAddress');
     const connectWalletButton = document.getElementById('connectWallet');
 
@@ -86,6 +87,7 @@ export async function checkIfUserConnected() {
                     if (checkNetwork() && transactionButtonElement) {
                         transactionButtonElement.innerHTML = "Bet!";
                         transactionButtonElement.disabled = false;
+                        spotSendElement.disabled = false;
                     }
 
                     // On initialise le client qui sera utilisé pour faire les appels API sur Hyperliquid testner
@@ -110,10 +112,10 @@ export async function checkIfUserConnected() {
         }
     } else {
         if (transactionButtonElement) {
-            transactionButtonElement.disabled = true;
             transactionButtonElement.innerHTML = "Connect your wallet";
+            transactionButtonElement.disabled = true;
+            spotSendElement.disabled = true; //on désactive le bouton spotSend aussi
         }
-        //await nubLogout();
         return false; // L'utilisateur n'est pas connecté
     }
 }
@@ -361,16 +363,9 @@ function checkNetwork() {
                     await switchNetwork(provider, config.chain_id);
                     });
                     
-                    // Désactiver les boutons de transaction (exemple avec un bouton ayant l'ID "transactionButton")
-                    if (transactionButtonElement) {
-                        transactionButtonElement.disabled = true;
-                    }
                     return false;
                 } else {
-                    // Activer les boutons de transaction si le réseau est HyperEVM
-                    if (transactionButtonElement) {
-                    transactionButtonElement.disabled = false;
-                    }
+
                     return true;
                 }
             })
@@ -392,17 +387,20 @@ function checkNetwork() {
 function checkUserSignatureDeleted() {
     const userSignature = localStorage.getItem('userSignature');
     const transactionButtonElement = document.getElementById('betButton');
+    const spotSendElement = document.getElementById('sendSpot');
     if (!userSignature) {
         // Désactiver le bouton de transaction si userSignature est supprimé
         if (transactionButtonElement) {
             transactionButtonElement.innerHTML = "Connect your wallet";
             transactionButtonElement.disabled = true;
+            spotSendElement.disabled = true;
         }
     } else {
         // Activer le bouton de transaction si userSignature est présent
         if (transactionButtonElement) {
             transactionButtonElement.innerHTML = "Bet!";
             transactionButtonElement.disabled = false;
+            spotSendElement.disabled = false;
         }
     }
 }

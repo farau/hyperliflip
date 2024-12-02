@@ -43,7 +43,7 @@ body {
 
 #backgroundCanvas,
 #gameCanvas {
-    border-radius: 20px; /* Ajustez la valeur pour des coins plus ou moins arrondis */
+    border-radius: 10px; /* Ajustez la valeur pour des coins plus ou moins arrondis */
     position: absolute;
     top: 0;
     left: 0;
@@ -57,7 +57,6 @@ body {
     left: 50%;
     transform: translateX(-50%);
     z-index: 10; /* Assurez-vous que le bouton est au-dessus des canvases */
-    display: none; /* Cacher initialement */
 }
 
 /* Concept description styles */
@@ -133,23 +132,6 @@ body {
     background-color: #050000; /* Couleur de fond noir */
 }
 
-
-/* Styles pour le bouton START */
-#startGame {
-    padding: 10px 20px;
-    font-size: 20px;
-    background-color: rgb(192, 203, 38); /* Couleur de fond Blast */
-    color: #fff; /* Texte blanc */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#startGame:hover {
-    background-color: rgb(187, 143, 32); /* Couleur de fond plus foncée au survol */
-}
-
 /* Style pour le bouton désactivé */
 .btn-disabled {
     pointer-events: none; /* Désactiver les événements de clic */
@@ -158,12 +140,6 @@ body {
 
 .logout-text {
     margin-right: 10px;
-}
-
-/* Styling for Font Awesome icon */
-.fab.fa-twitter {
-    font-size: 20px;
-    color: #ffffff;
 }
 
 
@@ -268,44 +244,6 @@ body {
   
 #transactionButton:hover {
     background-color: #1b2821; /* Changement de couleur au survol */
-}
-
-#shareTwitterBtn {
-    background-color: #2f5b2e; /* Couleur de fond jaune */
-    border: none; /* Pas de bordure */
-    color: rgb(255, 255, 255); /* Couleur du texte */
-    padding: 8px 16px; /* Espacement à l'intérieur du bouton */
-    text-align: center; /* Centrer le texte */
-    text-decoration: none; /* Pas de soulignement */
-    display: inline-block; /* Afficher en ligne */
-    font-size: 14px; /* Taille de la police */
-    margin: 4px 2px; /* Marge extérieure */
-    cursor: pointer; /* Curseur en pointeur */
-    border-radius: 5px; /* Bordures arrondies */
-}
-  
-#shareTwitterBtn:hover {
-    background-color: #243e35; /* Changement de couleur au survol */
-}
-
-/* Bouton playButton de démarrage de la partie */
-#playButton {
-    z-index: 2; /* pour éviter qu'on ne puisse pas cliquer sur playButton */
-    background-color: #1b2821; /* Couleur de fond jaune */
-    border: none; /* Pas de bordure */
-    color: grey; /* Couleur du texte */
-    padding: 8px 16px; /* Espacement à l'intérieur du bouton */
-    text-align: center; /* Centrer le texte */
-    text-decoration: none; /* Pas de soulignement */
-    display: inline-block; /* Afficher en ligne */
-    font-size: 14px; /* Taille de la police */
-    margin: 4px 2px; /* Marge extérieure */
-    cursor: pointer; /* Curseur en pointeur */
-    border-radius: 5px; /* Bordures arrondies */
-}
-  
-#playButton:hover {
-    background-color: #141d18; /* Changement de couleur au survol */
 }
   
 .white-text {

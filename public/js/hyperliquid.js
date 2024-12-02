@@ -73,6 +73,9 @@ export async function getTokenBalanceEvm(tokenAddress) {
 export async function getEthBalanceEvm() {
     try {
         provider = new ethers.BrowserProvider(window.ethereum);
+        // Récupération du signer
+        signer = await provider.getSigner();
+
         const userAddress = await signer.getAddress();
         // Récupérer la balance native brute
         const balance = await provider.getBalance(userAddress);

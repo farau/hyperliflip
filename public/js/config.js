@@ -3,62 +3,30 @@
 const config = {
     chain_id : '0x3e6', //Hyperliquid testnet
 	rpc_url : 'https://api.hyperliquid-testnet.xyz/evm',
-	hyperliflipAddress: '0x17a51b837db44c390159218d30174ebeda2675f4',
+	hyperliflipAddress: '0xF888Da898e8fF6805fE59547C69C7E5ED8C35741',
 	usdcTokenId : 0,
 	testhTokenId : 619, //testnet
     hyperliflipAbi : [
 		{
 		  "inputs": [
 			{
-			  "internalType": "address[]",
-			  "name": "_nftContracts",
-			  "type": "address[]"
-			},
-			{
 			  "internalType": "address",
-			  "name": "_blastTokenAddress",
+			  "name": "_feeWallet",
 			  "type": "address"
 			},
 			{
 			  "internalType": "uint256",
-			  "name": "_entryFee",
+			  "name": "_feePercent",
 			  "type": "uint256"
 			},
 			{
-			  "internalType": "uint256",
-			  "name": "thresholdBonus_",
-			  "type": "uint256"
+			  "internalType": "address",
+			  "name": "_oracleAddress",
+			  "type": "address"
 			}
 		  ],
 		  "stateMutability": "nonpayable",
 		  "type": "constructor"
-		},
-		{
-		  "inputs": [],
-		  "name": "ECDSAInvalidSignature",
-		  "type": "error"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "length",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "ECDSAInvalidSignatureLength",
-		  "type": "error"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "bytes32",
-			  "name": "s",
-			  "type": "bytes32"
-			}
-		  ],
-		  "name": "ECDSAInvalidSignatureS",
-		  "type": "error"
 		},
 		{
 		  "inputs": [
@@ -88,109 +56,6 @@ const config = {
 		  "type": "error"
 		},
 		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "value",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "length",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "StringsInsufficientHexLength",
-		  "type": "error"
-		},
-		{
-		  "anonymous": false,
-		  "inputs": [
-			{
-			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "serial",
-			  "type": "uint256"
-			},
-			{
-			  "indexed": false,
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			},
-			{
-			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "damage",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "BossAttacked",
-		  "type": "event"
-		},
-		{
-		  "anonymous": false,
-		  "inputs": [
-			{
-			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "serial",
-			  "type": "uint256"
-			},
-			{
-			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "life",
-			  "type": "uint256"
-			},
-			{
-			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "prize",
-			  "type": "uint256"
-			},
-			{
-			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "entryFee",
-			  "type": "uint256"
-			},
-			{
-			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "damage",
-			  "type": "uint256"
-			},
-			{
-			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "category",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "BossCreated",
-		  "type": "event"
-		},
-		{
-		  "anonymous": false,
-		  "inputs": [
-			{
-			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "serial",
-			  "type": "uint256"
-			},
-			{
-			  "indexed": false,
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			}
-		  ],
-		  "name": "BossDestroyed",
-		  "type": "event"
-		},
-		{
 		  "anonymous": false,
 		  "inputs": [
 			{
@@ -207,44 +72,18 @@ const config = {
 			},
 			{
 			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "lockDuration",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "EtherLocked",
-		  "type": "event"
-		},
-		{
-		  "anonymous": false,
-		  "inputs": [
-			{
-			  "indexed": true,
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
+			  "internalType": "bool",
+			  "name": "won",
+			  "type": "bool"
 			},
 			{
 			  "indexed": false,
 			  "internalType": "uint256",
-			  "name": "amount",
+			  "name": "payout",
 			  "type": "uint256"
 			}
 		  ],
-		  "name": "EtherUnlocked",
-		  "type": "event"
-		},
-		{
-		  "anonymous": false,
-		  "inputs": [
-			{
-			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "timestamp",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "LeaderboardReinitialized",
+		  "name": "BetResult",
 		  "type": "event"
 		},
 		{
@@ -267,33 +106,8 @@ const config = {
 		  "type": "event"
 		},
 		{
-		  "anonymous": false,
-		  "inputs": [
-			{
-			  "indexed": true,
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			},
-			{
-			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "score",
-			  "type": "uint256"
-			},
-			{
-			  "indexed": false,
-			  "internalType": "uint256",
-			  "name": "bonus",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "PointsEarned",
-		  "type": "event"
-		},
-		{
 		  "inputs": [],
-		  "name": "LOCK_DURATION_14_DAYS",
+		  "name": "feePercent",
 		  "outputs": [
 			{
 			  "internalType": "uint256",
@@ -306,820 +120,12 @@ const config = {
 		},
 		{
 		  "inputs": [],
-		  "name": "LOCK_DURATION_28_DAYS",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [],
-		  "name": "MIN_LOCK_AMOUNT",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "_nftContract",
-			  "type": "address"
-			}
-		  ],
-		  "name": "addNftContract",
-		  "outputs": [],
-		  "stateMutability": "nonpayable",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "serial",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "timestamp",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "bytes",
-			  "name": "signature",
-			  "type": "bytes"
-			}
-		  ],
-		  "name": "attackBoss",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "payable",
-		  "type": "function"
-		},
-		{
-		  "inputs": [],
-		  "name": "blastToken",
-		  "outputs": [
-			{
-			  "internalType": "contract IERC20",
-			  "name": "",
-			  "type": "address"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "bosses",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "serial",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "life",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "prize",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "entryFeeBoss",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "damage",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "category",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "bossesKilled",
-		  "outputs": [
-			{
-			  "internalType": "bool",
-			  "name": "",
-			  "type": "bool"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "score",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "timestamp",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "bytes",
-			  "name": "signature",
-			  "type": "bytes"
-			}
-		  ],
-		  "name": "claimPoints",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "payable",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "serial_",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "life_",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "prize_",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "entryFee_",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "damage_",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "category_",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "createBoss",
-		  "outputs": [],
-		  "stateMutability": "nonpayable",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "serial",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "getBoss",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "life",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "damage",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "entryFeeBoss",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "prize",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "category",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [],
-		  "name": "getEntryFee",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [],
-		  "name": "getListBossKilledSerials",
-		  "outputs": [
-			{
-			  "internalType": "uint256[]",
-			  "name": "",
-			  "type": "uint256[]"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [],
-		  "name": "getListBossSerials",
-		  "outputs": [
-			{
-			  "internalType": "uint256[]",
-			  "name": "",
-			  "type": "uint256[]"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			}
-		  ],
-		  "name": "getMapPlayerKilledBosses",
-		  "outputs": [
-			{
-			  "components": [
-				{
-				  "internalType": "uint256",
-				  "name": "serial",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "life",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "prize",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "entryFeeBoss",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "damage",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "category",
-				  "type": "uint256"
-				}
-			  ],
-			  "internalType": "struct PacBoom.PacBoss[]",
-			  "name": "",
-			  "type": "tuple[]"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [],
-		  "name": "getNbNftContract",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			}
-		  ],
-		  "name": "getPlayer",
-		  "outputs": [
-			{
-			  "components": [
-				{
-				  "internalType": "uint256",
-				  "name": "bonus",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "points",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "bool",
-				  "name": "initialized",
-				  "type": "bool"
-				},
-				{
-				  "components": [
-					{
-					  "internalType": "uint256",
-					  "name": "amount",
-					  "type": "uint256"
-					},
-					{
-					  "internalType": "uint256",
-					  "name": "lockEndTime",
-					  "type": "uint256"
-					},
-					{
-					  "internalType": "uint256",
-					  "name": "lockDuration",
-					  "type": "uint256"
-					}
-				  ],
-				  "internalType": "struct PacBoom.Lock[]",
-				  "name": "locks",
-				  "type": "tuple[]"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "totalLocked",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "lockDurationMax",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "bossKills",
-				  "type": "uint256"
-				}
-			  ],
-			  "internalType": "struct PacBoom.Player",
-			  "name": "",
-			  "type": "tuple"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			}
-		  ],
-		  "name": "getPlayerBonus",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			}
-		  ],
-		  "name": "getPlayerBossKills",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			}
-		  ],
-		  "name": "getPlayerLockDurationMax",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "durationMax",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			}
-		  ],
-		  "name": "getPlayerLocks",
-		  "outputs": [
-			{
-			  "components": [
-				{
-				  "internalType": "uint256",
-				  "name": "amount",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "lockEndTime",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "lockDuration",
-				  "type": "uint256"
-				}
-			  ],
-			  "internalType": "struct PacBoom.Lock[]",
-			  "name": "",
-			  "type": "tuple[]"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			}
-		  ],
-		  "name": "getPlayerPoints",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			}
-		  ],
-		  "name": "getPlayerTotalLocked",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "amount",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [],
-		  "name": "getSigner",
+		  "name": "feeWallet",
 		  "outputs": [
 			{
 			  "internalType": "address",
 			  "name": "",
 			  "type": "address"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [],
-		  "name": "getThresholdBonus",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "playerAddress",
-			  "type": "address"
-			}
-		  ],
-		  "name": "getTotalLockedEther",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [],
-		  "name": "getTotalLockedEtherAllPlayers",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "playerAddress",
-			  "type": "address"
-			}
-		  ],
-		  "name": "getTotalLocks",
-		  "outputs": [
-			{
-			  "components": [
-				{
-				  "internalType": "uint256",
-				  "name": "amount",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "lockEndTime",
-				  "type": "uint256"
-				},
-				{
-				  "internalType": "uint256",
-				  "name": "lockDuration",
-				  "type": "uint256"
-				}
-			  ],
-			  "internalType": "struct PacBoom.Lock[]",
-			  "name": "",
-			  "type": "tuple[]"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "playerAddress",
-			  "type": "address"
-			}
-		  ],
-		  "name": "getTotalUnLockedEther",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "serial",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "getWhoKilledBoss",
-		  "outputs": [
-			{
-			  "internalType": "address",
-			  "name": "",
-			  "type": "address"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			}
-		  ],
-		  "name": "hasNFTFromAnyCollection",
-		  "outputs": [
-			{
-			  "internalType": "bool",
-			  "name": "",
-			  "type": "bool"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "serial",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "isBossKilled",
-		  "outputs": [
-			{
-			  "internalType": "bool",
-			  "name": "",
-			  "type": "bool"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "listBossKilledSerials",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "listBossSerials",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "lockChoice",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "lockEther",
-		  "outputs": [],
-		  "stateMutability": "payable",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "index",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "numberOfNFTsFromACollection",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			}
-		  ],
-		  "name": "numberOfNFTsFromAllCollections",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
 			}
 		  ],
 		  "stateMutability": "view",
@@ -1141,46 +147,29 @@ const config = {
 		{
 		  "inputs": [
 			{
+			  "internalType": "bool",
+			  "name": "choice",
+			  "type": "bool"
+			}
+		  ],
+		  "name": "play",
+		  "outputs": [],
+		  "stateMutability": "payable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
 			  "internalType": "address",
 			  "name": "",
 			  "type": "address"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
 			}
 		  ],
-		  "name": "playerKilledBosses",
+		  "name": "playerStats",
 		  "outputs": [
 			{
 			  "internalType": "uint256",
-			  "name": "serial",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "life",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "prize",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "entryFeeBoss",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "damage",
-			  "type": "uint256"
-			},
-			{
-			  "internalType": "uint256",
-			  "name": "category",
+			  "name": "",
 			  "type": "uint256"
 			}
 		  ],
@@ -1189,35 +178,15 @@ const config = {
 		},
 		{
 		  "inputs": [],
-		  "name": "reinitializeLeaderboard",
-		  "outputs": [],
-		  "stateMutability": "nonpayable",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
+		  "name": "randomValue",
+		  "outputs": [
 			{
-			  "internalType": "uint256",
-			  "name": "index",
-			  "type": "uint256"
+			  "internalType": "bool",
+			  "name": "",
+			  "type": "bool"
 			}
 		  ],
-		  "name": "removeNftContract",
-		  "outputs": [],
-		  "stateMutability": "nonpayable",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "player",
-			  "type": "address"
-			}
-		  ],
-		  "name": "removePlayer",
-		  "outputs": [],
-		  "stateMutability": "nonpayable",
+		  "stateMutability": "view",
 		  "type": "function"
 		},
 		{
@@ -1231,11 +200,11 @@ const config = {
 		  "inputs": [
 			{
 			  "internalType": "uint256",
-			  "name": "entryFee_",
+			  "name": "_feePercent",
 			  "type": "uint256"
 			}
 		  ],
-		  "name": "setEntryFee",
+		  "name": "setFeePercent",
 		  "outputs": [],
 		  "stateMutability": "nonpayable",
 		  "type": "function"
@@ -1244,31 +213,18 @@ const config = {
 		  "inputs": [
 			{
 			  "internalType": "address",
-			  "name": "_signer",
+			  "name": "_feeWallet",
 			  "type": "address"
 			}
 		  ],
-		  "name": "setSigner",
-		  "outputs": [],
-		  "stateMutability": "nonpayable",
-		  "type": "function"
-		},
-		{
-		  "inputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "thresholdBonus_",
-			  "type": "uint256"
-			}
-		  ],
-		  "name": "setThresholdBonus",
+		  "name": "setFeeWallet",
 		  "outputs": [],
 		  "stateMutability": "nonpayable",
 		  "type": "function"
 		},
 		{
 		  "inputs": [],
-		  "name": "totalBosses",
+		  "name": "totalBets",
 		  "outputs": [
 			{
 			  "internalType": "uint256",
@@ -1281,7 +237,7 @@ const config = {
 		},
 		{
 		  "inputs": [],
-		  "name": "totalBossesKilled",
+		  "name": "totalWins",
 		  "outputs": [
 			{
 			  "internalType": "uint256",
@@ -1309,34 +265,18 @@ const config = {
 		  "inputs": [
 			{
 			  "internalType": "uint256",
-			  "name": "",
+			  "name": "amount",
 			  "type": "uint256"
 			}
 		  ],
-		  "name": "whoKilledBosses",
-		  "outputs": [
-			{
-			  "internalType": "address",
-			  "name": "",
-			  "type": "address"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [],
-		  "name": "withdrawBlastTokens",
+		  "name": "withdraw",
 		  "outputs": [],
 		  "stateMutability": "nonpayable",
 		  "type": "function"
 		},
 		{
-		  "inputs": [],
-		  "name": "withdrawUnlockedEther",
-		  "outputs": [],
-		  "stateMutability": "nonpayable",
-		  "type": "function"
+		  "stateMutability": "payable",
+		  "type": "receive"
 		}
 	  ],
 	erc20Abi : [

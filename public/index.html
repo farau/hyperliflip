@@ -51,12 +51,13 @@
         <div class="row">
             <!-- Colonne pour le canvas -->
             <div class="col-md-6 order-0 order-md-0 position-relative text-center mt-5" >
-                <button id="playButton" class="btn btn-primary" style="display: flex; justify-content: center; align-items: center; position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%);">Play</button>
                 <div id="canvasContainer" style="height: 400px;">
                     <canvas id="backgroundCanvas" width="400" height="400"></canvas>
                     <canvas id="gameCanvas" width="400" height="400"></canvas>
-                    <button id="betButton" class="btn btn-secondary text-center" style="display: none;" disabled></button>
                 </div> 
+                <button id="betButton" class="btn btn-lg btn-success px-4 py-2" data-bs-toggle="modal" data-bs-target="#betModal">
+                    Bet
+                </button>
             </div>
 
             <!-- Texte -->
@@ -149,6 +150,72 @@
             </div>
         </div>
     </div>
+
+    <!-- Bet Modal -->
+    <div class="modal fade" id="betModal" tabindex="-1" aria-labelledby="betModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content shadow-lg border-0">
+            <div class="modal-header bg-success text-white">
+              <h5 class="modal-title fw-bold" id="betModalLabel">Place Your Bet</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="text-center mb-3">
+                <p class="fs-5 fw-semibold text-secondary">HyperEVM ETH Balance : <span id="testhModalBetBalanceEvm"></span> <i class="fab fa-ethereum"></i></p>
+              </div>
+              <div class="form-group mb-4">
+                <label for="bet-amount" class="form-label fw-bold">Amount to Bet (ETH):</label>
+                <select id="bet-amount" class="form-select">
+                  <option value="0.0025">0.0025</option>
+                  <option value="0.005">0.005</option>
+                  <option value="0.01">0.01</option>
+                  <option value="0.015">0.015</option>
+                  <option value="0.02">0.02</option>
+                </select>
+              </div>
+              <div class="form-group mb-4">
+                <label class="fw-bold">Choose Your Bet:</label>
+                <div class="d-flex justify-content-around mt-2">
+                  <label class="form-check-label">
+                    <input type="radio" name="choice" value="true" class="form-check-input me-2" checked>
+                    <span class="fw-semibold">Pile</span>
+                  </label>
+                  <label class="form-check-label">
+                    <input type="radio" name="choice" value="false" class="form-check-input me-2">
+                    <span class="fw-semibold">Face</span>
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center align-items-center gap-3">
+                <button class="btn btn-success px-4" id="place-bet">
+                  <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                  Bet !
+                </button>
+              </div>
+              <div class="card shadow-sm mt-4">
+                <div class="card-body">
+                  <h5 class="card-title text-center">Bet Results</h5>
+                  <div class="text-center mt-4">
+                    <p id="transactionHash" class="text-muted small"></p>
+                    <p id="betAmt" class="text-muted small"></p>
+                    <p id="resultBet" class="text-muted small"></p>
+                    <p id="payout" class="text-muted small"></p>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="modal-footer bg-light text-center">
+              <div class="w-100">
+                <p class="fw-bold mb-2">Statistics</p>
+                <p id="totalBets" class="text-muted mb-1"></p>
+                <p id="totalWins" class="text-muted"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
 
     <footer class="footer mt-10">
         <div class="container">

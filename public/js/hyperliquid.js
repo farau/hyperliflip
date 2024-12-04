@@ -2,6 +2,24 @@ import * as hyperliquid from "https://esm.sh/jsr/@nktkas/hyperliquid@0.9.0";
 
 let httpTransport, provider, signer, client, clientInfo;
 
+// Fonction pour appeler le client info qui ne nécessite pas de connexion Metamask
+async function initializeInfoClient() {
+       // HTTP Transport
+    httpTransport = new hyperliquid.HttpTransport({
+        url: "https://api.hyperliquid-testnet.xyz",   // API base URL
+        timeout: 10000,                       // Request timeout in ms
+        fetchOptions: {},                // Additional fetch options
+        retry: {
+        maxAttempts: 0,                               // Maximum retry attempts
+        delay: (attempt) => ~~(1 << attempt) * 150,   // Delay between retries in ms (default: Exponential backoff)
+        shouldReattempt: (error) => error instanceof TypeError || (error instanceof HttpRequestError && error.response.status >= 500 && error.response.status < 600) // Custom retry logic (default: Retries on network errors and 5xx status codes)
+        }
+    }); 
+
+    clientInfo = new hyperliquid.InfoClient(httpTransport);
+    await getVolumeDapp();
+}
+
 export async function initializeClient() {
     
     // HTTP Transport
@@ -24,9 +42,34 @@ export async function initializeClient() {
 
     // Créer une instance du client Hyperliquid
     client = new hyperliquid.ExchangeClient(signer, httpTransport, true);
-    clientInfo = new hyperliquid.InfoClient(httpTransport);
     await infosTokensEVM();
+
 }
+
+// Fonction pour récupérer le prix de l'ETH 
+export async function getVolumeDapp() {
+    try {
+        provider = new ethers.BrowserProvider(window.ethereum);
+        signer = await provider.getSigner();
+        const contract = new ethers.Contract(config.hyperliflipAddress, config.hyperliflipAbi, signer);
+
+        //On récupère le montant total de bets
+        const totalBetsValue = await contract.totalBetsValue(); //getter automatiquement créé dans le smart contract
+
+        const req = await clientInfo.metaAndAssetCtxs(); 
+        const ethValue = req[1][4].markPx;
+
+        // Afficher la valeur sur l'élément volume
+        const volumeDiv = document.getElementById("totalVolume");
+        if (volumeDiv) {
+            volumeDiv.innerHTML = ethValue * (Number(totalBetsValue) / 10**18);
+        }
+        return ethValue * (Number(totalBetsValue) / 10**18);
+    } catch (error) {
+        console.error('Cannot retrieve ETH price:', error);
+    }
+}
+
 
 // Fonction pour avoir la balance de l'user connecté
 export async function balanceUser() {
@@ -186,3 +229,6 @@ if (transferButton) {
         }
     });
 }
+
+// On initialise infoClient au démarrage
+initializeInfoClient();

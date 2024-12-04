@@ -1,4 +1,4 @@
-import { getEthBalanceEvm } from './hyperliquid.js';
+import { getEthBalanceEvm, getVolumeDapp } from './hyperliquid.js';
 
 // Sélection des éléments
 const betButton = document.getElementById('betButton');
@@ -117,6 +117,7 @@ async function placeBet() {
     
     fetchStatistics();
     fillBetModal(); // on met à jour la balance de l'user en ETH
+    getVolumeDapp(); // on met à jour le volume de la dApp
   } catch (error) {
     console.error("Erreur lors du pari :", error);
     document.getElementById("place-bet").innerHTML = 'Error. Try again';
@@ -143,6 +144,18 @@ async function fetchStatistics() {
         console.error("Erreur lors de la récupération des statistiques :", error);
     }
 }
+
+// Fonction pour connaitre la valeur totale en ETH pour les bets réalisés
+export async function getTotalBetsValue() {
+  if (!contract) {
+    return;
+  }
+  const value = await contract.totalBetsValue();
+  const valueConvert = Number(value) / 10**18;
+  return valueConvert;
+
+}
+
   
 // Ajouter les gestionnaires d'événements
 document.getElementById("place-bet").addEventListener("click", placeBet);

@@ -3,7 +3,7 @@
 const config = {
     chain_id : '0x3e6', //Hyperliquid testnet
 	rpc_url : 'https://api.hyperliquid-testnet.xyz/evm',
-	hyperliflipAddress: '0xF888Da898e8fF6805fE59547C69C7E5ED8C35741',
+	hyperliflipAddress: '0x63DFc0bACA0160D9B75b1084444F6a12e30c3645',
 	usdcTokenId : 0,
 	testhTokenId : 619, //testnet
     hyperliflipAbi : [
@@ -90,6 +90,19 @@ const config = {
 		  "anonymous": false,
 		  "inputs": [
 			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "timestamp",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "LeaderboardReinitialized",
+		  "type": "event"
+		},
+		{
+		  "anonymous": false,
+		  "inputs": [
+			{
 			  "indexed": true,
 			  "internalType": "address",
 			  "name": "previousOwner",
@@ -158,25 +171,6 @@ const config = {
 		  "type": "function"
 		},
 		{
-		  "inputs": [
-			{
-			  "internalType": "address",
-			  "name": "",
-			  "type": "address"
-			}
-		  ],
-		  "name": "playerStats",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
 		  "inputs": [],
 		  "name": "randomValue",
 		  "outputs": [
@@ -187,6 +181,13 @@ const config = {
 			}
 		  ],
 		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "reinitializeLeaderboard",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
 		  "type": "function"
 		},
 		{
@@ -237,7 +238,72 @@ const config = {
 		},
 		{
 		  "inputs": [],
+		  "name": "totalBetsLeaderboard",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "totalBetsValue",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "totalBetsValueLeaderboard",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "totalPlayers",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
 		  "name": "totalWins",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "totalWinsLeaderboard",
 		  "outputs": [
 			{
 			  "internalType": "uint256",

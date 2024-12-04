@@ -132,3 +132,6 @@ dist
 
 #DSstore
 .DS_store
+
+#Javascript files
+js-original

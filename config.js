@@ -2,10 +2,10 @@
 
 const config = {
     chain_id : '0x3e6', //Hyperliquid testnet
-	hyperliflipAddress: '0x63DFc0bACA0160D9B75b1084444F6a12e30c3645',
+	hyperflipAddress: '0x63DFc0bACA0160D9B75b1084444F6a12e30c3645',
 	usdcTokenId : 0,
 	testhTokenId : 619, //testnet
-    hyperliflipAbi : [
+    hyperflipAbi : [
 		{
 		  "inputs": [
 			{
@@ -346,3 +346,6 @@ const config = {
 	  ],
 	usdcAddressEvm : '0x24ac48bf01fd6CB1C3836D08b3EdC70a9C4380cA', // testnet
 };
+
+// Exporter correctement l'objet config
+module.exports = config;

@@ -1,1 +1,237 @@
-const a0_0x3cf555=a0_0x4f9e;(function(_0x4de87e,_0x58fe01){const _0x580b40=a0_0x4f9e,_0x3968b2=_0x4de87e();while(!![]){try{const _0x3a4c5e=parseInt(_0x580b40(0x127))/0x1+parseInt(_0x580b40(0x116))/0x2*(parseInt(_0x580b40(0x112))/0x3)+-parseInt(_0x580b40(0xf5))/0x4*(parseInt(_0x580b40(0x11d))/0x5)+parseInt(_0x580b40(0x113))/0x6*(-parseInt(_0x580b40(0x105))/0x7)+-parseInt(_0x580b40(0x10c))/0x8*(-parseInt(_0x580b40(0xf7))/0x9)+parseInt(_0x580b40(0x100))/0xa*(parseInt(_0x580b40(0x12e))/0xb)+parseInt(_0x580b40(0x102))/0xc*(-parseInt(_0x580b40(0x101))/0xd);if(_0x3a4c5e===_0x58fe01)break;else _0x3968b2['push'](_0x3968b2['shift']());}catch(_0x100bde){_0x3968b2['push'](_0x3968b2['shift']());}}}(a0_0x287f,0xebd2c));import*as a0_0x98aff0 from'https://esm.sh/jsr/@nktkas/hyperliquid@0.9.0';function a0_0x4f9e(_0x688239,_0x8d62e9){const _0x287fe2=a0_0x287f();return a0_0x4f9e=function(_0x4f9ec5,_0x5ee89a){_0x4f9ec5=_0x4f9ec5-0xee;let _0x5ea9b2=_0x287fe2[_0x4f9ec5];return _0x5ea9b2;},a0_0x4f9e(_0x688239,_0x8d62e9);}let httpTransport,provider,signer,client,clientInfo;async function initializeInfoClient(){const _0xbf7a03=a0_0x4f9e;httpTransport=new a0_0x98aff0['HttpTransport']({'url':_0xbf7a03(0x126),'timeout':0x2710,'fetchOptions':{},'retry':{'maxAttempts':0x0,'delay':_0x3f9297=>~~(0x1<<_0x3f9297)*0x96,'shouldReattempt':_0x205523=>_0x205523 instanceof TypeError||_0x205523 instanceof HttpRequestError&&_0x205523[_0xbf7a03(0x115)][_0xbf7a03(0x12a)]>=0x1f4&&_0x205523[_0xbf7a03(0x115)]['status']<0x258}}),clientInfo=new a0_0x98aff0[(_0xbf7a03(0x114))](httpTransport),await getVolumeDapp();}export async function initializeClient(){const _0x1e4722=a0_0x4f9e;httpTransport=new a0_0x98aff0[(_0x1e4722(0x10e))]({'url':'https://api.hyperliquid-testnet.xyz','timeout':0x2710,'fetchOptions':{},'retry':{'maxAttempts':0x0,'delay':_0x1b1076=>~~(0x1<<_0x1b1076)*0x96,'shouldReattempt':_0xb3af2a=>_0xb3af2a instanceof TypeError||_0xb3af2a instanceof HttpRequestError&&_0xb3af2a[_0x1e4722(0x115)][_0x1e4722(0x12a)]>=0x1f4&&_0xb3af2a['response']['status']<0x258}}),provider=new ethers['BrowserProvider'](window[_0x1e4722(0x10b)]),signer=await provider[_0x1e4722(0x107)](),client=new a0_0x98aff0[(_0x1e4722(0x118))](signer,httpTransport,!![]),await infosTokensEVM();}function a0_0x287f(){const _0x96d225=['Value\x20must\x20be\x20>\x200','testhModalBalanceEvm','spotSend','248757uNpXNb','6417150XfliJd','InfoClient','response','32suUjJn','balances','ExchangeClient','sendSpot','Error:','innerText','value','5649700yNdJba','TESTH:0x65af5d30d57264645731588b2ebfa8e3','balanceOf','data','Testnet','transferAmount','Cannot\x20retrieve\x20ETH\x20price:','formatEther','erc20Abi','https://api.hyperliquid-testnet.xyz','1868521ugVhtB','Erreur\x20lors\x20de\x20la\x20récupération\x20de\x20la\x20balance\x20ETH\x20:','error','status','toString','addEventListener','getBalance','11WDhWdp','innerHTML','Contract','click','floor','spotClearinghouseState','getAddress','totalBetsValue','testhTokenId','4NjZFMZ','metaAndAssetCtxs','10152tsolWd','3e6','find','token','Error\x20during\x20the\x20transfer\x20of\x20token:\x20','testhModalBalance','total','getElementById','Transfer\x20failed','18977390jdLobR','13waxnvx','39766548APUbVf','<span\x20class=\x22spinner-border\x20spinner-border-sm\x22\x20role=\x22status\x22\x20aria-hidden=\x22true\x22></span>\x20Waiting...','0x2222222222222222222222222222222222222222','7WaPKNS','message','getSigner','err','round','BrowserProvider','ethereum','9832Idbjiy','usdcAddressEvm','HttpTransport'];a0_0x287f=function(){return _0x96d225;};return a0_0x287f();}export async function getVolumeDapp(){const _0xc48832=a0_0x4f9e;try{provider=new ethers[(_0xc48832(0x10a))](window[_0xc48832(0x10b)]),signer=await provider['getSigner']();const _0x476465=new ethers[(_0xc48832(0xee))](config['hyperliflipAddress'],config['hyperliflipAbi'],signer),_0x3d0b61=await _0x476465[_0xc48832(0xf3)](),_0x36dd76=await clientInfo[_0xc48832(0xf6)](),_0x556dd0=_0x36dd76[0x1][0x4]['markPx'],_0x39e690=document['getElementById']('totalVolume');return _0x39e690&&(_0x39e690['innerHTML']=_0x556dd0*(Number(_0x3d0b61)/0xa**0x12)),_0x556dd0*(Number(_0x3d0b61)/0xa**0x12);}catch(_0x2b96ed){console[_0xc48832(0x129)](_0xc48832(0x123),_0x2b96ed);}}export async function balanceUser(){const _0x24494f=a0_0x4f9e;try{const _0x122f53=await signer[_0x24494f(0xf2)](),_0x3781a9=await clientInfo[_0x24494f(0xf1)]({'user':_0x122f53});return _0x3781a9;}catch(_0x181209){console[_0x24494f(0x129)](_0x24494f(0x11a),_0x181209);}}export async function getTokenBalanceEvm(_0x342e95){const _0x4988b3=a0_0x4f9e;provider=new ethers['BrowserProvider'](window[_0x4988b3(0x10b)]),signer=await provider[_0x4988b3(0x107)]();const _0x1ad61a=new ethers['Contract'](_0x342e95,config[_0x4988b3(0x125)],signer),_0x102c24=await signer['getAddress']();let _0xc83c36,_0x34cb19;if(_0x342e95==config[_0x4988b3(0x10d)]){_0xc83c36=await _0x1ad61a['balanceOf'](_0x102c24);const _0x306aa7=BigInt(0xa**0x8),_0x57c37f=_0xc83c36/_0x306aa7;_0x34cb19=Math[_0x4988b3(0x109)](Number(_0x57c37f)*0x64)/0x64;}else{_0xc83c36=await _0x1ad61a[_0x4988b3(0x11f)](_0x102c24);const _0x1a837a=BigInt(0xa**0x12),_0x498859=_0xc83c36/_0x1a837a;_0x34cb19=Math['round'](Number(_0x498859)*0x64)/0x64;}return _0x34cb19;}export async function getEthBalanceEvm(){const _0x24b6d4=a0_0x4f9e;try{provider=new ethers[(_0x24b6d4(0x10a))](window[_0x24b6d4(0x10b)]),signer=await provider[_0x24b6d4(0x107)]();const _0x5b8579=await signer['getAddress'](),_0x4868cf=await provider[_0x24b6d4(0x12d)](_0x5b8579),_0x5b0a90=ethers[_0x24b6d4(0x124)](_0x4868cf),_0x4cdd0e=Math[_0x24b6d4(0x109)](Number(_0x5b0a90)*0x64)/0x64;return _0x4cdd0e;}catch(_0x42ee82){console[_0x24b6d4(0x129)](_0x24b6d4(0x128),_0x42ee82);}}async function infosTokensEVM(){const _0x470b30=a0_0x4f9e;try{const _0x3197ca=await clientInfo['spotMeta']();return _0x3197ca;}catch(_0x1dc134){console[_0x470b30(0x129)](_0x470b30(0x11a),_0x1dc134);}}async function transferSpot(_0xc1fee1){const _0x538407=a0_0x4f9e;try{const _0x15ac3b=_0xc1fee1[_0x538407(0x12b)]();await client[_0x538407(0x111)]({'hyperliquidChain':_0x538407(0x121),'signatureChainId':_0x538407(0xf8),'destination':_0x538407(0x104),'token':_0x538407(0x11e),'amount':_0x15ac3b,'time':Date['now']()});}catch(_0x4f4656){console[_0x538407(0x129)](_0x538407(0x11a),_0x4f4656);}}const sendSpotButton=document[a0_0x3cf555(0xfe)](a0_0x3cf555(0x119));let balanceData;sendSpotButton['addEventListener'](a0_0x3cf555(0xef),function(){fillTransferModal();});async function fillTransferModal(){const _0x3bf7c4=a0_0x3cf555;balanceData=await balanceUser();const _0x5f383c=balanceData[_0x3bf7c4(0x117)][_0x3bf7c4(0xf9)](_0x26a90b=>_0x26a90b[_0x3bf7c4(0xfa)]===config[_0x3bf7c4(0xf4)]),_0x444dfa=_0x5f383c?_0x5f383c['total']:_0x3bf7c4(0x108);document[_0x3bf7c4(0xfe)](_0x3bf7c4(0xfc))[_0x3bf7c4(0x12f)]=Math[_0x3bf7c4(0xf0)](_0x444dfa*0x64)/0x64;const _0x31a3ee=await getEthBalanceEvm();document[_0x3bf7c4(0xfe)](_0x3bf7c4(0x110))[_0x3bf7c4(0x12f)]=Math[_0x3bf7c4(0xf0)](_0x31a3ee*0x64)/0x64;}const transferButton=document['getElementById']('transferButton');transferButton&&transferButton[a0_0x3cf555(0x12c)]('click',async()=>{const _0x6e299e=a0_0x3cf555;try{const _0x42a264=parseFloat(document[_0x6e299e(0xfe)](_0x6e299e(0x122))[_0x6e299e(0x11c)]);if(isNaN(_0x42a264)){transferButton[_0x6e299e(0x11b)]=_0x6e299e(0x10f);return;}balanceData=await balanceUser();const _0x23d1ed=balanceData['balances']['find'](_0x3044bd=>_0x3044bd[_0x6e299e(0xfa)]===config[_0x6e299e(0xf4)]),_0x41fc03=_0x23d1ed?_0x23d1ed[_0x6e299e(0xfd)]:'err',_0x4dd82f=Math['floor'](_0x41fc03*0x64)/0x64;if(_0x42a264>_0x4dd82f){transferButton[_0x6e299e(0x11b)]='Value\x20must\x20be\x20lower\x20than\x20'+_0x4dd82f;return;}transferButton[_0x6e299e(0x12f)]=_0x6e299e(0x103);const _0x931c5c=await transferSpot(_0x42a264);await Promise['all']([]),transferButton[_0x6e299e(0x12f)]='Transfer\x20successful!';}catch(_0x2d8094){console[_0x6e299e(0x129)](_0x6e299e(0xfb),_0x2d8094),transferButton[_0x6e299e(0x12f)]=_0x2d8094[_0x6e299e(0x120)]?.[_0x6e299e(0x106)]||_0x6e299e(0xff);}});initializeInfoClient();
+import * as hyperliquid from "https://esm.sh/jsr/@nktkas/hyperliquid@0.9.0";
+
+let httpTransport, provider, signer, client, clientInfo;
+
+// Fonction pour appeler le client info qui ne nécessite pas de connexion Metamask
+async function initializeInfoClient() {
+       // HTTP Transport
+    httpTransport = new hyperliquid.HttpTransport({
+        url: "https://api.hyperliquid-testnet.xyz",   // API base URL
+        timeout: 10000,                       // Request timeout in ms
+        fetchOptions: {},                // Additional fetch options
+        retry: {
+        maxAttempts: 0,                               // Maximum retry attempts
+        delay: (attempt) => ~~(1 << attempt) * 150,   // Delay between retries in ms (default: Exponential backoff)
+        shouldReattempt: (error) => error instanceof TypeError || (error instanceof HttpRequestError && error.response.status >= 500 && error.response.status < 600) // Custom retry logic (default: Retries on network errors and 5xx status codes)
+        }
+    }); 
+
+    clientInfo = new hyperliquid.InfoClient(httpTransport);
+    await getVolumeDapp();
+}
+
+export async function initializeClient() {
+    
+    // HTTP Transport
+    httpTransport = new hyperliquid.HttpTransport({
+        url: "https://api.hyperliquid-testnet.xyz",   // API base URL
+        timeout: 10000,                       // Request timeout in ms
+        fetchOptions: {},                // Additional fetch options
+        retry: {
+        maxAttempts: 0,                               // Maximum retry attempts
+        delay: (attempt) => ~~(1 << attempt) * 150,   // Delay between retries in ms (default: Exponential backoff)
+        shouldReattempt: (error) => error instanceof TypeError || (error instanceof HttpRequestError && error.response.status >= 500 && error.response.status < 600) // Custom retry logic (default: Retries on network errors and 5xx status codes)
+        }
+    });
+
+    // Définition du fournisseur de signer (provider) Ethereum
+    provider = new ethers.BrowserProvider(window.ethereum);
+
+    // Récupération de l'adresse Ethereum actuellement connectée
+    signer = await provider.getSigner();
+
+    // Créer une instance du client Hyperliquid
+    client = new hyperliquid.ExchangeClient(signer, httpTransport, true);
+    await infosTokensEVM();
+
+}
+
+// Fonction pour récupérer le prix de l'ETH 
+export async function getVolumeDapp() {
+    try {
+        const volumeDapp = await fetch('/volume-dapp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (!volumeDapp.ok) {
+            throw new Error('Error retrieving the volume of the dApp.');
+        }
+
+        // Extraire le JSON de la réponse
+        const data = await volumeDapp.json();
+
+        // Afficher la valeur sur l'élément volume
+        const volumeDiv = document.getElementById("totalVolume");
+        if (volumeDiv) {
+            volumeDiv.innerHTML = data.value;
+        }
+    } catch (error) {
+        console.error('Cannot retrieve Dapp Volume', error);
+    }
+}
+
+
+// Fonction pour avoir la balance de l'user connecté
+export async function balanceUser() {
+    try {
+        const address = await signer.getAddress();
+        const balance = await clientInfo.spotClearinghouseState({
+             "user": address
+        }); 
+        return balance;
+     } catch (error) {
+         console.error('Error:', error);
+     }
+ }
+
+// Fonction pour récupérer la balance des tokens sur EVM
+export async function getTokenBalanceEvm(tokenAddress) {
+    // Définition du fournisseur de signer (provider) Ethereum
+    provider = new ethers.BrowserProvider(window.ethereum);
+    signer = await provider.getSigner();
+    const tokenContract = new ethers.Contract(tokenAddress, config.erc20Abi, signer);
+
+    // Addresse de l'user
+    const userAddress = await signer.getAddress();
+    let balance, adjustedBalance;
+    if (tokenAddress == config.usdcAddressEvm) {
+        balance = await tokenContract.balanceOf(userAddress);/// 10**8;
+        const divisor = BigInt(10 ** 8); // Assurez-vous que le diviseur est aussi un BigInt
+        const rawBalance = balance / divisor; // Division avec BigInt
+
+        // Convertir en Number pour l'arrondi
+        adjustedBalance = Math.round(Number(rawBalance) * 100) / 100;
+    } else {
+        balance = await tokenContract.balanceOf(userAddress);/// 10**18;
+        const divisor = BigInt(10 ** 18); // Assurez-vous que le diviseur est aussi un BigInt
+        const rawBalance = balance / divisor; // Division avec BigInt
+
+        // Convertir en Number pour l'arrondi
+        adjustedBalance = Math.round(Number(rawBalance) * 100) / 100;
+    }
+    return adjustedBalance;
+}
+
+// Fonction pour récupérer la balance ETH
+export async function getEthBalanceEvm() {
+    try {
+        provider = new ethers.BrowserProvider(window.ethereum);
+        // Récupération du signer
+        signer = await provider.getSigner();
+
+        const userAddress = await signer.getAddress();
+        // Récupérer la balance native brute
+        const balance = await provider.getBalance(userAddress);
+        const ethBalance = ethers.formatEther(balance);
+        const adjustedBalance = Math.round(Number(ethBalance) * 100) / 100;
+        return adjustedBalance;
+    } catch (error) {
+        console.error("Erreur lors de la récupération de la balance ETH :", error);
+    }
+}
+
+// Fonction pour avoir les infos de tous les tokens
+async function infosTokensEVM() {
+    try {
+        const infos = await clientInfo.spotMeta(); 
+        return infos;
+     } catch (error) {
+         console.error('Error:', error);
+     }
+ }
+
+
+// Fonction pour transférer des fonds de Spot vers HyperEVM
+async function transferSpot(value) {
+   try {
+        const valueInString = value.toString();
+
+        await client.spotSend({
+            "hyperliquidChain": "Testnet",
+            "signatureChainId": "3e6", //testnet HL
+            "destination": "0x2222222222222222222222222222222222222222",
+            "token":"TESTH:0x65af5d30d57264645731588b2ebfa8e3",
+            "amount": valueInString,
+            "time": Date.now()
+        });
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// --------- LISTENERS -------------
+
+// Sélectionner le bouton par son ID
+const sendSpotButton = document.getElementById('sendSpot');
+let balanceData;
+
+// Ajouter un gestionnaire d'événement
+sendSpotButton.addEventListener('click', function() {
+    // Fonction déclenchée lorsqu'on clique sur le bouton Transfer et que la modal s'ouvre
+    fillTransferModal();
+});
+
+// Fonction qui remplit les infos dans la modal transfer
+async function fillTransferModal() {
+
+    // Récupération des balances
+    balanceData = await balanceUser();
+    // Récupération de la balance testh
+    const testh = balanceData.balances.find(b => b.token === config.testhTokenId);
+    const testhBalance = testh ? testh.total : 'err';
+
+    // Mise à jour des éléments DOM
+    document.getElementById("testhModalBalance").innerHTML = Math.floor(testhBalance * 100) / 100;
+
+    const testhBalanceEvm = await getEthBalanceEvm();
+    document.getElementById("testhModalBalanceEvm").innerHTML = Math.floor(testhBalanceEvm * 100) / 100;
+}
+
+// Présence de cet élément nécessaire pour créer le listener
+const transferButton = document.getElementById("transferButton");
+
+if (transferButton) {
+    transferButton.addEventListener("click", async () => {
+        try {
+            const ethAmount = parseFloat(document.getElementById("transferAmount").value); // Convert to float
+
+            // Check for invalid ETH amount 
+            if (isNaN(ethAmount)) {
+                transferButton.innerText = 'Value must be > 0';
+                return; // Exit early if invalid input
+            }
+            // Récupération des balances
+            balanceData = await balanceUser();
+            const testh = balanceData.balances.find(b => b.token === config.testhTokenId);
+            const testhBalance = testh ? testh.total : 'err';
+            const testhBalanceFormatted = Math.floor(testhBalance * 100) / 100;
+
+            if (ethAmount > testhBalanceFormatted) {
+                transferButton.innerText = `Value must be lower than ${testhBalanceFormatted}`;
+                return; // Exit early if invalid input
+            }
+            // Valid input: proceed with transaction
+            transferButton.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Waiting...`;
+
+            const tx = await transferSpot(ethAmount);
+
+            // Update the UI after successful transaction
+            await Promise.all([
+            ]);
+            //
+
+            transferButton.innerHTML = `Transfer successful!`;
+
+        } catch (error) {
+            console.error('Error during the transfer of token: ', error);
+            transferButton.innerHTML = error.data?.message || 'Transfer failed';
+        }
+    });
+}
+
+// On initialise infoClient au démarrage
+initializeInfoClient();

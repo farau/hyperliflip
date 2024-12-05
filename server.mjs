@@ -1,33 +1,37 @@
-const express = require('express');
-const path = require('path');
-const session = require('express-session');
-const flash = require('connect-flash');
+import * as hyperliquid from "@nktkas/hyperliquid";
+import express from "express";
+import path from "path";
+import session from "express-session";
+import flash from "connect-flash";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import jwt from "jsonwebtoken";
+import { ethers, Wallet, JsonRpcProvider } from "ethers";
+import config from "./config.js";
+import dotenv from "dotenv";
+import fs from 'fs';
 
+
+// Initialisation de dotenv
+dotenv.config();
+
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
+// Création de l'application Express
 const app = express();
-const cookieParser = require('cookie-parser');
 
-const cors = require('cors');
-const jwt = require('jsonwebtoken');
-
-const { ethers, Wallet, JsonRpcProvider } = require('ethers');
-
-const config = require('./config.js');
-
-require('dotenv').config();
-
-
-//const privateKey = process.env.PRIVATE_KEY;
-//const signer = new Wallet(privateKey);
+const privateKey = process.env.PRIVATE_KEY;
+const signer = new Wallet(privateKey);
 
 // Chargement de l'adresse du contrat du NFT Hyperliflip et de l'ABI depuis le fichier de configuration
-//const hyperliflipAddress = config.hyperliflipAddress; 
-//const hyperliflipAbi = config.hyperliflipAbi;
+const hyperflipAddress = config.hyperflipAddress; 
+const hyperflipAbi = config.hyperflipAbi;
 
 // Initialisation du provider (vous pouvez utiliser Infura, Alchemy, ou un autre service)
 const provider = new JsonRpcProvider(process.env.RPC_URL);
 
 // Instanciation du smart contract Hyperliflip
-//const contractHLFlip = new ethers.Contract(hyperliflipAddress, hyperliflipAbi, provider);
+const contract = new ethers.Contract(hyperflipAddress, hyperflipAbi, provider);
 
 // Configurer le moteur EJS pour rendu dynamique des pages html/css
 app.set('view engine', 'ejs');
@@ -60,13 +64,6 @@ app.use(
 
 // Utilisation du middleware CORS
 app.use(cors());
-
-
-const router = express.Router();
-const fs = require('fs'); // Utilisation de la librairie de lecture de fichiers
-
-// Autres routes et configurations de votre application Express...
-module.exports = router;
 
 // Middleware pour servir les fichiers statiques (HTML, CSS, JavaScript, images, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
@@ -155,6 +152,87 @@ function verifyJWT(req, res, next) {
         next();
     });
 }
+
+
+
+let httpTransport, clientInfo;
+
+// Fonction pour appeler le client info qui ne nécessite pas de connexion Metamask
+async function initializeInfoClient() {
+       // HTTP Transport
+    httpTransport = new hyperliquid.HttpTransport({
+        url: "https://api.hyperliquid-testnet.xyz",   // API base URL
+        timeout: 10000,                       // Request timeout in ms
+        fetchOptions: {},                // Additional fetch options
+        retry: {
+        maxAttempts: 0,                               // Maximum retry attempts
+        delay: (attempt) => ~~(1 << attempt) * 150,   // Delay between retries in ms (default: Exponential backoff)
+        shouldReattempt: (error) => error instanceof TypeError || (error instanceof HttpRequestError && error.response.status >= 500 && error.response.status < 600) // Custom retry logic (default: Retries on network errors and 5xx status codes)
+        }
+    }); 
+
+    clientInfo = new hyperliquid.InfoClient(httpTransport);
+
+}
+
+initializeInfoClient();
+
+// Fonction pour récupérer le volume de la dApp
+async function getVolumeDapp() {
+    try {
+        // Récupération du montant total des paris (totalBetsValue)
+        const totalBetsValue = await contract.totalBetsValue(); // Getter dans le smart contract
+        console.log('Total Bets Value:', totalBetsValue.toString()); // Journalisation pour debug
+
+        // Récupération des informations liées au contexte de l'asset
+        const req = await clientInfo.metaAndAssetCtxs();
+        const ethValue = req[1][4]?.markPx; // Prix de l'ETH dans le contexte
+        
+        if (!ethValue || !totalBetsValue) {
+            console.error('ETH price or total bets value is undefined');
+            return;
+        }
+
+        // Conversion et calcul du volume
+        const volume = ethValue * (Number(totalBetsValue) / 10 ** 18);
+        console.log('Volume DApp ($):', volume);
+        return volume;
+    } catch (error) {
+        console.error('Cannot retrieve volume data:', error);
+    }
+}
+
+// Mettre à jour la TVL toutes les 2 minutes
+const updateInterval = 2* 60 * 1000; // 2 minutes en millisecondes
+let currentVolume = 0; // Stocker le volume de la DApp
+
+// Fonction pour mettre à jour le volume de la DApp
+const updateVolumeDapp = async () => {
+    try {
+        const volume = await getVolumeDapp();
+        if (volume !== undefined) {
+            currentVolume = volume; // Mettre à jour le volume actuel
+            console.log('Volume DApp mis à jour:', volume);
+        }
+    } catch (error) {
+        console.error('Erreur lors de la mise à jour du volume DApp:', error);
+    }
+};
+
+// Mettre à jour la TVL toutes les 2 minutes
+setInterval(updateVolumeDapp, updateInterval);
+
+
+// Route POST pour récupérer le volume de la dApp
+app.post('/volume-dapp', (req, res) => {
+    try {
+        res.status(200).json({ value: currentVolume }); // Renvoyer la valeur actuelle du volume
+    } catch (error) {
+        console.error('Error fetching volume of the app:', error);
+        res.status(500).json({ error: 'Error fetching volume of the app' });
+    }
+});
+
 
 // Route POST pour vérifier le JWT
 app.post('/verify-jwt', verifyJWT, (req, res) => {

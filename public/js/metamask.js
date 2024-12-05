@@ -308,8 +308,6 @@ async function switchNetwork(provider, chainId) {
         await provider.send("wallet_switchEthereumChain", [
             { chainId }, // ID de la chaîne en hexadécimal, exemple : '0x3e6'
         ]);
-        // Recharger la page après avoir changé de réseau
-        window.location.reload();
     } catch (switchError) {
         if (switchError.code === 4902 || switchError.code === 'UNKNOWN_ERROR') {
             // Si la chaîne n'est pas ajoutée dans MetaMask
@@ -333,13 +331,16 @@ async function switchNetwork(provider, chainId) {
                 await provider.send("wallet_switchEthereumChain", [
                     { chainId }, // ID de la chaîne en hexadécimal, exemple : '0x3e6'
                 ]);
-                window.location.reload();
+
             } catch (addError) {
                 console.error('Erreur lors de l\'ajout du réseau:', addError);
             }
         } else {
             console.error('Erreur lors du changement de réseau:', switchError);
         }
+    } finally {
+        // Recharger la page quelque soit l'issue
+        window.location.reload();
     }
 }
 

@@ -194,7 +194,7 @@ async function getVolumeDapp() {
         }
 
         // Conversion et calcul du volume
-        const volume = ethValue * (Number(totalBetsValue) / 10 ** 18);
+        const volume = Math.round(ethValue * (Number(totalBetsValue) / 10 ** 18));
         console.log('Volume DApp ($):', volume);
         return volume;
     } catch (error) {

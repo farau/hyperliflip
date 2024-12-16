@@ -74,49 +74,39 @@
     <div class="container mt-5">
       <!-- Centered Card for Volume -->
       <div class="flip-button d-flex justify-content-center align-items-center mb-5">
-        <p class="p-volume">Volume : <span id="totalVolume"></span> $</p>
+        <h3 class="p-volume text-center">Volume : <span id="totalVolume"></span> $</h1>
       </div>
       <div class="row ">
           <!-- Colonne pour le canvas -->
           <div class="col-md-6 order-0 order-md-0 position-relative text-center mt-5">
             <!-- Card for Bet Buttons -->
             <div class="card-custom mb-4 card-custom w-auto mx-auto">
-              <p>Choose the currency:</p>
-              <!-- Select -->
-              <select class="form-select btn btn-custom w-auto ml-4 mb-4" id="currency-select">
-                <option value="ETH" selected>ETH</option>
-                <option value="HYPE" disabled>HYPE</option>
-                <option value="PURR" disabled>PURR</option>
-              </select>
-              <p>Choose the amount you want to gamble!</p>
-              <div class="bet-buttons d-flex justify-content-center flex-wrap gap-1" id="bet-buttons">
+              <div class="bet-buttons d-flex justify-content-center flex-wrap gap-2 mb-3" id="bet-buttons">
                   <button class="btn btn-custom" data-eth="0.025" data-usd="5">0.025 <i class="fab fa-ethereum"></i></button>
                   <button class="btn btn-custom" data-eth="0.05" data-usd="10">0.05 <i class="fab fa-ethereum"></i></button>
                   <button class="btn btn-custom" data-eth="0.1" data-usd="25">0.1 <i class="fab fa-ethereum"></i></button>
                   <button class="btn btn-custom" data-eth="0.15" data-usd="50">0.15 <i class="fab fa-ethereum"></i></button>
                   <button class="btn btn-custom" data-eth="0.2" data-usd="100">0.2 <i class="fab fa-ethereum"></i></button>
               </div>
+
+              <div class="choice-buttons d-flex justify-content-between align-items-center mt-4">
+                <!-- Section gauche -->
+                <div>
+                  <!-- Buttons -->
+                  <button class="btn bet-buttons" id="heads-btn">HEADS</button>
+                  <button class="btn bet-buttons" id="tails-btn">TAILS</button>
+                </div>
+                <!-- Section droite -->
+                <!-- Select -->
+                <select class="btn bet-buttons flex-grow-1 ml-4" id="currency-select">
+                  <option value="ETH" selected>ETH</option>
+                  <option value="HYPE" disabled>HYPE</option>
+                  <option value="PURR" disabled>PURR</option>
+                </select>
+              </div>
+              
             </div>
           
-            <!-- Card for Choice Buttons -->
-            <div class="mb-4">
-              <p>Heads or tails?</p>
-              <div class="choice-buttons d-flex flex-wrap justify-content-center align-items-center gap-2">
-                  <!-- Buttons -->
-                  <button class="btn btn-custom" id="heads-btn">HEADS</button>
-                  <button class="btn btn-custom" id="tails-btn">TAILS</button>
-              </div>
-            </div>
-
-            <!-- Result section -->
-            <div class="list-group" id="result-div" style="display: none;">
-              <div class="text-center mt-4">
-                <p id="transactionHash" ></p>
-                <p id="betAmt"></p>
-                <p id="resultBet"></p>
-                <p id="payout"></p>
-              </div>
-            </div>
           </div>
 
           <!-- Texte -->
@@ -130,31 +120,55 @@
                   <button class="btn btn-flip px-5" id="place-bet">Flip Coin</button>
               </div>
             </div>
-          </div>
-  
-      </div>
 
-      <div class="card-custom w-50 mx-auto">
-        <h3 class="card-title text-center text-light mb-4">How to Play?</h3>
-        <!-- Steps List inside the card -->
-        <div class="list-group">
-          <p class="list-group-item" >
-              <span class="fw-bold">1. Connect your wallet</span>
-          </p>
-          <p class="list-group-item d-flex justify-content-between align-items-center">
-              <span class="fw-bold">2. Transfer funds from your HyperLiquid Spot account</span>
-          </p>
-          <!-- Transfer button inside the card -->
-          <div class="text-center mb-4">
-            <button id="sendSpot" class="btn btn-lg btn-success px-4 py-2" data-bs-toggle="modal" data-bs-target="#transferModal">
-                <i class="fas fa-arrow-right me-2"></i> Transfer
-            </button>
+            <div class="card-custom mx-auto">
+              <h3 class="card-title text-center text-light mb-4">
+                <button 
+                  class="btn btn-link text-light text-decoration-none align-items-center justify-content-center gap-2" 
+                  type="button" 
+                  data-bs-toggle="collapse" 
+                  data-bs-target="#howToPlayContent" 
+                  aria-expanded="false" 
+                  aria-controls="howToPlayContent">
+                  How to Play? 
+                  <i class="fas fa-chevron-down rotate-icon"></i>
+                </button>
+              </h3>
+            
+              <!-- Contenu coulissant -->
+              <div class="collapse" id="howToPlayContent">
+                <div class="list-group">
+                  <p class="list-group-item">
+                    <span class="fw-bold">1. Connect your wallet</span>
+                  </p>
+                  <p class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="fw-bold">2. Transfer funds from your HyperLiquid Spot account</span>
+                  </p>
+                  <!-- Bouton de transfert -->
+                  <div class="text-center mb-4">
+                    <button id="sendSpot" class="btn btn-lg btn-success px-4 py-2" data-bs-toggle="modal" data-bs-target="#transferModal">
+                      <i class="fas fa-arrow-right me-2"></i> Transfer
+                    </button>
+                  </div>
+                  <p class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="fw-bold">3. Gamble to win big!</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            
           </div>
-          <p class="list-group-item d-flex justify-content-between align-items-center">
-              <span class="fw-bold">3. Gamble to win big!</span>
-          </p>
+      </div>
+      <!-- Result section -->
+      <div class="card" id="result-div" style="display: none;">
+        <button id="close-btn" class="close-btn">&times;</button>
+        <div class="content">
+          <p id="betAmt"></p>
+          <p id="resultBet"></p>
+          <p id="payout"></p>
         </div>
-      </div>  
+      </div>           
     </div>
 
     <!-- Transfer Modal -->

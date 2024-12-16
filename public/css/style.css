@@ -382,13 +382,17 @@ footer a:active {
 
 /* Bouton flip page d'accueil*/
 .btn-custom {
-    background-color: rgba(0, 0, 0, .2);
+    background-color: rgba(0, 0, 0, .0);
     color: white;
     border-color: rgba(0, 0, 0, .4);
 }
 
 .bet-buttons {
     background-color: rgba(0, 0, 0, .2);
+    color: white;
+    border-color: rgba(0, 0, 0, .4);
+    border-radius: 5px; /* Optionnel, pour arrondir les coins */
+    border: #1b2821;
 }
 
 .bet-buttons button {
@@ -398,6 +402,8 @@ footer a:active {
 
 .choice-buttons {
     border: rgba(0, 0, 0, .4);
+    border: rgba(0, 0, 0, .4);
+
 }
 
 .card-custom {
@@ -443,7 +449,7 @@ footer a:active {
     border-width: 1px;
     border-style: solid;
     border-radius: 2px; /* Optionnel, pour arrondir les coins */
-    padding: 10px 20px; /* Optionnel, pour ajuster la taille globale */
+    padding: 40px 60px; /* Optionnel, pour ajuster la taille globale */
 }
 
 /* Centrer le conteneur si nécessaire */
@@ -457,7 +463,7 @@ footer a:active {
 
 /* Image tournante */
 .rotating-image {
-    width: 200px; /* Ajustez la taille de l'image */
+    width: 60%; /* Ajustez la taille de l'image */
     height: auto;
     animation: rotate3D 5s infinite linear; /* Animation de rotation */
     transform-style: preserve-3d; /* Nécessaire pour les rotations 3D */
@@ -472,3 +478,81 @@ footer a:active {
         transform: rotateY(360deg); /* Fin de la rotation */
     }
 }
+
+/* Style du bouton */
+.card-title button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+  
+/* Flèche avec transition */
+.rotate-icon {
+    transition: transform 0.3s ease;
+}
+
+/* Rotation de la flèche lorsqu'on ouvre la section */
+button[aria-expanded="true"] .rotate-icon {
+    transform: rotate(180deg);
+}
+
+  
+#result-div {
+    position: fixed;               
+    top: 50%;                      
+    left: 50%;                     
+    transform: translate(-50%, -50%);
+    background-color: rgba(27, 37, 22, 0.9);  /* Fond sombre avec une touche de vert */
+    color: #e0f7fa;                /* Texte clair, légèrement cyan pour le contraste */
+    padding: 30px;                 /* Plus d'espace pour aérer */
+    max-width: 600px;              /* Largeur maximale fixe pour empêcher la fenêtre d'être trop grande */
+    width: 90%;                    /* La largeur est à 90% de la page, mais ne dépasse pas 600px */
+    border-radius: 10px;           /* Bordures arrondies pour un effet doux */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); /* Ombre subtile pour un effet de profondeur */
+    z-index: 9999;                 /* Toujours au-dessus des autres éléments */
+    display: block;                /* Par défaut, affiché */
+    text-align: center;            /* Centrage du texte */
+    transition: transform 0.3s ease;  /* Transition douce pour l'apparition */
+  }
+  
+  #result-div.show {
+    transform: translate(-50%, -50%) scale(1);  /* Apparition animée */
+  }
+  
+  #close-btn {
+    position: absolute;           
+    top: 10px;                     
+    right: 10px;                   /* Position de la croix en haut à droite */
+    background: transparent;      
+    border: none;                 
+    color: #e0f7fa;               
+    font-size: 30px;               
+    cursor: pointer;              
+    transition: color 0.3s ease;  /* Transition douce pour le survol */
+  }
+  
+  #close-btn:hover {
+    color: #81c784;               /* Couleur verte au survol */
+  }
+  
+  .content {
+    margin-top: 20px;              /* Espacement entre le bouton de fermeture et le contenu */
+    font-size: 18px;               /* Taille de police plus grande pour améliorer la lisibilité */
+  }
+  
+  #betAmt, #resultBet, #payout {
+    margin-bottom: 10px;           /* Espacement entre les paragraphes */
+  }
+  
+  @media (max-width: 768px) {
+    #result-div {
+      width: 95%;                  /* Prendre presque toute la largeur sur petits écrans */
+      padding: 20px;               /* Réduire le padding sur les petits écrans */
+    }
+  
+    #close-btn {
+      font-size: 25px;             /* Réduire la taille de la croix sur petits écrans */
+    }
+  }
+  

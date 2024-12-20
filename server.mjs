@@ -117,7 +117,7 @@ let leaderboardData = [];
 async function saveLeaderboardToFile() {
     try {
         const userData = await leaderboard.getUserData();  // Récupérer les données des utilisateurs
-        leaderboardData = {userData : userData, daxte : new Date()};  // Mettre à jour la variable globale
+        leaderboardData = {userData : userData, date : new Date()};  // Mettre à jour la variable globale
 
         // Sauvegarder les données dans un fichier JSON
         fs.writeFileSync('leaderboard.json', JSON.stringify(leaderboardData, null, 2), 'utf8');

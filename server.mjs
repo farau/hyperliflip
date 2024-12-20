@@ -10,7 +10,8 @@ import { ethers, Wallet, JsonRpcProvider } from "ethers";
 import config from "./config.js";
 import dotenv from "dotenv";
 import fs from 'fs';
-
+import pkg from 'pg';
+const { Pool } = pkg;
 
 // Initialisation de dotenv
 dotenv.config();
@@ -65,6 +66,129 @@ app.use(
 // Utilisation du middleware CORS
 app.use(cors());
 
+// Configuration de la connexion PostgreSQL
+const pool = new Pool({
+    user: process.env.USR_DATABASE,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: 5432 // Port par défaut de PostgreSQL
+});
+
+// Fonction pour créer les tables dans PostgreSQL
+async function createTables() {
+    const client = await pool.connect();
+    try {
+      await client.query(`        
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY,
+            wallet_address VARCHAR(42) NOT NULL UNIQUE,
+            referrerId VARCHAR(42) NOT NULL DEFAULT 1,
+            referredId VARCHAR(42) UNIQUE
+        );
+        
+        CREATE TABLE IF NOT EXISTS volume_users_daily (
+            id SERIAL PRIMARY KEY,
+            wallet_address VARCHAR(42) NOT NULL,
+            user_id BIGINT REFERENCES users(id),
+            volume INTEGER NOT NULL,
+            date DATE NOT NULL,
+            CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        );  
+      `);
+  
+      console.log('Tables créées ou chargées avec succès');
+    } catch (err) {
+      console.error('Erreur lors de la création des tables', err);
+    } finally {
+      client.release();
+    }
+}
+
+// Appel de la fonction pour créer les tables au démarrage du serveur
+createTables();
+
+// LEADERBOARD -----------
+import * as leaderboard from './leaderboard.mjs';
+
+let leaderboardData = [];
+
+// Fonction pour sauvegarder le leaderboard dans un fichier JSON
+async function saveLeaderboardToFile() {
+    try {
+        const userData = await leaderboard.getUserData();  // Récupérer les données des utilisateurs
+        leaderboardData = {userData : userData, daxte : new Date()};  // Mettre à jour la variable globale
+
+        // Sauvegarder les données dans un fichier JSON
+        fs.writeFileSync('leaderboard.json', JSON.stringify(leaderboardData, null, 2), 'utf8');
+        console.log('Leaderboard mis à jour et sauvegardé dans leaderboard.json');
+    } catch (error) {
+        console.error('Erreur lors de la mise à jour du leaderboard:', error);
+    }
+}
+
+// Appeler immédiatement la fonction pour calculer et stocker le leaderboard au démarrage du serveur
+saveLeaderboardToFile();
+
+// Mettre à jour le leaderboard toutes les 10 minutes
+setInterval(saveLeaderboardToFile, 10 * 60 * 1000);
+
+// Route pour renvoyer les données du leaderboard
+app.get('/getLeaderboard', (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;  // Page actuelle (par défaut 1)
+        const pageSize = parseInt(req.query.pageSize) || 10;  // Taille de la page (par défaut 10)
+
+        const startIndex = (page - 1) * pageSize;
+        const endIndex = page * pageSize;
+        
+        // Lire et parser les données du fichier JSON
+        const leaderboardData = JSON.parse(fs.readFileSync('leaderboard.json', 'utf8'));
+
+        // Charger les données du leaderboard (stockées dans leaderboardData par exemple)
+        const leaderboard = leaderboardData.userData.slice(startIndex, endIndex);  // Extraire la portion paginée
+        const last_refresh = leaderboardData.date;
+
+        res.status(200).json({
+            leaderboard,  // Renvoyer la portion paginée
+            page,
+            pageSize,
+            last_refresh
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Erreur lors de la récupération des données du leaderboard' });
+    }
+});
+
+// Route pour renvoyer les données du leaderboard pour un user
+app.post('/getUserLeaderboard', verifyJWT, (req, res) => {
+    try {
+        // Addresse de l'user
+        const address = req.userAddress.toLowerCase();
+        // Vérifiez si l'adresse est fournie
+        if (!address) {
+            return res.status(400).send('Address not provided.');
+        }
+
+        // Charger les données du leaderboard (stockées dans leaderboardData par exemple)
+        // Lire et parser les données du fichier JSON
+        const leaderboardData = JSON.parse(fs.readFileSync('leaderboard.json', 'utf8'));
+
+        const leaderboardUser = leaderboardData.userData.filter(user => user.address === address);
+
+        // Trouver l'index de l'utilisateur dans le leaderboard
+        const index = leaderboardData.userData.findIndex(user => user.address === address);
+
+        res.status(200).json({
+            leaderboardUser, rank : index + 1
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Erreur lors de la récupération des données du leaderboard' });
+    }
+});
+
+// ------------ -----------
+
 // Middleware pour servir les fichiers statiques (HTML, CSS, JavaScript, images, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -82,8 +206,41 @@ app.get('/:page', (req, res, next) => {
 });
 
 
+// Fonction pour sauvegarder l'utilisateur
+async function saveUser(userAddress) {
+    const client = await pool.connect();
+    try {
+        // Récupérez le dernier ID inséré dans la table users
+        const lastUserIdQuery = 'SELECT MAX(id) AS max_id FROM users';
+        const { rows } = await client.query(lastUserIdQuery);
+        let nextUserId = 1; // Valeur par défaut pour le premier utilisateur s'il n'y a pas encore d'enregistrement
+        if (rows.length > 0 && rows[0].max_id !== null) {
+            nextUserId = parseInt(rows[0].max_id) + 1; // Incrémente le dernier ID
+        }
+
+        // Insérez le nouvel utilisateur avec l'ID incrémenté
+        const insertUserQuery = `
+            INSERT INTO users (id, wallet_address) VALUES ($1, LOWER($2)) ON CONFLICT (wallet_address) DO NOTHING RETURNING *`;
+        const result = await client.query(insertUserQuery, [nextUserId, userAddress]);
+
+        // Si aucun utilisateur n'est inséré, cela signifie qu'il existe déjà
+        if (result.rows.length === 0) {
+            return { message: 'User already registered.', status: 201 };
+        }
+        return { message: 'User successfully logged.', status: 201 };
+    } catch (error) {
+        console.error("Error during the registering of the user:", error);
+        return { message: "Error during the registering of the user.", status: 500 };
+    } finally {
+        if (client) {
+            client.release(); // Libérer le client après utilisation
+        }
+    }
+}
+
+
 // Route pour créer le JWT et sauvegarder l'utilisateur
-app.post('/loginUser', async (req, res) => {
+app.post('/loginOrSaveUser', async (req, res) => {
     const userAddress = req.body.userAddress.toLowerCase();
 
     // Remplacez 'votre_clé_secrète' par votre propre clé secrète sécurisée
@@ -103,10 +260,11 @@ app.post('/loginUser', async (req, res) => {
         maxAge: 3600000  // 1 heure en millisecondes
     });
 
-    //On ne sauvegarde rien en BDD
+    // Appel de la fonction saveUser pour enregistrer l'utilisateur
+    const saveResult = await saveUser(userAddress);
 
     // Répondre avec le résultat de l'enregistrement
-    res.status(200).json({ message: 'Successfully connected' });
+    res.status(saveResult.status).json({ message: saveResult.message });
 });
 
 // Route pour la déconnexion
@@ -186,15 +344,19 @@ async function getVolumeDapp() {
 
         // Récupération des informations liées au contexte de l'asset
         const req = await clientInfo.metaAndAssetCtxs();
-        const ethValue = req[1][4]?.markPx; // Prix de l'ETH dans le contexte
-        
-        if (!ethValue || !totalBetsValue) {
-            console.error('ETH price or total bets value is undefined');
+        const hypeValue = req[1][135]?.markPx; // Prix du HYPE dans le contexte
+
+        if (!hypeValue) {
+            console.error('HYPE price is undefined');
             return;
         }
 
+        if (!totalBetsValue) {
+            console.error('Total Bets is undefined');
+            return;
+        }
         // Conversion et calcul du volume
-        const volume = Math.round(ethValue * (Number(totalBetsValue) / 10 ** 18));
+        const volume = Math.round(hypeValue * (Number(totalBetsValue) / 10 ** 18));
         console.log('Volume DApp ($):', volume);
         return volume;
     } catch (error) {

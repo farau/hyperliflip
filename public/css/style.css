@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* Body styles for black background with stars */
 body {
     overflow-x: hidden; /* Hide horizontal scrollbar */
@@ -9,9 +15,10 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    font-family: Poppins,sans-serif;
     --tw-text-opacity: 1;
-    color: rgb(255 255 255/var(--tw-text-opacity))
+    color: rgb(255 255 255/var(--tw-text-opacity));
+    height: 100vh;           /* Pleine hauteur de la fenêtre */
+    font-family: 'Open Sans', Arial, sans-serif;
 }
 
 /* Navigation bar styles */
@@ -380,30 +387,16 @@ footer a:active {
   color: #42f7c8;
 }
 
-/* Bouton flip page d'accueil*/
-.btn-custom {
-    background-color: rgba(0, 0, 0, .0);
-    color: white;
-    border-color: rgba(0, 0, 0, .4);
-}
-
 .bet-buttons {
     background-color: rgba(0, 0, 0, .2);
     color: white;
-    border-color: rgba(0, 0, 0, .4);
-    border-radius: 5px; /* Optionnel, pour arrondir les coins */
+    border-color: rgba(16, 34, 24, 0.4);
     border: #1b2821;
 }
 
 .bet-buttons button {
     margin: auto;
     border: #1b2821;
-}
-
-.choice-buttons {
-    border: rgba(0, 0, 0, .4);
-    border: rgba(0, 0, 0, .4);
-
 }
 
 .card-custom {
@@ -463,7 +456,7 @@ footer a:active {
 
 /* Image tournante */
 .rotating-image {
-    width: 60%; /* Ajustez la taille de l'image */
+    width: 30%; /* Ajustez la taille de l'image */
     height: auto;
     animation: rotate3D 5s infinite linear; /* Animation de rotation */
     transform-style: preserve-3d; /* Nécessaire pour les rotations 3D */
@@ -503,7 +496,7 @@ button[aria-expanded="true"] .rotate-icon {
     top: 50%;                      
     left: 50%;                     
     transform: translate(-50%, -50%);
-    background-color: rgba(27, 37, 22, 0.9);  /* Fond sombre avec une touche de vert */
+    background-color: rgba(27, 37, 22, 1);  /* Fond sombre avec une touche de vert */
     color: #e0f7fa;                /* Texte clair, légèrement cyan pour le contraste */
     padding: 30px;                 /* Plus d'espace pour aérer */
     max-width: 600px;              /* Largeur maximale fixe pour empêcher la fenêtre d'être trop grande */
@@ -555,4 +548,68 @@ button[aria-expanded="true"] .rotate-icon {
       font-size: 25px;             /* Réduire la taille de la croix sur petits écrans */
     }
   }
-  
+
+/* Conteneur principal */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;         /* Permet le retour à la ligne */
+    justify-content: center; /* Centre les éléments */
+    gap: 20px;               /* Espace entre les boutons */
+}
+
+/* Boutons */
+.btn-custom {
+    flex: 1 1 calc(50% - 20px); /* 2 boutons par ligne */
+    max-width: calc(50% - 20px);
+    background-color: #0e4839;
+    color: white;
+    border-color: #2fb591;
+    border-radius: 8px;        /* Coins arrondis */
+    font-size: 1rem;           /* Taille du texte */
+    font-weight: bold;
+    padding: 15px;             /* Espacement interne */
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Boutons */
+.btn-custom2 {
+    flex: 1 1 calc(50% - 20px); /* 2 boutons par ligne */
+    max-width: calc(50% - 20px);
+    background-color: #0e4839;
+    color: white;
+    border-color: #2fb591;
+    border-radius: 8px;        /* Coins arrondis */
+    font-size: 1rem;           /* Taille du texte */
+    font-weight: bold;
+    padding: 15px;             /* Espacement interne */
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Si il n'y a qu'un seul bouton, il prend toute la largeur */
+.btn-custom.single-button {
+    flex: 1 1 100%;            /* Un seul bouton prend 100% de la ligne */
+    max-width: 100%;           /* Pas de limite de largeur */
+}
+
+
+/* Effet au survol */
+.btn-custom:hover {
+    transform: translateY(-3px); /* Légère élévation */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Effet au survol */
+.btn-custom2:hover {
+    transform: translateY(-3px); /* Légère élévation */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.container-custom {
+    max-width: 600px; /* Par exemple, 600px pour un container petit */
+}

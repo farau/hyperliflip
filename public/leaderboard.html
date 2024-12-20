@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyperFlip</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/logo_hyperliquid/HL logo_dark green.svg" type="image/png">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" /> <!-- Fonts awesome pour les socials-->
+
+  </head>
+
+<body class="w-100">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/index">
+            <img src="img/logo.jpg" height="70" class="d-inline-block align-top rounded-circle" alt="Logo">
+          </a>          
+          <a class="navbar-brand" href="/index">
+            HyperFlip
+          </a>  
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto d-flex align-items-center">
+                <!-- Leaderboard -->
+                <li class="nav-item d-flex align-items-center">
+                    <a class="nav-link text-center" href="leaderboard" style="color: #ffffff;">Leaderboard</a>
+                </li>
+                <!-- Social Media Icons -->
+                <li class="nav-item d-flex align-items-center">
+                    <a href="https://x.com/hypercoinflip" target="_blank" rel="noopener noreferrer" class="d-flex justify-content-center align-items-center">
+                        <i class="fab fa-twitter" style="font-size: 15px; color: #ffffff; margin: 0 10px;"></i>
+                    </a>
+                </li>
+        
+                <!-- Connect Wallet -->
+                <li class="nav-item d-sm-block d-lg-inline">
+                    <div class="dropdown">
+                        <button id="connectWallet" class="btn btn-primary">Connect Wallet</button>
+                        <div id="walletInfo" class="dropdown-content" style="display: none;">
+                            <p>HyperEVM balance</p>
+                            <p id="testhBalance" style="display: none;"></p>
+                            <p id="usdcBalance" style="display: none;"></p>
+                            <p id="logoutWallet" style="display: none;">Logout</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+      </div>
+    </nav>
+
+    <div id="networkModal" class="network-modal">
+        <div class="network-modal-content">
+            <img src="img/logo_hyperliquid/HL symbol_dark green.svg" height="70" class="img-fluid d-inline-block align-top">
+            <p>Wrong network. Please change the network.</p>
+            <button id="changeNetworkButton">Change</button>
+        </div>
+    </div>
+    
+    <!-- Leaderboard Container -->
+    <div class="container mt-5">
+      <div class="card-custom w-50 mx-auto">
+        <h3 class="card-title text-center text-light mb-4">Leaderboard</h3>
+        <div class="text-center">
+            <p>The leaderboard is updated every 10 minutes. <span id='last-update'></span></p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr class="white-text">
+                        <th>Rank</th>
+                        <th>Wallet address</th>
+                        <th>Volume</th>
+                        <th>Nb of Bets</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboardBody" class="white-text">
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="text-center">
+            <button id="prevPageOverall" class="btn btn-primary">Previous</button>
+            <button id="nextPageOverall" class="btn btn-primary">Next</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- JavaScript for game and Twitter login handling -->   
+    <script type="module" src="./js/ethers-6.13.4.umd.min.js"></script>
+    <script src="./js/config.js"></script> <!-- Import config -->
+    <script type="module" src="./js/metamask.js"></script> <!-- Import Metamask js -->
+    <script type="module" src="./js/hyperliquid.js"></script> <!-- Import Hyperliquid js -->
+    <!-- Load jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script>
+        function loadLeaderboard(elementId, url, page, pageSize, prevButtonId, nextButtonId, refreshElementId) {
+            // Appel à l'API avec pagination
+            fetch(`${url}?page=${page}&pageSize=${pageSize}`)
+                .then(response => response.json())
+                .then(data => {
+                    const leaderboardBody = document.getElementById(elementId);
+                    leaderboardBody.innerHTML = '';  // Réinitialiser le contenu du tableau
+
+                    // Afficher les données du leaderboard dans le tableau
+                    data.leaderboard.forEach((item, index) => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${(page - 1) * pageSize + index + 1}</td>
+                            <td>${item.address.substring(0, 4)}...${item.address.substring(item.address.length - 4)}</td>
+                            <td>${item.volume}</td>
+                            <td>${item.bets}</td>
+                            <td>${item.points}</td>
+                        `;
+                        leaderboardBody.appendChild(row);
+                    });
+
+                    // Afficher le temps écoulé depuis la dernière mise à jour
+                    if (data.last_refresh) {
+                        const refreshElement = document.getElementById(refreshElementId);
+                        const lastRefreshDate = new Date(data.last_refresh); // Convertir la date ISO en objet Date
+                        const now = new Date();
+                        const minutesElapsed = Math.floor((now - lastRefreshDate) / (1000 * 60)); // Convertir millisecondes en minutes
+                        refreshElement.textContent = `Last update : ${minutesElapsed} minute(s) ago`;
+                    } else {
+                        // Si last_refresh n'est pas défini, afficher un message par défaut
+                        const refreshElement = document.getElementById(refreshElementId);
+                        refreshElement.textContent = 'No data available';
+                    }
+
+                    // Activer/désactiver les boutons de pagination
+                    document.getElementById(prevButtonId).disabled = (page === 1);
+                    document.getElementById(nextButtonId).disabled = (data.leaderboard.length < pageSize);
+                })
+                .catch(error => console.error('Erreur lors du chargement des données du leaderboard :', error));
+        }
+
+        // Variables pour la pagination
+        let currentPageOverall = 1;
+        const pageSize = 10;  // Taille de la page
+
+        // Charger les données initiales du leaderboard
+        loadLeaderboard('leaderboardBody', '/getLeaderboard', currentPageOverall, pageSize, 'prevPageOverall', 'nextPageOverall','last-update');
+
+        // Gérer la navigation dans le leaderboard (pagination)
+        document.getElementById('prevPageOverall').addEventListener('click', () => {
+            if (currentPageOverall > 1) {
+                currentPageOverall--;
+                loadLeaderboard('leaderboardBody', '/getLeaderboard', currentPageOverall, pageSize, 'prevPageOverall', 'nextPageOverall','last-update');
+            }
+        });
+
+        document.getElementById('nextPageOverall').addEventListener('click', () => {
+            currentPageOverall++;
+            loadLeaderboard('leaderboardBody', '/getLeaderboard', currentPageOverall, pageSize, 'prevPageOverall', 'nextPageOverall','last-update');
+        });
+
+    </script>
+</body>
+</html>

@@ -2,9 +2,9 @@
 
 const config = {
     chain_id : '0x3e6', //Hyperliquid testnet
-	hyperflipAddress: '0x63DFc0bACA0160D9B75b1084444F6a12e30c3645',
+	hyperflipAddress: '0x9e1Fa28f8dD4950a5Bc8CDA89916A071603498ac',
 	usdcTokenId : 0,
-	testhTokenId : 619, //testnet
+	hypeTokenId : 1105, //testnet
     hyperflipAbi : [
 		{
 		  "inputs": [
@@ -17,11 +17,6 @@ const config = {
 			  "internalType": "uint256",
 			  "name": "_feePercent",
 			  "type": "uint256"
-			},
-			{
-			  "internalType": "address",
-			  "name": "_oracleAddress",
-			  "type": "address"
 			}
 		  ],
 		  "stateMutability": "nonpayable",
@@ -79,6 +74,12 @@ const config = {
 			  "indexed": false,
 			  "internalType": "uint256",
 			  "name": "payout",
+			  "type": "uint256"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "points",
 			  "type": "uint256"
 			}
 		  ],
@@ -145,6 +146,89 @@ const config = {
 		},
 		{
 		  "inputs": [],
+		  "name": "getAllPlayerAddresses",
+		  "outputs": [
+			{
+			  "internalType": "address[]",
+			  "name": "",
+			  "type": "address[]"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "playerAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "getPointsPlayer",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "getTotalBetsLeaderboard",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "playerAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "getTotalBetsPlayer",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "playerAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "getVolumePlayer",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
 		  "name": "owner",
 		  "outputs": [
 			{
@@ -167,19 +251,6 @@ const config = {
 		  "name": "play",
 		  "outputs": [],
 		  "stateMutability": "payable",
-		  "type": "function"
-		},
-		{
-		  "inputs": [],
-		  "name": "randomValue",
-		  "outputs": [
-			{
-			  "internalType": "bool",
-			  "name": "",
-			  "type": "bool"
-			}
-		  ],
-		  "stateMutability": "view",
 		  "type": "function"
 		},
 		{
@@ -225,19 +296,6 @@ const config = {
 		{
 		  "inputs": [],
 		  "name": "totalBets",
-		  "outputs": [
-			{
-			  "internalType": "uint256",
-			  "name": "",
-			  "type": "uint256"
-			}
-		  ],
-		  "stateMutability": "view",
-		  "type": "function"
-		},
-		{
-		  "inputs": [],
-		  "name": "totalBetsLeaderboard",
 		  "outputs": [
 			{
 			  "internalType": "uint256",
@@ -303,6 +361,25 @@ const config = {
 		{
 		  "inputs": [],
 		  "name": "totalWinsLeaderboard",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "playerAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "totalWinsPlayer",
 		  "outputs": [
 			{
 			  "internalType": "uint256",

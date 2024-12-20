@@ -135,3 +135,6 @@ dist
 
 #Javascript files
 js-original
+
+#JSON files
+leaderboard.json

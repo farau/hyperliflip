@@ -18,7 +18,7 @@ body {
     --tw-text-opacity: 1;
     color: rgb(255 255 255/var(--tw-text-opacity));
     height: 100vh;           /* Pleine hauteur de la fenêtre */
-    font-family: 'Open Sans', Arial, sans-serif;
+    font-family: 'Press Start 2P', cursive;
 }
 
 /* Navigation bar styles */
@@ -563,14 +563,13 @@ button[aria-expanded="true"] .rotate-icon {
     max-width: calc(50% - 20px);
     background-color: #0e4839;
     color: white;
-    border-color: #2fb591;
+    border: 2px solid #2fb591; /* Bordure uniforme */
     border-radius: 8px;        /* Coins arrondis */
     font-size: 1rem;           /* Taille du texte */
     font-weight: bold;
     padding: 15px;             /* Espacement interne */
     cursor: pointer;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile */
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -580,16 +579,16 @@ button[aria-expanded="true"] .rotate-icon {
     max-width: calc(50% - 20px);
     background-color: #0e4839;
     color: white;
-    border-color: #2fb591;
+    border: 2px solid #2fb591; /* Bordure uniforme */
     border-radius: 8px;        /* Coins arrondis */
     font-size: 1rem;           /* Taille du texte */
     font-weight: bold;
     padding: 15px;             /* Espacement interne */
     cursor: pointer;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile */
     transition: transform 0.2s, box-shadow 0.2s;
 }
+
 
 /* Si il n'y a qu'un seul bouton, il prend toute la largeur */
 .btn-custom.single-button {

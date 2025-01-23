@@ -2,7 +2,6 @@ import * as hyperliquid from "@nktkas/hyperliquid";
 import express from "express";
 import path from "path";
 import session from "express-session";
-import flash from "connect-flash";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import jwt from "jsonwebtoken";
@@ -20,9 +19,6 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 // Création de l'application Express
 const app = express();
-
-const privateKey = process.env.PRIVATE_KEY;
-const signer = new Wallet(privateKey);
 
 // Chargement de l'adresse du contrat du NFT Hyperliflip et de l'ABI depuis le fichier de configuration
 const hyperflipAddress = config.hyperflipAddress; 
@@ -45,7 +41,7 @@ app.set('trust proxy', true);
 
 
 // Middleware pour parser le corps de la requête en JSON
-app.use(express.json(), flash());
+app.use(express.json());
 app.use(cookieParser()); // Utiliser cookieParser pour gérer les cookies sécurisés
 
 // Configurer les sessions Express
@@ -55,7 +51,7 @@ app.use(
       resave: false, // Ne pas resauvegarder la session si elle n'est pas modifiée
       saveUninitialized: false, // Ne pas sauvegarder la session si elle est vide
       cookie: {
-        maxAge: 60 * 60 * 1000, // Durée de vie du cookie de session : 1 heure (en millisecondes)
+        maxAge: 24 * 60 * 60 * 1000, // Durée de vie du cookie de session : 1 jour (en millisecondes)
         secure: process.env.NODE_ENV === 'production', // Mettre à true si vous utilisez HTTPS pour sécuriser le cookie
         httpOnly: true, // Empêche JavaScript côté client d'accéder au cookie
       },
@@ -83,18 +79,9 @@ async function createTables() {
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY,
             wallet_address VARCHAR(42) NOT NULL UNIQUE,
-            referrerId VARCHAR(42) NOT NULL DEFAULT 1,
-            referredId VARCHAR(42) UNIQUE
+            referral_code VARCHAR(42) UNIQUE
         );
         
-        CREATE TABLE IF NOT EXISTS volume_users_daily (
-            id SERIAL PRIMARY KEY,
-            wallet_address VARCHAR(42) NOT NULL,
-            user_id BIGINT REFERENCES users(id),
-            volume INTEGER NOT NULL,
-            date DATE NOT NULL,
-            CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-        );  
       `);
   
       console.log('Tables créées ou chargées avec succès');
@@ -131,7 +118,7 @@ async function saveLeaderboardToFile() {
 saveLeaderboardToFile();
 
 // Mettre à jour le leaderboard toutes les 10 minutes
-setInterval(saveLeaderboardToFile, 10 * 60 * 1000);
+setInterval(saveLeaderboardToFile, /*10 */ 60 * 1000);
 
 // Route pour renvoyer les données du leaderboard
 app.get('/getLeaderboard', (req, res) => {
@@ -206,7 +193,7 @@ app.get('/:page', (req, res, next) => {
 });
 
 
-// Fonction pour sauvegarder l'utilisateur
+// Fonction pour sauvegarder l'utilisateur et créer un code referral 
 async function saveUser(userAddress) {
     const client = await pool.connect();
     try {
@@ -218,25 +205,47 @@ async function saveUser(userAddress) {
             nextUserId = parseInt(rows[0].max_id) + 1; // Incrémente le dernier ID
         }
 
-        // Insérez le nouvel utilisateur avec l'ID incrémenté
+        // Insérez le nouvel utilisateur ou récupérez ses informations en cas de conflit
         const insertUserQuery = `
-            INSERT INTO users (id, wallet_address) VALUES ($1, LOWER($2)) ON CONFLICT (wallet_address) DO NOTHING RETURNING *`;
-        const result = await client.query(insertUserQuery, [nextUserId, userAddress]);
+            INSERT INTO users (id, wallet_address) 
+            VALUES ($1, LOWER($2)) 
+            ON CONFLICT (wallet_address) 
+            DO UPDATE SET wallet_address = EXCLUDED.wallet_address 
+            RETURNING *;
+        `;
+        const userResult = await client.query(insertUserQuery, [nextUserId, userAddress]);
+        const user = userResult.rows[0]; // Récupérez l'utilisateur inséré ou existant
 
-        // Si aucun utilisateur n'est inséré, cela signifie qu'il existe déjà
-        if (result.rows.length === 0) {
-            return { message: 'User already registered.', status: 201 };
+        // Générer un code referral unique si inexistant
+        if (!user.referral_code) {
+            let referralCode;
+            let isUnique = false;
+
+            // Boucle pour garantir l'unicité du code
+            while (!isUnique) {
+                referralCode = generateReferralCode();
+                const codeCheckQuery = 'SELECT COUNT(*) FROM users WHERE referral_code = $1';
+                const codeCheckResult = await client.query(codeCheckQuery, [referralCode]);
+                isUnique = codeCheckResult.rows[0].count === '0';
+            }
+
+            // Mettre à jour l'utilisateur avec le code referral
+            const updateQuery = 'UPDATE users SET referral_code = $1 WHERE id = $2 RETURNING *';
+            const updateResult = await client.query(updateQuery, [referralCode, user.id]);
+            console.log("Referral code generated and inserted:", updateResult.rows[0].referral_code);
+        } else {
+            console.log("Referral code already exists:", user.referral_code);
         }
-        return { message: 'User successfully logged.', status: 201 };
+
+        return { message: 'User successfully logged or updated.', status: 201 };
     } catch (error) {
         console.error("Error during the registering of the user:", error);
         return { message: "Error during the registering of the user.", status: 500 };
     } finally {
-        if (client) {
-            client.release(); // Libérer le client après utilisation
-        }
+        client.release(); // Libérer le client après utilisation
     }
 }
+
 
 
 // Route pour créer le JWT et sauvegarder l'utilisateur
@@ -400,6 +409,88 @@ app.post('/volume-dapp', (req, res) => {
 app.post('/verify-jwt', verifyJWT, (req, res) => {
     // Si nous sommes arrivés ici, le JWT est valide et l'adresse de l'utilisateur est dans req.userAddress
     res.status(200).json({ userAddress: req.userAddress });
+});
+
+// Fonction pour générer un code referral
+function generateReferralCode(length = 8) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let code = '';
+    for (let i = 0; i < length; i++) {
+      code += chars[Math.floor(Math.random() * chars.length)];
+    }
+return code;
+}
+
+
+// Fonction pour récupérer l'adresse user d'un code referral
+app.post('/getReferralCode', verifyJWT, async (req, res) => {
+    const wallet_address = req.userAddress; //récupére la userAddress directement depuis verifyJWT
+
+    // Vérification du paramètre referral_code
+    if (!wallet_address) {
+        return res.status(400).json({ message: 'No user connected' });
+    }
+
+    const client = await pool.connect(); // Connexion au client PostgreSQL
+    try {
+        // Requête pour récupérer l'adresse du portefeuille associée au code referral
+        const query = `
+            SELECT referral_code 
+            FROM users 
+            WHERE wallet_address = $1`;
+        const result = await client.query(query, [wallet_address]);
+
+        // Vérification si un résultat est trouvé
+        if (result.rows.length > 0) {
+            return res.status(200).json({ referral_code: result.rows[0].referral_code });
+        } else {
+            return res.status(404).json({ message: 'Referral code not found' });
+        }
+    } catch (error) {
+        console.error("Error during the retrieval of referral code:", error);
+        return res.status(500).json({ message: "Error during the retrieval of referral code." });
+    } finally {
+        client.release(); // Libérer le client après utilisation
+    }
+});
+
+
+
+// Fonction pour récupérer l'adresse user d'un code referral
+app.post('/getAddressReferee', verifyJWT, async (req, res) => {
+    const referral_code = req.body.code;
+
+    // Vérification du paramètre referral_code
+    if (!referral_code) {
+        return res.status(400).json({ message: 'Invalid referral code' });
+    }
+
+    const client = await pool.connect(); // Connexion au client PostgreSQL
+    try {
+        // Requête pour récupérer l'adresse du portefeuille associée au code referral
+        const query = `
+            SELECT wallet_address 
+            FROM users 
+            WHERE referral_code = $1`;
+        const result = await client.query(query, [referral_code]);
+
+        // Erreur si on veut entrer son referral code perso 
+        // Vérification si un résultat est trouvé
+        if (result.rows.length > 0) {
+            const address = result.rows[0].wallet_address;
+            if (address === req.userAddress) {
+                return res.status(400).json({ message: 'You cannot enter your own referral code' });
+            }
+            return res.status(200).json({ wallet_address: result.rows[0].wallet_address });
+        } else {
+            return res.status(404).json({ message: 'Referral code not found' });
+        }
+    } catch (error) {
+        console.error("Error during the retrieval of address:", error);
+        return res.status(500).json({ message: "Error during the retrieval of address." });
+    } finally {
+        client.release(); // Libérer le client après utilisation
+    }
 });
 
 

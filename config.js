@@ -2,7 +2,7 @@
 
 const config = {
     chain_id : '0x3e6', //Hyperliquid testnet
-	hyperflipAddress: '0x9e1Fa28f8dD4950a5Bc8CDA89916A071603498ac',
+	hyperflipAddress: '0x08b446235B52431dd1556DeF6eD7Aa0401400f02',
 	usdcTokenId : 0,
 	hypeTokenId : 1105, //testnet
     hyperflipAbi : [
@@ -81,6 +81,12 @@ const config = {
 			  "internalType": "uint256",
 			  "name": "points",
 			  "type": "uint256"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "refereePoints",
+			  "type": "uint256"
 			}
 		  ],
 		  "name": "BetResult",
@@ -119,6 +125,56 @@ const config = {
 		  "type": "event"
 		},
 		{
+		  "anonymous": false,
+		  "inputs": [
+			{
+			  "indexed": true,
+			  "internalType": "address",
+			  "name": "player",
+			  "type": "address"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "points",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "PointsAdded",
+		  "type": "event"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "addressPlayer",
+			  "type": "address"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "pts",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "addPoints",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "tokenAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "addTokenAccepted",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
 		  "inputs": [],
 		  "name": "feePercent",
 		  "outputs": [
@@ -152,6 +208,50 @@ const config = {
 			  "internalType": "address[]",
 			  "name": "",
 			  "type": "address[]"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "player",
+			  "type": "address"
+			}
+		  ],
+		  "name": "getPlayerInfo",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "address",
+			  "name": "",
+			  "type": "address"
 			}
 		  ],
 		  "stateMutability": "view",
@@ -228,6 +328,25 @@ const config = {
 		  "type": "function"
 		},
 		{
+		  "inputs": [
+			{
+			  "internalType": "uint16",
+			  "name": "index",
+			  "type": "uint16"
+			}
+		  ],
+		  "name": "oraclePx",
+		  "outputs": [
+			{
+			  "internalType": "uint64",
+			  "name": "",
+			  "type": "uint64"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
 		  "inputs": [],
 		  "name": "owner",
 		  "outputs": [
@@ -246,6 +365,11 @@ const config = {
 			  "internalType": "bool",
 			  "name": "choice",
 			  "type": "bool"
+			},
+			{
+			  "internalType": "address",
+			  "name": "referree",
+			  "type": "address"
 			}
 		  ],
 		  "name": "play",
@@ -254,8 +378,67 @@ const config = {
 		  "type": "function"
 		},
 		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "tokenAddress",
+			  "type": "address"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "amount",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "bool",
+			  "name": "choice",
+			  "type": "bool"
+			},
+			{
+			  "internalType": "address",
+			  "name": "referree",
+			  "type": "address"
+			}
+		  ],
+		  "name": "playWithToken",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "tokenAddress",
+			  "type": "address"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "amount",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "receiveTokens",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
 		  "inputs": [],
 		  "name": "reinitializeLeaderboard",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "tokenAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "removeTokenAccepted",
 		  "outputs": [],
 		  "stateMutability": "nonpayable",
 		  "type": "function"
@@ -294,6 +477,44 @@ const config = {
 		  "type": "function"
 		},
 		{
+		  "inputs": [
+			{
+			  "internalType": "uint32",
+			  "name": "index",
+			  "type": "uint32"
+			}
+		  ],
+		  "name": "spotPx",
+		  "outputs": [
+			{
+			  "internalType": "uint64",
+			  "name": "",
+			  "type": "uint64"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "",
+			  "type": "address"
+			}
+		  ],
+		  "name": "tokenAccepted",
+		  "outputs": [
+			{
+			  "internalType": "contract IERC20",
+			  "name": "",
+			  "type": "address"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
 		  "inputs": [],
 		  "name": "totalBets",
 		  "outputs": [
@@ -322,6 +543,19 @@ const config = {
 		{
 		  "inputs": [],
 		  "name": "totalBetsValueLeaderboard",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "totalBetsValueToken",
 		  "outputs": [
 			{
 			  "internalType": "uint256",
@@ -412,6 +646,19 @@ const config = {
 			}
 		  ],
 		  "name": "withdraw",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "tokenAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "withdrawTokens",
 		  "outputs": [],
 		  "stateMutability": "nonpayable",
 		  "type": "function"

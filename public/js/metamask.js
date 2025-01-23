@@ -1,1 +1,491 @@
-const a0_0x1a6fba=a0_0x4f8f;(function(_0x4fadb8,_0x9aadf5){const _0x14fd18=a0_0x4f8f,_0x3c90c0=_0x4fadb8();while(!![]){try{const _0x48606c=-parseInt(_0x14fd18(0xac))/0x1*(-parseInt(_0x14fd18(0xb7))/0x2)+-parseInt(_0x14fd18(0xa8))/0x3+parseInt(_0x14fd18(0xa0))/0x4*(-parseInt(_0x14fd18(0xc9))/0x5)+-parseInt(_0x14fd18(0x98))/0x6*(parseInt(_0x14fd18(0x91))/0x7)+parseInt(_0x14fd18(0xde))/0x8+-parseInt(_0x14fd18(0xe4))/0x9+-parseInt(_0x14fd18(0x9e))/0xa*(-parseInt(_0x14fd18(0xaa))/0xb);if(_0x48606c===_0x9aadf5)break;else _0x3c90c0['push'](_0x3c90c0['shift']());}catch(_0x2ca12b){_0x3c90c0['push'](_0x3c90c0['shift']());}}}(a0_0x12c1,0x7904a));import{initializeClient,getEthBalanceEvm,getTokenBalanceEvm}from'./hyperliquid.js';import{getPointsPlayer}from'./game.js';const connectWallet=document['getElementById'](a0_0x1a6fba(0x96));async function handleAccountsChanged(_0x5eccd7){const _0x44e030=a0_0x1a6fba;_0x5eccd7[_0x44e030(0x94)]===0x0?signOutOfMetaMask():signOutOfMetaMask();}function checkInstalled(){const _0x109371=a0_0x1a6fba;if(typeof window[_0x109371(0xa4)]=='undefined')return connectWallet[_0x109371(0xd7)]=_0x109371(0x9a),connectWallet[_0x109371(0xb5)][_0x109371(0x8b)](),connectWallet[_0x109371(0xb5)][_0x109371(0xbd)](),![];return connectWallet[_0x109371(0xae)](_0x109371(0xbb),connectWalletwithMetaMask),!![];}export async function checkIfUserConnected(){const _0x254945=a0_0x1a6fba,_0xfd969=document[_0x254945(0xe6)]('place-bet'),_0x583470=document[_0x254945(0xe6)](_0x254945(0xce)),_0x22537d=localStorage[_0x254945(0xc2)](_0x254945(0xe2)),_0x4a894e=document['getElementById'](_0x254945(0x96));if(_0x22537d)try{const _0x2bdabc=await fetch(_0x254945(0xcc),{'method':_0x254945(0xa2),'headers':{'Content-Type':_0x254945(0xc3)},'body':JSON[_0x254945(0x9b)]({'userAddress':_0x22537d})});if(_0x2bdabc['ok']){const _0x49c1e3=await _0x2bdabc[_0x254945(0xa9)]();return _0x49c1e3&&_0x49c1e3[_0x254945(0xe2)]?(_0x4a894e[_0x254945(0xd7)]=_0x49c1e3[_0x254945(0xe2)][_0x254945(0xea)](0x0,0x4)+_0x254945(0x8d)+_0x49c1e3['userAddress'][_0x254945(0xea)](_0x49c1e3[_0x254945(0xe2)][_0x254945(0x94)]-0x4),_0x4a894e[_0x254945(0xc5)](_0x254945(0xbb),connectWalletwithMetaMask),_0x4a894e[_0x254945(0xae)](_0x254945(0xbb),toggleWalletInfo),document[_0x254945(0xe6)](_0x254945(0xb6))[_0x254945(0xae)](_0x254945(0xbb),signOutOfMetaMask),_0xfd969&&(_0xfd969[_0x254945(0xd7)]='FLIP\x20COIN',_0xfd969[_0x254945(0xc0)]=![],_0x583470[_0x254945(0xc0)]=![]),await initializeClient(),!![]):(console[_0x254945(0x8a)](_0x254945(0xbc)),![]);}else{const _0x5e1572=await _0x2bdabc['text']();return console[_0x254945(0x8a)]('Error\x20during\x20processing\x20of\x20JWT:',_0x5e1572),![];}}catch(_0xc1a389){return console[_0x254945(0x8a)]('Error\x20during\x20processing\x20of\x20JWT:',_0xc1a389),![];}else return _0xfd969&&(_0xfd969[_0x254945(0xd7)]=_0x254945(0xa1),_0xfd969[_0x254945(0xc0)]=!![],_0x583470[_0x254945(0xc0)]=!![]),![];}async function logoutUser(){const _0x5b949c=a0_0x1a6fba;return fetch('/logoutUser',{'method':_0x5b949c(0xa2),'headers':{'Content-Type':_0x5b949c(0xc3)}})[_0x5b949c(0x8e)](_0x241e94=>{const _0x1e47e2=_0x5b949c;if(!_0x241e94['ok'])throw new Error(_0x1e47e2(0xe7));return _0x241e94[_0x1e47e2(0xa9)]();})[_0x5b949c(0xc4)](_0x1394d6=>{const _0x32017b=_0x5b949c;console[_0x32017b(0x8a)](_0x32017b(0xa7),_0x1394d6);});}async function signMessage(_0xe4152b){const _0x51962a=a0_0x1a6fba;try{const _0x17bee6=new ethers[(_0x51962a(0x95))](window['ethereum']),_0x215fe1=await _0x17bee6[_0x51962a(0xa3)](),_0x4357c6=await _0x215fe1[_0x51962a(0xcf)](_0xe4152b);return console[_0x51962a(0xc1)]('Signature:',_0x4357c6),_0x4357c6;}catch(_0x231ba9){console[_0x51962a(0x8a)](_0x51962a(0xd4),_0x231ba9);throw _0x231ba9;}}let isSigningInProgress=![];async function connectWalletwithMetaMask(){const _0x17d637=a0_0x1a6fba,_0xef3025=document[_0x17d637(0xe6)](_0x17d637(0xbf)),_0x400361=document['getElementById'](_0x17d637(0xce));if(isSigningInProgress){console[_0x17d637(0xd8)](_0x17d637(0xb0));return;}if(typeof window['ethereum']!=='undefined'){isSigningInProgress=!![];try{const _0x26ce5e=new ethers['BrowserProvider'](window[_0x17d637(0xa4)]),_0x2fe386=await _0x26ce5e[_0x17d637(0xa3)](),_0x27b5a7=await _0x2fe386[_0x17d637(0xca)]();!_0x27b5a7&&console[_0x17d637(0x8a)](_0x17d637(0xbe));const _0x51e6a3=localStorage[_0x17d637(0xc2)](_0x17d637(0xa5)),_0x163213=localStorage['getItem'](_0x17d637(0xe8)),_0x22989b=await _0x26ce5e[_0x17d637(0x88)]('eth_requestAccounts',[]);if(!_0x22989b)return;const _0x4b074e=_0x22989b[0x0],_0x407789=_0x17d637(0xdb);let _0x1cef4e;!_0x163213?_0x1cef4e=await signMessage(_0x407789):_0x1cef4e=_0x163213;if(!_0x1cef4e)throw new Error('La\x20signature\x20n\x27est\x20pas\x20valide.');const _0x5e478d=await loginOrSaveUser(_0x4b074e);localStorage[_0x17d637(0x9c)](_0x17d637(0xe2),_0x4b074e);const _0xca0ec4=_0x4b074e['substring'](0x0,0x4)+'...'+_0x4b074e[_0x17d637(0xea)](_0x4b074e['length']-0x4);connectWallet['innerHTML']=_0xca0ec4,connectWallet['removeEventListener']('click',connectWalletwithMetaMask),setTimeout(()=>{const _0x3bd6ff=_0x17d637;document[_0x3bd6ff(0xe6)](_0x3bd6ff(0xb6))[_0x3bd6ff(0xae)](_0x3bd6ff(0xbb),signOutOfMetaMask);},0xc8),connectWallet['addEventListener']('click',toggleWalletInfo),localStorage[_0x17d637(0x9c)](_0x17d637(0xa5),_0x17d637(0xd3)),localStorage[_0x17d637(0x9c)](_0x17d637(0xe8),_0x1cef4e),_0xef3025&&(_0xef3025[_0x17d637(0xd7)]=_0x17d637(0xeb),_0xef3025[_0x17d637(0xc0)]=![],_0x400361[_0x17d637(0xc0)]=![]),checkUserSignatureDeleted(),await initializeClient();}catch(_0x50815f){return console[_0x17d637(0x8a)](_0x50815f[_0x17d637(0xad)]),signOutOfMetaMask(),Promise['reject'](_0x50815f);}finally{isSigningInProgress=![];}}else alert(_0x17d637(0x8c));return new Promise(_0x48ea48=>{setTimeout(()=>{_0x48ea48();},0x7d0);});}function a0_0x4f8f(_0x33361d,_0x50b799){const _0x12c14f=a0_0x12c1();return a0_0x4f8f=function(_0x4f8ffa,_0x872aea){_0x4f8ffa=_0x4f8ffa-0x88;let _0x39326b=_0x12c14f[_0x4f8ffa];return _0x39326b;},a0_0x4f8f(_0x33361d,_0x50b799);}async function loginOrSaveUser(_0x526e5b){const _0x4748d3=a0_0x1a6fba;return fetch(_0x4748d3(0xc8),{'method':_0x4748d3(0xa2),'headers':{'Content-Type':_0x4748d3(0xc3)},'body':JSON[_0x4748d3(0x9b)]({'userAddress':_0x526e5b})})['then'](_0x25cfce=>{const _0x574717=_0x4748d3;if(!_0x25cfce['ok'])throw new Error(_0x574717(0x89));return _0x25cfce[_0x574717(0xa9)]();})[_0x4748d3(0xc4)](_0x5e760e=>{const _0x5a808c=_0x4748d3;console[_0x5a808c(0x8a)](_0x5a808c(0x97),_0x5e760e);});}async function signOutOfMetaMask(){const _0x460969=a0_0x1a6fba;try{const _0x4f9bf8=await logoutUser();if(!_0x4f9bf8['ok'])throw new Error(_0x460969(0xd9));_0x4f9bf8['ok']&&(document['getElementById'](_0x460969(0xb6))[_0x460969(0xc5)]('click',signOutOfMetaMask),connectWallet['removeEventListener'](_0x460969(0xbb),toggleWalletInfo),setTimeout(()=>{const _0x548b30=_0x460969;connectWallet[_0x548b30(0xae)](_0x548b30(0xbb),connectWalletwithMetaMask);},0xc8),localStorage['removeItem']('isUserConnected'),localStorage[_0x460969(0xb3)]('userAddress'),localStorage[_0x460969(0xb3)](_0x460969(0xe8)),connectWallet[_0x460969(0xd7)]='Connect\x20Wallet',document['getElementById']('walletInfo')[_0x460969(0xc6)]['display']=_0x460969(0xb9),connectWallet[_0x460969(0xae)]('click',connectWalletwithMetaMask),checkUserSignatureDeleted(),await checkIfUserConnected());}catch(_0x383843){console[_0x460969(0x8a)](_0x460969(0xd6),_0x383843);}}function a0_0x12c1(){const _0x54d191=['connectWallet','Erreur\x20lors\x20de\x20la\x20génération\x20du\x20JWT\x20:','6mIHnTC','USDC:','<a\x20href=\x22https://metamask.io/\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20MetaMask\x20isnt\x20installed,\x20please\x20install\x20it\x0a\x20\x20\x20\x20\x20\x20</a>','stringify','setItem','betButton','710aYCPWw','HYPE:','13636zMcaUE','Connect\x20your\x20wallet','POST','getSigner','ethereum','isUserConnected','wallet_switchEthereumChain','Error\x20during\x20the\x20process\x20of\x20logout:','1908855lMwWkg','json','214203CNEJjB','block','55LZqOCK','message','addEventListener','networkModal','Une\x20demande\x20de\x20connexion\x20est\x20déjà\x20en\x20cours.','wallet_addEthereumChain','eth_chainId','removeItem','Erreur\x20lors\x20de\x20l\x27ajout\x20du\x20réseau:','classList','logoutWallet','16400yTpfHH','usdcBalance','none','walletInfo','click','Adresse\x20not\x20found\x20in\x20the\x20response.','add','No\x20Ethereum\x20address\x20connected.\x20Please\x20connect\x20with\x20your\x20wallet.','place-bet','disabled','log','getItem','application/json','catch','removeEventListener','style','rpc_url','/loginOrSaveUser','515BNPJaU','getAddress','Erreur\x20lors\x20du\x20changement\x20de\x20réseau:','/verify-jwt','HYPE','sendSpot','signMessage','location','chainChanged','request','true','Erreur\x20lors\x20de\x20la\x20signature\x20du\x20message\x20:','undefined','Error\x20during\x20logout\x20process:','innerHTML','warn','Error\x20during\x20logout.','USDC:Error','Welcome\x20to\x20HyperFlip!\x0a\x0aPlay\x20and\x20gamble\x20your\x20token\x20to\x20earn\x20more\x20on\x20HyperEVM!','reload','pointsBalance','4208888kwHZku','display','HYPE:Error','chain_id','userAddress','usdcAddressEvm','6243039xhyngD','UNKNOWN_ERROR','getElementById','Error.','userSignature','accountsChanged','substring','FLIP\x20COIN','send','Erreur\x20lors\x20de\x20la\x20génération\x20du\x20JWT','error','remove','Install\x20Metamask\x20extension','...','then','changeNetworkButton','code','1280447DKUKgS','Erreur\x20lors\x20de\x20la\x20récupération\x20ou\x20de\x20l\x27affichage\x20des\x20informations\x20du\x20portefeuille\x20:','Points:Error','length','BrowserProvider'];a0_0x12c1=function(){return _0x54d191;};return a0_0x12c1();}async function switchNetwork(_0x23b8d1,_0x55bf24){const _0x11c916=a0_0x1a6fba;try{await _0x23b8d1[_0x11c916(0x88)](_0x11c916(0xa6),[{'chainId':_0x55bf24}]);}catch(_0x12be6b){if(_0x12be6b[_0x11c916(0x90)]===0x1326||_0x12be6b[_0x11c916(0x90)]===_0x11c916(0xe5))try{await window[_0x11c916(0xa4)][_0x11c916(0xd2)]({'method':_0x11c916(0xb1),'params':[{'chainId':config[_0x11c916(0xe1)],'chainName':'HyperEVM\x20Testnet','nativeCurrency':{'name':_0x11c916(0xcd),'symbol':_0x11c916(0xcd),'decimals':0x12},'rpcUrls':[config[_0x11c916(0xc7)]],'blockExplorerUrls':[]}]}),await _0x23b8d1[_0x11c916(0x88)](_0x11c916(0xa6),[{'chainId':_0x55bf24}]);}catch(_0x5d5146){console['error'](_0x11c916(0xb4),_0x5d5146);}else console[_0x11c916(0x8a)](_0x11c916(0xcb),_0x12be6b);}finally{window[_0x11c916(0xd0)][_0x11c916(0xdc)]();}}function checkNetwork(){const _0x47ae37=a0_0x1a6fba,_0x347b40=document[_0x47ae37(0xe6)](_0x47ae37(0x9d));if(typeof window['ethereum']!==_0x47ae37(0xd5)){const _0x462390=window[_0x47ae37(0xa4)],_0x55cf0f=new ethers['BrowserProvider'](window[_0x47ae37(0xa4)]);_0x462390[_0x47ae37(0xd2)]({'method':_0x47ae37(0xb2)})['then'](_0x636d00=>{const _0x314852=_0x47ae37;return _0x636d00!==config[_0x314852(0xe1)]?(document['getElementById'](_0x314852(0xaf))['style'][_0x314852(0xdf)]='block',document[_0x314852(0xe6)](_0x314852(0x8f))[_0x314852(0xae)]('click',async()=>{await switchNetwork(_0x55cf0f,config['chain_id']);}),![]):!![];})['catch'](_0x1efbf0=>{const _0x24dbe6=_0x47ae37;console[_0x24dbe6(0x8a)]('Error\x20during\x20retrieval\x20of\x20the\x20network\x20:',_0x1efbf0);});}else return console[_0x47ae37(0x8a)]('MetaMask\x20isnt\x20installed.'),_0x347b40&&(_0x347b40[_0x47ae37(0xc0)]=![]),![];}function checkUserSignatureDeleted(){const _0x44fb0b=a0_0x1a6fba,_0x4b6582=localStorage[_0x44fb0b(0xc2)](_0x44fb0b(0xe8)),_0x269f9e=document['getElementById'](_0x44fb0b(0x9d)),_0x57e058=document[_0x44fb0b(0xe6)](_0x44fb0b(0xce));!_0x4b6582?_0x269f9e&&(_0x269f9e[_0x44fb0b(0xd7)]=_0x44fb0b(0xa1),_0x269f9e[_0x44fb0b(0xc0)]=!![],_0x57e058[_0x44fb0b(0xc0)]=!![]):_0x269f9e&&(_0x269f9e['innerHTML']=_0x44fb0b(0xeb),_0x269f9e[_0x44fb0b(0xc0)]=![],_0x57e058['disabled']=![]);}export async function toggleWalletInfo(){const _0x7d155b=a0_0x1a6fba,_0xb3fae6=document['getElementById'](_0x7d155b(0xba)),_0x46cf98=document['getElementById'](_0x7d155b(0xb6)),_0x341a0d=document[_0x7d155b(0xe6)](_0x7d155b(0xb8)),_0x4cea02=document['getElementById']('testhBalance'),_0x522e98=document['getElementById'](_0x7d155b(0xdd));try{if(_0xb3fae6[_0x7d155b(0xc6)]['display']==='none'||_0xb3fae6[_0x7d155b(0xc6)][_0x7d155b(0xdf)]===''){_0xb3fae6['style'][_0x7d155b(0xdf)]=_0x7d155b(0xab),_0x46cf98[_0x7d155b(0xc6)][_0x7d155b(0xdf)]=_0x7d155b(0xab),_0x341a0d[_0x7d155b(0xc6)][_0x7d155b(0xdf)]=_0x7d155b(0xab),_0x4cea02[_0x7d155b(0xc6)][_0x7d155b(0xdf)]=_0x7d155b(0xab),_0x522e98[_0x7d155b(0xc6)]['display']='block';const _0x56f242=await getTokenBalanceEvm(config[_0x7d155b(0xe3)]),_0x2f9962=await getEthBalanceEvm(),_0x5d3256=await getPointsPlayer();_0x341a0d['innerHTML']=_0x7d155b(0x99)+_0x56f242,_0x4cea02[_0x7d155b(0xd7)]=_0x7d155b(0x9f)+_0x2f9962,_0x522e98[_0x7d155b(0xd7)]='Points:'+_0x5d3256;}else _0xb3fae6[_0x7d155b(0xc6)][_0x7d155b(0xdf)]='none';}catch(_0xd6d79f){console[_0x7d155b(0x8a)](_0x7d155b(0x92),_0xd6d79f),_0xb3fae6['style']['display']=_0x7d155b(0xb9),_0x46cf98[_0x7d155b(0xc6)]['display']=_0x7d155b(0xb9),_0x341a0d[_0x7d155b(0xd7)]=_0x7d155b(0xda),_0x4cea02[_0x7d155b(0xd7)]=_0x7d155b(0xe0),pointsBalance[_0x7d155b(0xd7)]=_0x7d155b(0x93);}}checkInstalled(),checkIfUserConnected(),window[a0_0x1a6fba(0xa4)]['on'](a0_0x1a6fba(0xe9),handleAccountsChanged),checkNetwork(),window[a0_0x1a6fba(0xa4)]['on'](a0_0x1a6fba(0xd1),checkNetwork);
+import { initializeClient, getEthBalanceEvm, getTokenBalanceEvm } from './hyperliquid.js';
+import { getPointsPlayer } from './game.js';
+
+const connectWallet = document.getElementById('connectWallet')
+
+// Fonction pour écouter les changements de compte MetaMask
+async function handleAccountsChanged(accounts) {
+    if (accounts.length === 0) {
+        // L'utilisateur s'est déconnecté de MetaMask
+        signOutOfMetaMask();
+    } else {
+        // L'utilisateur a changé de compte
+        // Mettez à jour l'état de votre application si nécessaire
+        signOutOfMetaMask();
+        //await connectWalletwithMetaMask();
+    }
+}
+
+function checkInstalled() {
+    if (typeof window.ethereum == 'undefined') {
+      connectWallet.innerHTML = `<a href="https://metamask.io/">
+        MetaMask isnt installed, please install it
+      </a>`;
+      
+      connectWallet.classList.remove();
+      connectWallet.classList.add();
+      return false;
+    }
+    connectWallet.addEventListener('click', connectWalletwithMetaMask);
+    return true;
+}
+
+// Fonction pour vérifier si l'utilisateur est déjà connecté
+export async function checkIfUserConnected() {
+    const transactionButtonElement = document.getElementById('place-bet');
+    const spotSendElement = document.getElementById('sendSpot');
+    const userAddress = localStorage.getItem('userAddress');
+    const connectWalletButton = document.getElementById('connectWallet');
+
+    if (userAddress) {
+        try {
+            // Envoyer une requête au serveur pour vérifier le JWT
+            const response = await fetch('/verify-jwt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userAddress : userAddress})
+            });
+
+            if (response.ok) {
+                // Convertir la réponse en JSON
+                const data = await response.json();
+                if (data && data.userAddress) {
+                    // Afficher les informations de l'utilisateur
+                    connectWalletButton.innerHTML = `${data.userAddress.substring(0, 4)}...${data.userAddress.substring(data.userAddress.length - 4)}`;
+                    
+                    // Activer d'autres fonctionnalités, etc.
+
+                    // Désactiver l'écouteur de clic pour connecter le portefeuille
+                    connectWalletButton.removeEventListener('click', connectWalletwithMetaMask);
+
+                    // Ajouter un écouteur de clic sur connectWalletButton pour afficher/masquer le dropdown
+                    connectWalletButton.addEventListener('click', toggleWalletInfo);
+
+                    // Activer l'écouteur de clic pour se déconnecter du portefeuille
+                    document.getElementById('logoutWallet').addEventListener('click', signOutOfMetaMask);
+                    
+                    // Vérifier le réseau et activer le bouton de transaction si valide
+                    if (transactionButtonElement) {
+                        transactionButtonElement.innerHTML = "FLIP COIN";
+                        transactionButtonElement.disabled = false;
+                        spotSendElement.disabled = false;
+                    }
+
+                    // On initialise le client qui sera utilisé pour faire les appels API sur Hyperliquid testnet
+                    await initializeClient();
+
+                    return true; // L'utilisateur est connecté
+                } else {
+                    // Gérer les erreurs si le champ address est manquant
+                    console.error('Adresse not found in the response.');
+                    return false; // L'utilisateur n'est pas connecté
+                }
+            } else {
+                // Gérer les erreurs de réponse non OK
+                const errorText = await response.text();
+                console.error('Error during processing of JWT:', errorText);
+                return false; // L'utilisateur n'est pas connecté
+            }
+        } catch (error) {
+            // Gérer les erreurs de la requête fetch
+            console.error('Error during processing of JWT:', error);
+            return false; // L'utilisateur n'est pas connecté
+        }
+    } else {
+        if (transactionButtonElement) {
+            transactionButtonElement.innerHTML = "Connect your wallet";
+            transactionButtonElement.disabled = true;
+            spotSendElement.disabled = true; //on désactive le bouton spotSend aussi
+        }
+        return false; // L'utilisateur n'est pas connecté
+    }
+}
+
+
+// Détruit le JWT en appelant la route /logout sur le serveur
+async function logoutUser() {
+    return fetch('/logoutUser', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error.');
+        }
+        return response.json();
+    })
+    .catch(error => {
+        console.error('Error during the process of logout:', error);
+        // Gérer les erreurs si nécessaire
+    });
+}
+
+// Fonction pour signer un message
+async function signMessage(welcomeMessage) {
+    try {
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        // Obtenir le signer
+        const signer = await provider.getSigner();
+
+        // Signer le message
+        const signature = await signer.signMessage(welcomeMessage);
+
+        console.log("Signature:", signature);
+        return signature;
+    } catch (error) {
+        console.error("Erreur lors de la signature du message :", error);
+        throw error;
+    }
+}
+
+let isSigningInProgress = false; // Variable globale pour suivre l'état de la signature
+
+
+async function connectWalletwithMetaMask() {
+    const transactionButtonElement = document.getElementById('place-bet');
+    const spotSendElement = document.getElementById('sendSpot');
+    if (isSigningInProgress) {
+        console.warn("Une demande de connexion est déjà en cours.");
+        return; // Empêcher les clics supplémentaires
+    }
+
+    if (typeof window.ethereum !== 'undefined') {
+        // Définir que la signature est en cours
+        isSigningInProgress = true;
+
+        try {
+            // Définition du fournisseur de signer (provider) Ethereum
+            const provider = new ethers.BrowserProvider(window.ethereum);
+            const signer = await provider.getSigner();
+            const signerAddress = await signer.getAddress();
+
+            if (!signerAddress) {
+                console.error("No Ethereum address connected. Please connect with your wallet.");
+            }
+
+            const isUserConnected = localStorage.getItem('isUserConnected');
+            const userSignature = localStorage.getItem('userSignature');
+
+            const accounts = await provider.send("eth_requestAccounts", []);
+
+            if (!accounts) { return; }
+
+            const address = accounts[0];
+            const welcomeMessage = "Welcome to HyperFlip!\n\nPlay and gamble your token to earn more on HyperEVM!";
+
+            // Si la signature existe déjà dans le stockage local, on la réutilise
+            let signature;
+            if (!userSignature) {
+                signature = await signMessage(welcomeMessage); // Demander une signature
+            } else {
+                signature = userSignature;
+            }
+
+            if (!signature) {
+                throw new Error("La signature n'est pas valide.");
+            }
+
+            const result = await loginOrSaveUser(address);
+
+            localStorage.setItem("userAddress", address);
+            const truncatedAddress = `${address.substring(0, 4)}...${address.substring(address.length - 4)}`;
+            connectWallet.innerHTML = truncatedAddress;
+
+            connectWallet.removeEventListener('click', connectWalletwithMetaMask);
+            setTimeout(() => {
+                document.getElementById('logoutWallet').addEventListener('click', signOutOfMetaMask);
+            }, 200);
+
+            connectWallet.addEventListener('click', toggleWalletInfo);
+            localStorage.setItem('isUserConnected', 'true');
+            localStorage.setItem('userSignature', signature);
+            // Vérifier le réseau et activer le bouton de transaction si valide
+            if (transactionButtonElement) {
+                transactionButtonElement.innerHTML = "FLIP COIN";
+                transactionButtonElement.disabled = false;
+                spotSendElement.disabled = false;
+            }
+
+            checkUserSignatureDeleted();
+            await initializeClient();
+
+        } catch (error) {
+            console.error(error.message);
+            signOutOfMetaMask();
+            return Promise.reject(error);
+        } finally {
+            // Réinitialiser le flag
+            isSigningInProgress = false;
+        }
+    } else {
+        alert("Install Metamask extension");
+    }
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, 2000);
+    });
+}
+
+
+// Génére le JWT en appelant la route /loginOrSaveUser sur le serveur
+async function loginOrSaveUser(address) {
+    return fetch('/loginOrSaveUser', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userAddress: address })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erreur lors de la génération du JWT');
+        }
+        return response.json();
+    })
+    .catch(error => {
+        console.error('Erreur lors de la génération du JWT :', error);
+        // Gérer les erreurs si nécessaire
+    });
+}
+
+
+// Gestion de la déconnexion
+async function signOutOfMetaMask() {
+    try {
+        // Appeler la route pour se logout
+        const result = await logoutUser(); // Assurez-vous que logoutUser retourne une Promise
+
+        // Vérifiez si la réponse est OK
+        if (!result.ok) {
+            throw new Error('Error during logout.');
+        }
+
+        if (result.ok) {
+            document.getElementById('logoutWallet').removeEventListener('click', signOutOfMetaMask);
+            connectWallet.removeEventListener('click', toggleWalletInfo); // on supprime l'event affichage du toggle si on se déco
+            setTimeout(() => {
+                connectWallet.addEventListener('click', connectWalletwithMetaMask);
+            }, 200);
+
+            // Supprimer l'indicateur de connexion et l'adresse dans le stockage local
+            localStorage.removeItem('isUserConnected');
+            localStorage.removeItem('userAddress');
+            // Il faut aussi supprimer la signature de l'user et le jwt token
+            localStorage.removeItem('userSignature');
+    
+            // Réinitialiser le bouton connectWallet pour qu'il demande la connexion la prochaine fois
+            connectWallet.innerHTML = 'Connect Wallet';
+
+            // On rend invisible l'onglet coulissant contenant les infos de l'user
+            document.getElementById('walletInfo').style.display = 'none'; // Affiche le bouton de déconnexion
+            
+
+            // Activer l'écouteur de clic pour connecter le portefeuille
+            connectWallet.addEventListener('click', connectWalletwithMetaMask);
+
+            // Vérifiez que la signature utilisateur est supprimée
+            checkUserSignatureDeleted();
+
+            // On MAJ les éléments réactifs
+            await checkIfUserConnected();
+
+
+        }
+    } catch (error) {
+        console.error('Error during logout process:', error);
+        // Gérer les erreurs si nécessaire
+    }
+}
+
+// Fonction pour changer de réseau
+async function switchNetwork(provider, chainId) {
+    try {
+        await provider.send("wallet_switchEthereumChain", [
+            { chainId }, // ID de la chaîne en hexadécimal, exemple : '0x3e6'
+        ]);
+    } catch (switchError) {
+        if (switchError.code === 4902 || switchError.code === 'UNKNOWN_ERROR') {
+            // Si la chaîne n'est pas ajoutée dans MetaMask
+            try {
+                await window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [
+                        {
+                            chainId: config.chain_id, // ID de la chaîne (hexadécimal)
+                            chainName: 'HyperEVM Testnet', // Nom lisible de la chaîne
+                            nativeCurrency: {
+                                name: 'HYPE', // Nom de la monnaie native
+                                symbol: 'HYPE', // Symbole abrégé de la monnaie native
+                                decimals: 18, // Décimales (généralement 18 pour Ethereum)
+                            },
+                            rpcUrls: [config.rpc_url], // URL de l'endpoint RPC
+                            blockExplorerUrls: [], // URL de l'explorateur (optionnel)
+                        }],
+                });
+                // Réessayer de basculer sur la chaîne nouvellement ajoutée
+                await provider.send("wallet_switchEthereumChain", [
+                    { chainId }, // ID de la chaîne en hexadécimal, exemple : '0x3e6'
+                ]);
+
+            } catch (addError) {
+                console.error('Erreur lors de l\'ajout du réseau:', addError);
+            }
+        } else {
+            console.error('Erreur lors du changement de réseau:', switchError);
+        }
+    } finally {
+        // Recharger la page quelque soit l'issue
+        window.location.reload();
+    }
+}
+
+// Gestion de la chain sélectionnée
+function checkNetwork() {
+    // Vérifier si MetaMask est installé et disponible
+    const transactionButtonElement = document.getElementById('betButton');
+
+    if (typeof window.ethereum !== 'undefined') {
+        const ethereum = window.ethereum;
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        // Vérifier le réseau au chargement de la page
+        ethereum.request({ method: 'eth_chainId' })
+            .then(chainId => {
+                if (chainId !== config.chain_id) { // Vérifier si le chainId correspond à HyperEVM 
+                    // Afficher un message d'erreur ou désactiver les boutons de transaction
+                    document.getElementById('networkModal').style.display = 'block';
+                    // Ajouter un écouteur pour le bouton de changement de réseau
+                    document.getElementById('changeNetworkButton').addEventListener('click', async () => {
+                    await switchNetwork(provider, config.chain_id);
+                    });
+                    
+                    return false;
+                } else {
+
+                    return true;
+                }
+            })
+            .catch(error => {
+                console.error('Error during retrieval of the network :', error);
+            });
+    } else {
+        // MetaMask n'est pas installé ou n'est pas disponible
+        console.error('MetaMask isnt installed.');
+        if (transactionButtonElement) {
+            transactionButtonElement.disabled = false;
+        }
+        return false;
+    }
+}
+
+
+// Fonction pour vérifier si userSignature est supprimé de la mémoire locale
+function checkUserSignatureDeleted() {
+    const userSignature = localStorage.getItem('userSignature');
+    const transactionButtonElement = document.getElementById('betButton');
+    const spotSendElement = document.getElementById('sendSpot');
+    if (!userSignature) {
+        // Désactiver le bouton de transaction si userSignature est supprimé
+        if (transactionButtonElement) {
+            transactionButtonElement.innerHTML = "Connect your wallet";
+            transactionButtonElement.disabled = true;
+            spotSendElement.disabled = true;
+        }
+    } else {
+        // Activer le bouton de transaction si userSignature est présent
+        if (transactionButtonElement) {
+            transactionButtonElement.innerHTML = "FLIP COIN";
+            transactionButtonElement.disabled = false;
+            spotSendElement.disabled = false;
+        }
+    }
+}
+
+// Fonction pour afficher/masquer le menu déroulant au clic sur walletAddress
+export async function toggleWalletInfo() {
+    const walletInfo = document.getElementById('walletInfo');
+    const logoutWalletButton = document.getElementById('logoutWallet');
+    const usdcBalanceElement = document.getElementById('usdcBalance');
+    const testhBalanceElement = document.getElementById('testhBalance');
+    const pointsBalanceElement = document.getElementById('pointsBalance');
+    const referralElement = document.getElementById('referralCode');
+
+    try {
+
+        // Toggle affichage walletInfo
+        if (walletInfo.style.display === 'none' || walletInfo.style.display === '') {
+            walletInfo.style.display = 'block';
+            logoutWalletButton.style.display = 'block';
+            usdcBalanceElement.style.display = 'block';
+            testhBalanceElement.style.display = 'block';
+            pointsBalanceElement.style.display = 'block';
+            referralElement.style.display = 'block';
+
+            const usdcBalance = await getTokenBalanceEvm(config.usdcAddressEvm);
+            const testhBalance = await getEthBalanceEvm();
+            const pointsBalance = await getPointsPlayer();
+            const referralCode = await getReferralCode();
+
+            // Mise à jour des éléments DOM
+            usdcBalanceElement.innerHTML = `USDC:${usdcBalance}`;
+            testhBalanceElement.innerHTML = `HYPE:${testhBalance}`;
+            pointsBalanceElement.innerHTML = `Points:${pointsBalance}`;
+            referralElement.innerHTML = `Referral:${referralCode}`;
+
+        } else {
+            walletInfo.style.display = 'none';
+        }
+    } catch (error) {
+        console.error("Erreur lors de la récupération ou de l'affichage des informations du portefeuille :", error);
+
+        // Masque walletInfo en cas d'erreur
+        walletInfo.style.display = 'none';
+        logoutWalletButton.style.display = 'none';
+
+        // Optionnel : Ajouter un message d'erreur à l'utilisateur
+        usdcBalanceElement.innerHTML = "USDC:Error";
+        testhBalanceElement.innerHTML = "HYPE:Error";
+        pointsBalance.innerHTML = `Points:Error`;
+    }
+}
+
+async function getReferralCode() {
+    try {
+        const response = await fetch('getReferralCode', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // Correction du format d'en-tête
+            },
+        });
+
+        if (!response.ok) {
+            console.error(`Failed to fetch referral code. HTTP Status: ${response.status}`);
+            return null;
+        }
+
+        // Vérifie que la réponse est bien au format JSON attendu
+        const result = await response.json();
+        if (result && result.referral_code) {
+            return result.referral_code;
+        } else {
+            console.error("Invalid response format or missing referral_code.");
+            return null;
+        }
+    } catch (error) {
+        console.error("Error during retrieval of referral code:", error);
+        return null;
+    }
+}
+
+
+checkInstalled();
+checkIfUserConnected();
+window.ethereum.on('accountsChanged', handleAccountsChanged);
+// Écouter les changements de réseau MetaMask
+checkNetwork();
+window.ethereum.on('chainChanged', checkNetwork);

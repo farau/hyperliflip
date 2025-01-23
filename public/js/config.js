@@ -1,1 +1,678 @@
-function a0_0x5ddb(_0xc14a14,_0x29a2b9){const _0x8249c9=a0_0x8249();return a0_0x5ddb=function(_0x5ddb20,_0x401b7c){_0x5ddb20=_0x5ddb20-0xb9;let _0x3d25af=_0x8249c9[_0x5ddb20];return _0x3d25af;},a0_0x5ddb(_0xc14a14,_0x29a2b9);}const a0_0x22a796=a0_0x5ddb;function a0_0x8249(){const _0x31cebe=['LeaderboardReinitialized','owner','playerAddress','105HAPpfx','setFeeWallet','payable','301448JFciKc','ReentrancyGuardReentrantCall','2138880IyChnh','feePercent','event','totalBetsValue','11283475yCsauV','30uWzECc','17249090tmJOhq','totalBetsValueLeaderboard','payout','constructor','nonpayable','receive','function','_feeWallet','transferOwnership','withdraw','197475hYaplL','getAllPlayerAddresses','previousOwner','totalWinsPlayer','newOwner','totalPlayers','address[]','getPointsPlayer','55542dZICPq','OwnableUnauthorizedAccount','view','HYPE:0x7317beb7cceed72ef0b346074cc8e7ab','totalWins','bool','9jiBjud','error','_feePercent','setFeePercent','address','getTotalBetsPlayer','654888qGtKcS','getTotalBetsLeaderboard','uint256','reinitializeLeaderboard','points','function\x20balanceOf(address\x20owner)\x20view\x20returns\x20(uint256)','feeWallet','BetResult','https://api.hyperliquid-testnet.xyz/evm','player','totalWinsLeaderboard','0x24ac48bf01fd6CB1C3836D08b3EdC70a9C4380cA','renounceOwnership','won','OwnershipTransferred'];a0_0x8249=function(){return _0x31cebe;};return a0_0x8249();}(function(_0x1febea,_0x258021){const _0x41dee9=a0_0x5ddb,_0x39bf28=_0x1febea();while(!![]){try{const _0xad20af=parseInt(_0x41dee9(0xde))/0x1+parseInt(_0x41dee9(0xbf))/0x2*(parseInt(_0x41dee9(0xca))/0x3)+-parseInt(_0x41dee9(0xba))/0x4+parseInt(_0x41dee9(0xf0))/0x5*(-parseInt(_0x41dee9(0xd2))/0x6)+parseInt(_0x41dee9(0xbe))/0x7+-parseInt(_0x41dee9(0xf3))/0x8*(-parseInt(_0x41dee9(0xd8))/0x9)+-parseInt(_0x41dee9(0xc0))/0xa;if(_0xad20af===_0x258021)break;else _0x39bf28['push'](_0x39bf28['shift']());}catch(_0x22c01b){_0x39bf28['push'](_0x39bf28['shift']());}}}(a0_0x8249,0xcc8d3));const config={'chain_id':'0x3e6','rpc_url':a0_0x22a796(0xe6),'hyperflipAddress':'0x9e1Fa28f8dD4950a5Bc8CDA89916A071603498ac','usdcTokenId':0x0,'hypeTokenId':0x451,'hyperliflipAbi':[{'inputs':[{'internalType':a0_0x22a796(0xdc),'name':'_feeWallet','type':a0_0x22a796(0xdc)},{'internalType':a0_0x22a796(0xe0),'name':a0_0x22a796(0xda),'type':'uint256'}],'stateMutability':'nonpayable','type':a0_0x22a796(0xc3)},{'inputs':[{'internalType':'address','name':a0_0x22a796(0xee),'type':a0_0x22a796(0xdc)}],'name':'OwnableInvalidOwner','type':'error'},{'inputs':[{'internalType':a0_0x22a796(0xdc),'name':'account','type':'address'}],'name':a0_0x22a796(0xd3),'type':a0_0x22a796(0xd9)},{'inputs':[],'name':a0_0x22a796(0xb9),'type':a0_0x22a796(0xd9)},{'anonymous':![],'inputs':[{'indexed':!![],'internalType':a0_0x22a796(0xdc),'name':a0_0x22a796(0xe7),'type':a0_0x22a796(0xdc)},{'indexed':![],'internalType':'uint256','name':'amount','type':a0_0x22a796(0xe0)},{'indexed':![],'internalType':'bool','name':a0_0x22a796(0xeb),'type':a0_0x22a796(0xd7)},{'indexed':![],'internalType':'uint256','name':a0_0x22a796(0xc2),'type':'uint256'},{'indexed':![],'internalType':a0_0x22a796(0xe0),'name':a0_0x22a796(0xe2),'type':a0_0x22a796(0xe0)}],'name':a0_0x22a796(0xe5),'type':'event'},{'anonymous':![],'inputs':[{'indexed':![],'internalType':a0_0x22a796(0xe0),'name':'timestamp','type':a0_0x22a796(0xe0)}],'name':a0_0x22a796(0xed),'type':a0_0x22a796(0xbc)},{'anonymous':![],'inputs':[{'indexed':!![],'internalType':a0_0x22a796(0xdc),'name':a0_0x22a796(0xcc),'type':a0_0x22a796(0xdc)},{'indexed':!![],'internalType':'address','name':a0_0x22a796(0xce),'type':a0_0x22a796(0xdc)}],'name':a0_0x22a796(0xec),'type':a0_0x22a796(0xbc)},{'inputs':[],'name':a0_0x22a796(0xbb),'outputs':[{'internalType':'uint256','name':'','type':a0_0x22a796(0xe0)}],'stateMutability':'view','type':a0_0x22a796(0xc6)},{'inputs':[],'name':a0_0x22a796(0xe4),'outputs':[{'internalType':a0_0x22a796(0xdc),'name':'','type':a0_0x22a796(0xdc)}],'stateMutability':a0_0x22a796(0xd4),'type':a0_0x22a796(0xc6)},{'inputs':[],'name':a0_0x22a796(0xcb),'outputs':[{'internalType':a0_0x22a796(0xd0),'name':'','type':a0_0x22a796(0xd0)}],'stateMutability':'view','type':a0_0x22a796(0xc6)},{'inputs':[{'internalType':a0_0x22a796(0xdc),'name':a0_0x22a796(0xef),'type':'address'}],'name':a0_0x22a796(0xd1),'outputs':[{'internalType':a0_0x22a796(0xe0),'name':'','type':a0_0x22a796(0xe0)}],'stateMutability':a0_0x22a796(0xd4),'type':'function'},{'inputs':[],'name':a0_0x22a796(0xdf),'outputs':[{'internalType':a0_0x22a796(0xe0),'name':'','type':a0_0x22a796(0xe0)}],'stateMutability':a0_0x22a796(0xd4),'type':'function'},{'inputs':[{'internalType':a0_0x22a796(0xdc),'name':a0_0x22a796(0xef),'type':a0_0x22a796(0xdc)}],'name':a0_0x22a796(0xdd),'outputs':[{'internalType':a0_0x22a796(0xe0),'name':'','type':a0_0x22a796(0xe0)}],'stateMutability':a0_0x22a796(0xd4),'type':a0_0x22a796(0xc6)},{'inputs':[{'internalType':a0_0x22a796(0xdc),'name':'playerAddress','type':'address'}],'name':'getVolumePlayer','outputs':[{'internalType':a0_0x22a796(0xe0),'name':'','type':a0_0x22a796(0xe0)}],'stateMutability':a0_0x22a796(0xd4),'type':'function'},{'inputs':[],'name':a0_0x22a796(0xee),'outputs':[{'internalType':a0_0x22a796(0xdc),'name':'','type':'address'}],'stateMutability':a0_0x22a796(0xd4),'type':a0_0x22a796(0xc6)},{'inputs':[{'internalType':a0_0x22a796(0xd7),'name':'choice','type':a0_0x22a796(0xd7)}],'name':'play','outputs':[],'stateMutability':a0_0x22a796(0xf2),'type':a0_0x22a796(0xc6)},{'inputs':[],'name':a0_0x22a796(0xe1),'outputs':[],'stateMutability':a0_0x22a796(0xc4),'type':a0_0x22a796(0xc6)},{'inputs':[],'name':a0_0x22a796(0xea),'outputs':[],'stateMutability':a0_0x22a796(0xc4),'type':a0_0x22a796(0xc6)},{'inputs':[{'internalType':a0_0x22a796(0xe0),'name':a0_0x22a796(0xda),'type':a0_0x22a796(0xe0)}],'name':a0_0x22a796(0xdb),'outputs':[],'stateMutability':a0_0x22a796(0xc4),'type':a0_0x22a796(0xc6)},{'inputs':[{'internalType':a0_0x22a796(0xdc),'name':a0_0x22a796(0xc7),'type':a0_0x22a796(0xdc)}],'name':a0_0x22a796(0xf1),'outputs':[],'stateMutability':a0_0x22a796(0xc4),'type':a0_0x22a796(0xc6)},{'inputs':[],'name':'totalBets','outputs':[{'internalType':a0_0x22a796(0xe0),'name':'','type':a0_0x22a796(0xe0)}],'stateMutability':a0_0x22a796(0xd4),'type':a0_0x22a796(0xc6)},{'inputs':[],'name':a0_0x22a796(0xbd),'outputs':[{'internalType':a0_0x22a796(0xe0),'name':'','type':a0_0x22a796(0xe0)}],'stateMutability':a0_0x22a796(0xd4),'type':'function'},{'inputs':[],'name':a0_0x22a796(0xc1),'outputs':[{'internalType':a0_0x22a796(0xe0),'name':'','type':'uint256'}],'stateMutability':a0_0x22a796(0xd4),'type':a0_0x22a796(0xc6)},{'inputs':[],'name':a0_0x22a796(0xcf),'outputs':[{'internalType':a0_0x22a796(0xe0),'name':'','type':'uint256'}],'stateMutability':a0_0x22a796(0xd4),'type':'function'},{'inputs':[],'name':a0_0x22a796(0xd6),'outputs':[{'internalType':a0_0x22a796(0xe0),'name':'','type':a0_0x22a796(0xe0)}],'stateMutability':a0_0x22a796(0xd4),'type':'function'},{'inputs':[],'name':a0_0x22a796(0xe8),'outputs':[{'internalType':a0_0x22a796(0xe0),'name':'','type':'uint256'}],'stateMutability':a0_0x22a796(0xd4),'type':'function'},{'inputs':[{'internalType':a0_0x22a796(0xdc),'name':a0_0x22a796(0xef),'type':'address'}],'name':a0_0x22a796(0xcd),'outputs':[{'internalType':a0_0x22a796(0xe0),'name':'','type':a0_0x22a796(0xe0)}],'stateMutability':a0_0x22a796(0xd4),'type':a0_0x22a796(0xc6)},{'inputs':[{'internalType':'address','name':a0_0x22a796(0xce),'type':a0_0x22a796(0xdc)}],'name':a0_0x22a796(0xc8),'outputs':[],'stateMutability':'nonpayable','type':a0_0x22a796(0xc6)},{'inputs':[{'internalType':a0_0x22a796(0xe0),'name':'amount','type':a0_0x22a796(0xe0)}],'name':a0_0x22a796(0xc9),'outputs':[],'stateMutability':'nonpayable','type':a0_0x22a796(0xc6)},{'stateMutability':a0_0x22a796(0xf2),'type':a0_0x22a796(0xc5)}],'erc20Abi':[a0_0x22a796(0xe3)],'usdcAddressEvm':a0_0x22a796(0xe9),'hype_tokenid':a0_0x22a796(0xd5)};
+// config.js
+
+const config = {
+    chain_id : '0x3e6', //Hyperliquid testnet
+	rpc_url : 'https://api.hyperliquid-testnet.xyz/evm',
+	hyperflipAddress: '0x08b446235B52431dd1556DeF6eD7Aa0401400f02',
+	usdcTokenId : 0,
+	hypeTokenId : 1105, //testnet
+    hyperliflipAbi :[
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "_feeWallet",
+			  "type": "address"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "_feePercent",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "nonpayable",
+		  "type": "constructor"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "owner",
+			  "type": "address"
+			}
+		  ],
+		  "name": "OwnableInvalidOwner",
+		  "type": "error"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "account",
+			  "type": "address"
+			}
+		  ],
+		  "name": "OwnableUnauthorizedAccount",
+		  "type": "error"
+		},
+		{
+		  "inputs": [],
+		  "name": "ReentrancyGuardReentrantCall",
+		  "type": "error"
+		},
+		{
+		  "anonymous": false,
+		  "inputs": [
+			{
+			  "indexed": true,
+			  "internalType": "address",
+			  "name": "player",
+			  "type": "address"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "amount",
+			  "type": "uint256"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "bool",
+			  "name": "won",
+			  "type": "bool"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "payout",
+			  "type": "uint256"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "points",
+			  "type": "uint256"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "refereePoints",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "BetResult",
+		  "type": "event"
+		},
+		{
+		  "anonymous": false,
+		  "inputs": [
+			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "timestamp",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "LeaderboardReinitialized",
+		  "type": "event"
+		},
+		{
+		  "anonymous": false,
+		  "inputs": [
+			{
+			  "indexed": true,
+			  "internalType": "address",
+			  "name": "previousOwner",
+			  "type": "address"
+			},
+			{
+			  "indexed": true,
+			  "internalType": "address",
+			  "name": "newOwner",
+			  "type": "address"
+			}
+		  ],
+		  "name": "OwnershipTransferred",
+		  "type": "event"
+		},
+		{
+		  "anonymous": false,
+		  "inputs": [
+			{
+			  "indexed": true,
+			  "internalType": "address",
+			  "name": "player",
+			  "type": "address"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "points",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "PointsAdded",
+		  "type": "event"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "addressPlayer",
+			  "type": "address"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "pts",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "addPoints",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "tokenAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "addTokenAccepted",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "feePercent",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "feeWallet",
+		  "outputs": [
+			{
+			  "internalType": "address",
+			  "name": "",
+			  "type": "address"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "getAllPlayerAddresses",
+		  "outputs": [
+			{
+			  "internalType": "address[]",
+			  "name": "",
+			  "type": "address[]"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "player",
+			  "type": "address"
+			}
+		  ],
+		  "name": "getPlayerInfo",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "address",
+			  "name": "",
+			  "type": "address"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "playerAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "getPointsPlayer",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "getTotalBetsLeaderboard",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "playerAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "getTotalBetsPlayer",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "playerAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "getVolumePlayer",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "uint16",
+			  "name": "index",
+			  "type": "uint16"
+			}
+		  ],
+		  "name": "oraclePx",
+		  "outputs": [
+			{
+			  "internalType": "uint64",
+			  "name": "",
+			  "type": "uint64"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "owner",
+		  "outputs": [
+			{
+			  "internalType": "address",
+			  "name": "",
+			  "type": "address"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "bool",
+			  "name": "choice",
+			  "type": "bool"
+			},
+			{
+			  "internalType": "address",
+			  "name": "referree",
+			  "type": "address"
+			}
+		  ],
+		  "name": "play",
+		  "outputs": [],
+		  "stateMutability": "payable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "tokenAddress",
+			  "type": "address"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "amount",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "bool",
+			  "name": "choice",
+			  "type": "bool"
+			},
+			{
+			  "internalType": "address",
+			  "name": "referree",
+			  "type": "address"
+			}
+		  ],
+		  "name": "playWithToken",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "tokenAddress",
+			  "type": "address"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "amount",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "receiveTokens",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "reinitializeLeaderboard",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "tokenAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "removeTokenAccepted",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "renounceOwnership",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "_feePercent",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "setFeePercent",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "_feeWallet",
+			  "type": "address"
+			}
+		  ],
+		  "name": "setFeeWallet",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "uint32",
+			  "name": "index",
+			  "type": "uint32"
+			}
+		  ],
+		  "name": "spotPx",
+		  "outputs": [
+			{
+			  "internalType": "uint64",
+			  "name": "",
+			  "type": "uint64"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "",
+			  "type": "address"
+			}
+		  ],
+		  "name": "tokenAccepted",
+		  "outputs": [
+			{
+			  "internalType": "contract IERC20",
+			  "name": "",
+			  "type": "address"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "totalBets",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "totalBetsValue",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "totalBetsValueLeaderboard",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "totalBetsValueToken",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "totalPlayers",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "totalWins",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
+		  "name": "totalWinsLeaderboard",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "playerAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "totalWinsPlayer",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "newOwner",
+			  "type": "address"
+			}
+		  ],
+		  "name": "transferOwnership",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "amount",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "withdraw",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "address",
+			  "name": "tokenAddress",
+			  "type": "address"
+			}
+		  ],
+		  "name": "withdrawTokens",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "stateMutability": "payable",
+		  "type": "receive"
+		}
+	  ],
+	erc20Abi : [
+		"function balanceOf(address owner) view returns (uint256)",
+	],
+	erc20TokenAddress : '0xE1A78f5B2FC080d7F34c47d703f19533097Ee34a', // Address of the ERC20 token used in the contract : KEI
+	usdcAddressEvm : '0x24ac48bf01fd6CB1C3836D08b3EdC70a9C4380cA', // testnet
+	hype_tokenid : "HYPE:0x7317beb7cceed72ef0b346074cc8e7ab"
+};

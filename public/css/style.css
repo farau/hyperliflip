@@ -220,7 +220,7 @@ body {
 
 #connectWallet {
     background-color: #092b22;
-    border: #42f7c8; /* Pas de bordure */
+    border: #42f7c8;
     color: white; /* Couleur du texte */
     padding: 8px 16px; /* Espacement à l'intérieur du bouton */
     text-align: center; /* Centrer le texte */
@@ -337,7 +337,9 @@ footer a:active {
     display: none;
     text-align: center;
     border-radius: 3px;
+    border: 3px solid #08271f; /* Grosse bordure */
 }
+
 
 /* Style du bouton de logout */
 #logoutWallet {
@@ -400,14 +402,20 @@ footer a:active {
 }
 
 .card-custom {
-    background-color: transparent;  /* Fond transparent */
+    background-color: rgba(0, 0, 0, .2);
+    border-radius: 3px;
     box-shadow: none;                /* Aucune ombre portée */
     color: white;                    /* Texte blanc */
 }
 
+.card-custom img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
 
 .list-group {
-    background-color: rgba(0, 0, 0, .3);  /* Fond transparent */
+    background-color: rgba(0, 0, 0, .1);  
     box-shadow: none;                /* Aucune ombre portée */
     color: white;                    /* Texte blanc */
     border: rgba(0, 0, 0, .4);
@@ -612,3 +620,43 @@ button[aria-expanded="true"] .rotate-icon {
 .container-custom {
     max-width: 600px; /* Par exemple, 600px pour un container petit */
 }
+
+/* Style du bouton referral */
+#referralCode {
+    background-color: #092b22;;
+    color: #000;
+    padding: 8px 10px;
+    font-weight: bold;
+    font-size: px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+/* Container et case input pour mettre le referral pour bet*/
+.referral-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.referral-input {
+    width: 80%;
+    max-width: 300px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Style for the scrollable container */
+.scrollable-container {
+    max-height: 400px; /* Height limit for the scrollable area */
+    overflow-y: auto; /* Adds vertical scrolling */
+    /*border: 1px solid #ddd; /* Optional: Add a border for visual separation */
+    padding: 15px; /* Adds some padding */
+    /*background-color: rgba(0, 0, 0, 0.6);*/
+    border-radius: 8px; /* Optional: Rounded corners */
+  }
+  

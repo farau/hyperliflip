@@ -2,10 +2,28 @@
   "userData": [
     {
       "address": "0x3b5de2ad56d4957100993529ed282b3d645a1692",
-      "points": 8,
-      "volume": "2.0",
-      "bets": 8
+      "points": 68,
+      "volume": "0.0",
+      "bets": 4
+    },
+    {
+      "address": "0x12501fcfcf1e7991b151e9c931948f1b7c9af016",
+      "points": 38,
+      "volume": "1.75",
+      "bets": 7
+    },
+    {
+      "address": "0xe0ad5c96f53ffd73fb1d949dc3b3c8d0bd4fceb1",
+      "points": 12,
+      "volume": "0.75",
+      "bets": 3
+    },
+    {
+      "address": "0x7b491f2578b8d9ae85a48f3cf48960d55a400e00",
+      "points": 0,
+      "volume": "0.0",
+      "bets": 0
     }
   ],
-  "date": "2024-12-20T15:56:45.150Z"
+  "date": "2025-01-23T01:57:50.818Z"
 }

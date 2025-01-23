@@ -1,1 +1,421 @@
-const a0_0x45842d=a0_0x9495;function a0_0x2ebd(){const _0x34ced6=['forEach','You\x20WON!','play','points','result-div','betButton','Interface','16pGcPEL','totalBets','BrowserProvider','classList','Please\x20select\x20a\x20Bet!','You\x20bet\x20','disabled','tails-btn','5wAYSBW','getSigner','FLIP\x20COIN','\x20HYPE.','innerText','Total\x20Bets:\x20','textContent','Erreur\x20lors\x20de\x20la\x20récupération\x20des\x20statistiques\x20:','contains','Erreur\x20lors\x20du\x20pari\x20:','none','7693356JUXDjP','block','name','querySelector','place-bet','parseEther','1101477PWiwfg','5852320jBjYNw','wait','<a\x20href=\x22https://testnet.purrsec.com/hyperliquid_testnet/tx/','hyperliflipAbi','getElementById','error','Total\x20Wins:\x20','log','<span\x20class=\x22spinner-border\x20spinner-border-sm\x22\x20role=\x22status\x22></span>\x20Waiting...','hash','Erreur\x20lors\x20de\x20la\x20récupération\x20de\x20getPointsPlayer\x20:','innerHTML','resultBet','hyperflipAddress','Transaction\x20sent:','2943320ApYfKG','32571QGGnEa','length','\x22\x20target=\x22_blank\x22>View\x20Transaction</a>','amount','Contract','payout','getPointsPlayer','.btn-selected[id^=\x22heads-btn\x22],\x20.btn-selected[id^=\x22tails-btn\x22]','33892LoHJFm','BetResult','won','args','btn-selected','HEADS','heads-btn','click','Error.\x20Try\x20again','close-btn','logs','ethereum','totalWins','Event\x20BetResult\x20not\x20found.','betAmt','parseLog','display','<img\x20src=\x22./img/logo.jpg\x22\x20alt=\x22Flip\x20coin\x22\x20class=\x22rounded-circle\x20rotating-image\x22>','toString','remove','add','You\x20received\x20','style','addEventListener','538552lGNFSN'];a0_0x2ebd=function(){return _0x34ced6;};return a0_0x2ebd();}(function(_0x605341,_0x467ca3){const _0x519968=a0_0x9495,_0xe9d37d=_0x605341();while(!![]){try{const _0x440784=parseInt(_0x519968(0x184))/0x1*(-parseInt(_0x519968(0x164))/0x2)+-parseInt(_0x519968(0x19d))/0x3+-parseInt(_0x519968(0x1ad))/0x4+parseInt(_0x519968(0x18c))/0x5*(parseInt(_0x519968(0x197))/0x6)+parseInt(_0x519968(0x17c))/0x7+parseInt(_0x519968(0x19e))/0x8+-parseInt(_0x519968(0x1ae))/0x9;if(_0x440784===_0x467ca3)break;else _0xe9d37d['push'](_0xe9d37d['shift']());}catch(_0x16cd6c){_0xe9d37d['push'](_0xe9d37d['shift']());}}}(a0_0x2ebd,0xae0fe));import{getVolumeDapp}from'./hyperliquid.js';const betButton=document[a0_0x45842d(0x1a2)](a0_0x45842d(0x182)),contractAddress=config[a0_0x45842d(0x1ab)],abi=config[a0_0x45842d(0x1a1)],iface=new ethers[(a0_0x45842d(0x183))](abi),betButtons=document['querySelectorAll']('.btn-custom2');if(betButtons[a0_0x45842d(0x1af)]>0x0){betButtons['forEach'](_0x33be7e=>{const _0x3fe6a7=a0_0x45842d;_0x33be7e['addEventListener'](_0x3fe6a7(0x16b),()=>{const _0x376c3d=_0x3fe6a7;_0x33be7e['classList'][_0x376c3d(0x194)]('btn-selected')?_0x33be7e['classList'][_0x376c3d(0x177)](_0x376c3d(0x168)):(betButtons[_0x376c3d(0x17d)](_0x33a330=>_0x33a330[_0x376c3d(0x187)][_0x376c3d(0x177)]('btn-selected')),_0x33be7e['classList']['add'](_0x376c3d(0x168)));});});const headsButton=document[a0_0x45842d(0x1a2)](a0_0x45842d(0x16a)),tailsButton=document[a0_0x45842d(0x1a2)](a0_0x45842d(0x18b));headsButton&&headsButton[a0_0x45842d(0x17b)](a0_0x45842d(0x16b),()=>{const _0x1a040a=a0_0x45842d;headsButton[_0x1a040a(0x187)][_0x1a040a(0x194)]('btn-selected')?headsButton[_0x1a040a(0x187)][_0x1a040a(0x177)](_0x1a040a(0x168)):(headsButton[_0x1a040a(0x187)][_0x1a040a(0x178)](_0x1a040a(0x168)),tailsButton[_0x1a040a(0x187)][_0x1a040a(0x177)](_0x1a040a(0x168)));}),tailsButton&&tailsButton['addEventListener']('click',()=>{const _0x2bd377=a0_0x45842d;tailsButton['classList'][_0x2bd377(0x194)]('btn-selected')?tailsButton['classList'][_0x2bd377(0x177)](_0x2bd377(0x168)):(tailsButton['classList'][_0x2bd377(0x178)](_0x2bd377(0x168)),headsButton[_0x2bd377(0x187)][_0x2bd377(0x177)](_0x2bd377(0x168)));}),document['getElementById']('place-bet')['addEventListener'](a0_0x45842d(0x16b),getSelectedValues);}function getSelectedValues(){const _0x5e2c3b=a0_0x45842d,_0x3c4193=document[_0x5e2c3b(0x19a)]('.btn-custom2.btn-selected'),_0x5df283=document[_0x5e2c3b(0x19a)](_0x5e2c3b(0x163));if(_0x3c4193&&_0x5df283){const _0x50c7be=_0x3c4193?_0x3c4193['getAttribute']('data-eth'):null,_0x43109=_0x5df283['textContent']?_0x5df283[_0x5e2c3b(0x192)]==_0x5e2c3b(0x169)?0x0:0x1:null;return{'betAmount':_0x50c7be,'choice':_0x43109};}else return{'betAmount':null,'choice':null};}document[a0_0x45842d(0x1a2)](a0_0x45842d(0x19b))&&document['getElementById'](a0_0x45842d(0x19b))[a0_0x45842d(0x17b)](a0_0x45842d(0x16b),placeBet);document[a0_0x45842d(0x1a2)](a0_0x45842d(0x16d))&&document['getElementById'](a0_0x45842d(0x16d))[a0_0x45842d(0x17b)](a0_0x45842d(0x16b),function(){const _0x47736e=a0_0x45842d;document['getElementById']('result-div')[_0x47736e(0x17a)]['display']=_0x47736e(0x196);});async function placeBet(){const _0x3afe44=a0_0x45842d;try{const _0x4314d4=new ethers[(_0x3afe44(0x186))](window['ethereum']),_0x4044bc=await _0x4314d4[_0x3afe44(0x18d)](),_0x419a2e=new ethers[(_0x3afe44(0x1b2))](contractAddress,abi,_0x4044bc);if(!_0x419a2e)return;const {betAmount:_0x267a1d,choice:_0x12fafc}=getSelectedValues();if(_0x267a1d==null||_0x12fafc==null){document[_0x3afe44(0x1a2)](_0x3afe44(0x19b))['innerHTML']=_0x3afe44(0x188);return;}document[_0x3afe44(0x1a2)](_0x3afe44(0x181))[_0x3afe44(0x17a)][_0x3afe44(0x174)]=_0x3afe44(0x196),document[_0x3afe44(0x1a2)]('coinWait')['innerHTML']='',document[_0x3afe44(0x1a2)](_0x3afe44(0x19b))[_0x3afe44(0x18a)]=!![],document[_0x3afe44(0x1a2)]('place-bet')['innerHTML']=_0x3afe44(0x1a6),document[_0x3afe44(0x1a2)](_0x3afe44(0x172))[_0x3afe44(0x1a9)]='',document[_0x3afe44(0x1a2)]('resultBet')['innerHTML']='',document[_0x3afe44(0x1a2)](_0x3afe44(0x1b3))[_0x3afe44(0x1a9)]='',document[_0x3afe44(0x1a2)](_0x3afe44(0x180))['innerHTML']='';const _0x81187e=await _0x419a2e[_0x3afe44(0x17f)](_0x12fafc,{'value':ethers[_0x3afe44(0x19c)](_0x267a1d[_0x3afe44(0x176)]())});console['log'](_0x3afe44(0x1ac),_0x81187e['hash']);const _0x5bfdd7=_0x3afe44(0x1a0)+_0x81187e[_0x3afe44(0x1a7)]+_0x3afe44(0x1b0);document['getElementById'](_0x3afe44(0x181))[_0x3afe44(0x17a)][_0x3afe44(0x174)]=_0x3afe44(0x198),document[_0x3afe44(0x1a2)](_0x3afe44(0x172))[_0x3afe44(0x1a9)]=_0x3afe44(0x1a6),document[_0x3afe44(0x1a2)]('coinWait')[_0x3afe44(0x1a9)]=_0x3afe44(0x175),await new Promise(_0x3b583a=>setTimeout(_0x3b583a,0x64));const _0x44fb51=await _0x81187e[_0x3afe44(0x19f)](),_0x496b3d=_0x44fb51[_0x3afe44(0x16e)],_0x1c7f06=_0x496b3d['find'](_0xa35e93=>{const _0x4328e2=_0x3afe44;try{const _0x2dc620=iface[_0x4328e2(0x173)](_0xa35e93);return _0x2dc620[_0x4328e2(0x199)]===_0x4328e2(0x165);}catch{return![];}});let _0x812f3a,_0x3c9999,_0x4e0080,_0x516173;if(_0x1c7f06){const _0x2cd4fe=iface['parseLog'](_0x1c7f06)[_0x3afe44(0x167)];_0x812f3a=_0x2cd4fe[_0x3afe44(0x1b1)],_0x3c9999=_0x2cd4fe[_0x3afe44(0x166)],_0x4e0080=_0x2cd4fe['payout'],_0x516173=_0x2cd4fe[_0x3afe44(0x180)];}else console[_0x3afe44(0x1a5)](_0x3afe44(0x171));document[_0x3afe44(0x1a2)](_0x3afe44(0x181))[_0x3afe44(0x17a)][_0x3afe44(0x174)]=_0x3afe44(0x198),document[_0x3afe44(0x1a2)](_0x3afe44(0x172))[_0x3afe44(0x1a9)]=_0x3afe44(0x189)+Number(_0x812f3a)/0xa**0x12+_0x3afe44(0x18f),_0x3c9999?document[_0x3afe44(0x1a2)]('resultBet')[_0x3afe44(0x1a9)]=_0x3afe44(0x17e):document[_0x3afe44(0x1a2)](_0x3afe44(0x1aa))[_0x3afe44(0x1a9)]='You\x20LOSE!',document['getElementById'](_0x3afe44(0x1b3))['innerHTML']=_0x3afe44(0x179)+Number(_0x4e0080)/0xa**0x12+_0x3afe44(0x18f),document[_0x3afe44(0x1a2)](_0x3afe44(0x180))[_0x3afe44(0x1a9)]=_0x3afe44(0x179)+Number(_0x516173)+'\x20points!<br/><br/>\x20Thanks\x20for\x20participating\x20in\x20our\x20game!',getVolumeDapp(),document[_0x3afe44(0x1a2)](_0x3afe44(0x19b))[_0x3afe44(0x1a9)]=_0x3afe44(0x18e);}catch(_0x509d47){console[_0x3afe44(0x1a3)](_0x3afe44(0x195),_0x509d47),document['getElementById'](_0x3afe44(0x19b))[_0x3afe44(0x1a9)]=_0x3afe44(0x16c),document[_0x3afe44(0x1a2)](_0x3afe44(0x181))[_0x3afe44(0x174)]['style']='none';}finally{document[_0x3afe44(0x1a2)]('place-bet')['disabled']=![];}}function a0_0x9495(_0x2e3d9c,_0x3335af){const _0x2ebdb8=a0_0x2ebd();return a0_0x9495=function(_0x9495e4,_0x50502f){_0x9495e4=_0x9495e4-0x162;let _0x56f419=_0x2ebdb8[_0x9495e4];return _0x56f419;},a0_0x9495(_0x2e3d9c,_0x3335af);}export async function fetchStatistics(){const _0x27f180=a0_0x45842d;try{const _0x418c77=new ethers['BrowserProvider'](window[_0x27f180(0x16f)]),_0x47824e=await _0x418c77[_0x27f180(0x18d)](),_0x3cea5e=new ethers[(_0x27f180(0x1b2))](contractAddress,abi,_0x47824e);if(!_0x3cea5e)return;const _0x39d259=await _0x3cea5e[_0x27f180(0x185)](),_0x5030d6=await _0x3cea5e[_0x27f180(0x170)]();document['getElementById'](_0x27f180(0x185))&&(document[_0x27f180(0x1a2)](_0x27f180(0x185))[_0x27f180(0x190)]=_0x27f180(0x191)+_0x39d259,document['getElementById'](_0x27f180(0x170))[_0x27f180(0x190)]=_0x27f180(0x1a4)+_0x5030d6);}catch(_0x1afdd6){console['error'](_0x27f180(0x193),_0x1afdd6);}}export async function getTotalBetsValue(){const _0x2957f4=a0_0x45842d;try{const _0x34f9fa=new ethers['BrowserProvider'](window[_0x2957f4(0x16f)]),_0x322657=await _0x34f9fa[_0x2957f4(0x18d)](),_0x5c23b9=new ethers['Contract'](contractAddress,abi,_0x322657);if(!_0x5c23b9)return;if(!_0x5c23b9)return;const _0x5e6165=await _0x5c23b9['totalBetsValue'](),_0x400503=Number(_0x5e6165)/0xa**0x12;return _0x400503;}catch(_0xb9e732){console[_0x2957f4(0x1a3)]('Erreur\x20lors\x20de\x20la\x20récupération\x20de\x20total\x20bet\x20value\x20:',_0xb9e732);}}export async function getPointsPlayer(){const _0x2adda4=a0_0x45842d;try{const _0x33f24c=new ethers[(_0x2adda4(0x186))](window['ethereum']),_0x32a7a6=await _0x33f24c['getSigner'](),_0x37a290=new ethers[(_0x2adda4(0x1b2))](contractAddress,abi,_0x32a7a6);if(!_0x37a290)return;if(!_0x37a290)return;const _0x34e51d=await _0x32a7a6['getAddress'](),_0x403a8d=await _0x37a290[_0x2adda4(0x162)](_0x34e51d),_0x4a1d9c=Number(_0x403a8d);return _0x4a1d9c['toString']();}catch(_0x73eea0){console['error'](_0x2adda4(0x1a8),_0x73eea0);}}
+// Importation des modules
+import { getVolumeDapp } from './hyperliquid.js';
+
+// Sélection des éléments
+const betButton = document.getElementById('betButton');
+
+// Chargement de l'adresse du contrat et de l'ABI depuis le fichier de configuration
+const contractAddress = config.hyperflipAddress;
+const abi = config.hyperliflipAbi;
+// Interface ABI
+const iface = new ethers.Interface(abi);
+
+const betButtons = document.querySelectorAll('.btn-custom2');
+
+
+const hypeButton = document.getElementById('hype');
+const coinButton = document.getElementById('coin');
+const amountButtons = document.querySelectorAll('.btn-custom2');
+let selectedCurrency = 'HYPE';
+
+function updateAmounts() {
+  amountButtons.forEach(button => {
+    const amountDisplayed = button.querySelector('#amountDisplayed');
+    if (selectedCurrency === 'HYPE') {
+      amountDisplayed.textContent = button.getAttribute('data-eth') + ' HYPE';
+    } else {
+      amountDisplayed.textContent = button.getAttribute('data-coin') + ' KEI';
+    }
+  });
+}
+
+if(hypeButton) {
+  hypeButton.addEventListener('click', function() {
+    selectedCurrency = 'HYPE';
+    updateAmounts();
+  });
+}
+
+if (coinButton) {
+  coinButton.addEventListener('click', function() {
+    selectedCurrency = 'KEI';
+    updateAmounts();
+  });
+}
+
+// Initial update
+updateAmounts();
+
+
+// Listeners sur les boutons de jeu
+if (betButtons.length > 0) {
+
+  // Gestion de la sélection des boutons de mise
+  betButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        if (button.classList.contains('btn-selected')) {
+            // Si le bouton est déjà sélectionné, le désélectionner
+            button.classList.remove('btn-selected');
+        } else {
+            // Retirer la sélection des autres boutons
+            betButtons.forEach(btn => btn.classList.remove('btn-selected'));
+            // Ajouter la classe "btn-selected" au bouton sélectionné
+            button.classList.add('btn-selected');
+        }
+    });
+  });
+
+
+  // Gestion de la sélection des boutons HEADS/TAILS et HYPE/COIN
+  const headsButton = document.getElementById('heads-btn');
+  const tailsButton = document.getElementById('tails-btn');
+
+
+  if (headsButton) {
+    headsButton.addEventListener('click', () => {
+      if (headsButton.classList.contains('btn-selected')) {
+          // Si le bouton est déjà sélectionné, le désélectionner
+          headsButton.classList.remove('btn-selected');
+      } else {
+          // Sélectionner le bouton HEADS et désélectionner TAILS
+          headsButton.classList.add('btn-selected');
+          tailsButton.classList.remove('btn-selected');
+        }
+    });
+  }
+
+  if (tailsButton) {
+    tailsButton.addEventListener('click', () => {
+      if (tailsButton.classList.contains('btn-selected')) {
+          // Si le bouton est déjà sélectionné, le désélectionner
+          tailsButton.classList.remove('btn-selected');
+      } else {
+          // Sélectionner le bouton TAILS et désélectionner HEADS
+          tailsButton.classList.add('btn-selected');
+          headsButton.classList.remove('btn-selected');
+      }
+  });
+  }
+
+  if (hypeButton) {
+    hypeButton.addEventListener('click', () => {
+      if (hypeButton.classList.contains('btn-selected')) {
+          // Si le bouton est déjà sélectionné, le désélectionner
+          hypeButton.classList.remove('btn-selected');
+      } else {
+          // Sélectionner le bouton HYPE et désélectionner COIN
+          hypeButton.classList.add('btn-selected');
+          coinButton.classList.remove('btn-selected');
+        }
+    });
+  }
+
+  if (coinButton) {
+    coinButton.addEventListener('click', () => {
+      if (coinButton.classList.contains('btn-selected')) {
+          // Si le bouton est déjà sélectionné, le désélectionner
+          coinButton.classList.remove('btn-selected');
+      } else {
+          // Sélectionner le bouton COIN et désélectionner HYPE
+          coinButton.classList.add('btn-selected');
+          hypeButton.classList.remove('btn-selected');
+        }
+    });
+  }
+
+  // Exemple d'appel pour récupérer les valeurs
+  document.getElementById('place-bet').addEventListener('click', getSelectedValues);
+}
+
+// Récupérer les valeurs sélectionnées
+async function getSelectedValues() {
+  // Récupérer la mise sélectionnée
+  const selectedBetButton = document.querySelector('.btn-custom2.btn-selected'); // Bouton avec la classe "btn-selected"
+  // Récupérer le choix HEADS ou TAILS
+  const selectedChoiceButton = document.querySelector('.btn-selected[id^="heads-btn"], .btn-selected[id^="tails-btn"]');
+  let betAmount, choice;
+  let addressReferee = ethers.ZeroAddress;
+  try {
+    if (selectedBetButton && selectedChoiceButton) {
+      const selectedBetValue = selectedBetButton ? (selectedCurrency === 'HYPE' ? selectedBetButton.getAttribute('data-eth') : selectedBetButton.getAttribute('data-coin')) : null; // Récupérer la valeur "data-eth" ou "data-coin"
+      const selectedChoiceValue = selectedChoiceButton.textContent ? (selectedChoiceButton.textContent == 'HEADS' ? 0 : 1 ) : null; // si HEADS on envoie 0 sinon on envoie 1
+      // Set betAmount and choice
+      betAmount = selectedBetValue;
+      choice = selectedChoiceValue;
+      if (document.getElementById('referralCodeInput').value.trim() == "") {
+        // Adresse 0 si pas de code de parrainage
+      } else {
+        const referralCode = document.getElementById('referralCodeInput').value.trim();
+        const response = await getAddressReferee(referralCode); // Appeler la fonction getAddressReferee pour récupérer l'adresse du parrain
+        if (response === null) {
+          addressReferee = -1;
+          throw new Error('Failed to retrieve referee address.'); // Gérer l'erreur si l'adresse du parrain n'est pas récupérée
+        }
+        addressReferee = response;
+
+      }
+    } else {
+        throw new Error('Please select a bet amount and a choice.');
+    }
+  } catch (error) {
+    console.error("Error retrieving selected values :", error);
+    document.getElementById("place-bet").innerHTML = error;
+  } finally {
+    return {
+      betAmount: betAmount, // Correspond à `betAmount`
+      choice: choice, // Correspond à `choice`
+      referralCode: addressReferee // Correspond à l'adresse liée au `referralCode`
+    };
+  }
+}
+
+// Gestionnaire d'événements pour le bouton de pari
+if (document.getElementById("place-bet")) {
+  // Ajouter les gestionnaires d'événements
+  document.getElementById("place-bet").addEventListener("click", placeBet);
+}
+
+if (document.getElementById("close-btn")) {
+  document.getElementById('close-btn').addEventListener('click', function() {
+    document.getElementById('result-div').style.display = 'none';
+  });
+}
+
+async function placeBet() {
+  try {
+
+    // Définition du fournisseur de signer (provider) Ethereum
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    // Récupération de l'adresse Ethereum actuellement connectée
+    const signer = await provider.getSigner();
+    // Instanciation du contrat intelligent PacBoom
+    const contract = new ethers.Contract(contractAddress, abi, signer);
+    const tokenContract = new ethers.Contract(config.erc20TokenAddress, [
+      "function approve(address spender, uint256 amount) public returns (bool)",
+      "function allowance(address owner, address spender) public view returns (uint256)"
+  ], signer);
+
+    if (!contract) {
+      throw new Error('Contract not found.');
+    }
+    // Récupérer l'adresse du compte
+    const address = await signer.getAddress(); 
+    // Vérifier la balance du compte
+    const balance = await provider.getBalance(address);
+    const balanceInHype = ethers.formatEther(balance);
+
+    // Vérifier si la balance est inférieure à 0.25 hype
+    if (selectedCurrency == 'HYPE' && parseFloat(balanceInHype) < 0.25) {
+      throw new Error('Insufficient balance. Minimum 0.25 HYPE required.');
+    }
+
+
+    // On récupère les trois valeurs via la fonction getSelectedValues et on stocke dans les variables
+    const { betAmount, choice, referralCode } = await getSelectedValues();
+
+    if (betAmount == null || choice == null) {
+      throw new Error('Please select a bet amount and a choice.');
+    }
+
+    if (referralCode == -1) {
+      throw new Error('Please input a correct referral.');
+    }
+
+    // Changement du texte pour indiquer que l'opération est en cours et rendre le bouton impossible à cliquer
+    // On remet la div result invisible
+    document.getElementById("result-div").style.display = 'none';
+    document.getElementById("coinWait").innerHTML = "";
+    document.getElementById("place-bet").disabled = true;
+    document.getElementById("place-bet").innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Waiting...';
+    document.getElementById("betAmt").innerHTML = "";
+    document.getElementById("resultBet").innerHTML = "";
+    document.getElementById("payout").innerHTML = "";
+    document.getElementById("points").innerHTML = "";
+
+    let txResponse;
+    // Envoyer la transaction
+    if (selectedCurrency == 'HYPE') {
+      txResponse = await contract.play(choice, referralCode, {
+        value: ethers.parseEther(betAmount.toString()), // Envoie hype
+      });
+    } else {
+      // Vérifier l'allowance pour le token ERC20 et appeler la fonction playWithToken
+      const allowance = await tokenContract.allowance(address, config.erc20TokenAddress);
+      if (ethers.toBigInt(allowance) < ethers.parseEther(betAmount)) {
+          // Définir le montant maximum à approuver
+          const amountToApprove = 10000;
+
+          // Envoyer la transaction d'approbation
+          const approveTx = await tokenContract.approve(config.hyperflipAddress, amountToApprove);
+
+          // Attendre que la transaction soit confirmée
+          await approveTx.wait();
+      } 
+      txResponse = await contract.playWithToken(config.erc20TokenAddress, ethers.parseEther(betAmount) , choice, referralCode);
+    }
+    // Enregistrer immédiatement le hash dans la console
+    console.log("Transaction sent:", txResponse.hash);
+    const txLink = `<a href="https://testnet.purrsec.com/hyperliquid_testnet/tx/${txResponse.hash}" target="_blank">View Transaction</a>`;
+    
+    // Mettre à jour l'interface utilisateur
+    document.getElementById("result-div").style.display = 'block';
+    document.getElementById("betAmt").innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Waiting...';
+    document.getElementById("coinWait").innerHTML = `<img src="./img/logo.jpg" alt="Flip coin" class="rounded-circle rotating-image">`;
+    // Introduire un délai pour s'assurer que le message est visible (optionnel, pour UX)
+    await new Promise(resolve => setTimeout(resolve, 100)); 
+
+    // Attendre la confirmation de la transaction
+    const receipt = await txResponse.wait();
+
+    // Rechercher et décoder l'événement
+    const logs = receipt.logs;
+    const betResultLog = logs.find(log => {
+      try {
+        const event = iface.parseLog(log);
+        return event.name === "BetResult";
+      } catch {
+        return false;
+      }
+    });
+
+    let betAmt, resultBet, payout, points, refereePoints;
+    if (betResultLog) {
+      const args = iface.parseLog(betResultLog).args;
+      betAmt = args.amount;
+      resultBet = args.won;
+      payout = args.payout;
+      points = args.points;
+      refereePoints = args.refereePoints;
+    } 
+    // Mettre à jour l'interface utilisateur
+    document.getElementById("result-div").style.display = 'block';
+    //document.getElementById("transactionHash").innerHTML = txLink;
+    document.getElementById("betAmt").innerHTML = "You bet " + Number(betAmt) / 10 ** 18 + ` ${selectedCurrency}.`;
+    if (resultBet) {
+      document.getElementById("resultBet").innerHTML = "You WON!";
+    } else {
+      document.getElementById("resultBet").innerHTML = "You LOSE!"; 
+    }
+    document.getElementById("payout").innerHTML = "You received " + Number(payout) / 10 ** 18 + ` ${selectedCurrency}.`;
+    if (refereePoints == 0) {
+      document.getElementById("points").innerHTML = "You received " + Number(points) + ` points!<br/><br/> Thanks for participating in our game!`;
+    } else {
+      document.getElementById("points").innerHTML = "You received " + Number(points) + ` points!<br/> Your referee received ` + Number(refereePoints) + ` points!<br/><br/> Thanks for participating in our game!`;
+    }
+
+    getVolumeDapp(); // on met à jour le volume de la dApp
+
+    // Réinitialiser le bouton Bet
+    document.getElementById("place-bet").innerHTML = 'FLIP COIN';
+  } catch (error) {
+    console.error("Error when betting :", error);
+    document.getElementById("result-div").style.display = 'none';
+    document.getElementById("place-bet").innerHTML = error;
+  } finally {
+    // On réactive le bouton Bet quelque soit l'issue
+    document.getElementById("place-bet").disabled = false;
+  }
+}
+
+
+
+
+// Récupérer les statistiques
+export async function fetchStatistics() {
+    try {
+        // Définition du fournisseur de signer (provider) Ethereum
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+        // Instanciation du contrat intelligent PacBoom
+        const contract = new ethers.Contract(contractAddress, abi, signer);
+        if (!contract) {
+            return;
+        }
+        const totalBets = await contract.totalBets();
+        const totalWins = await contract.totalWins();
+        if (document.getElementById("totalBets")) {
+          document.getElementById("totalBets").innerText = `Total Bets: ${totalBets}`;
+          document.getElementById("totalWins").innerText = `Total Wins: ${totalWins}`;
+        }
+    } catch (error) {
+        console.error("Erreur lors de la récupération des statistiques :", error);
+    }
+}
+
+// Fonction pour connaitre la valeur totale en ETH pour les bets réalisés
+export async function getTotalBetsValue() {
+  try {
+    // Définition du fournisseur de signer (provider) Ethereum
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    // Récupération de l'adresse Ethereum actuellement connectée
+    const signer = await provider.getSigner();
+    // Instanciation du contrat intelligent PacBoom
+    const contract = new ethers.Contract(contractAddress, abi, signer);
+    if (!contract) {
+        return;
+    }
+    if (!contract) {
+      return;
+    }
+    const value = await contract.totalBetsValue();
+    const valueConvert = Number(value) / 10**18;
+    return valueConvert;
+  } catch (error) {
+    console.error("Erreur lors de la récupération de total bet value :", error);
+  }
+}
+
+
+// Fonction pour connaitre la valeur totale en ETH pour les bets réalisés
+export async function getPointsPlayer() {
+  try {
+    // Définition du fournisseur de signer (provider) Ethereum
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    // Récupération de l'adresse Ethereum actuellement connectée
+    const signer = await provider.getSigner();
+    // Instanciation du contrat intelligent PacBoom
+    const contract = new ethers.Contract(contractAddress, abi, signer);
+    if (!contract) {
+        return;
+    }
+    if (!contract) {
+      return;
+    }
+    const addressUser = await signer.getAddress();
+    const value = await contract.getPointsPlayer(addressUser);
+    const valueConvert = Number(value);
+    return valueConvert.toString();
+  } catch (error) {
+    console.error("Erreur lors de la récupération de getPointsPlayer :", error);
+  }
+}
+
+// Fonction pour récupérer l'adresse du referee
+async function getAddressReferee(referralCode) {
+  try {
+      const response = await fetch('getAddressReferee', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json', // Correction du format d'en-tête
+          },
+          body: JSON.stringify({ code : referralCode})
+      });
+
+      if (!response.ok) {
+          console.error(`Failed to fetch address of the referee. HTTP Status: ${response.status}`);
+          return null;
+      }
+
+      // Vérifie que la réponse est bien au format JSON attendu
+      const result = await response.json();
+      if (result && result.wallet_address) {
+          return result.wallet_address;
+      } else {
+          console.error("Invalid response format or missing wallet address.");
+          return null;
+      }
+  } catch (error) {
+      console.error("Error during retrieval of wallet address:", error);
+      return null;
+  }
+}

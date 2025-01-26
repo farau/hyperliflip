@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
           <a class="navbar-brand" href="/index">
-            <img src="img/logo.jpg" height="70" class="d-inline-block align-top rounded-circle" alt="Logo">
+            <img src="img/logo.jpg" height="50" class="d-inline-block align-top rounded-circle" alt="Logo">
           </a>          
           <a class="navbar-brand" href="/index">
             HyperFlip
@@ -26,16 +26,27 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto d-flex align-items-center">
+                <!-- Affiliate -->
+                <li class="nav-item d-flex align-items-center">
+                    <a class="nav-link text-center" href="affiliate" style="color: #ffffff;">Affiliate</a>
+                </li>
                 <!-- Leaderboard -->    
                 <li class="nav-item d-flex align-items-center">
-                  <a class="nav-link text-center" href="leaderboard" style="color: #ffffff;">Leaderboard</a>
-              </li> 
+                    <a class="nav-link text-center" href="leaderboard" style="color: #ffffff; margin-right: 20px;">Leaderboard</a>
+                </li> 
+                <!-- Documentation -->
+                <li class="nav-item d-flex align-items-center">
+                    <a href="https://hyperflip.gitbook.io/hyperflip" class="document-icon d-flex justify-content-center align-items-center" target="_blank">
+                        <i class="fas fa-file-alt" style="font-size: 15px; color: #ffffff; margin-bottom: 0px;"></i>
+                    </a>
+                </li>
                 <!-- Social Media Icons -->
                 <li class="nav-item d-flex align-items-center">
                     <a href="https://x.com/hypercoinflip" target="_blank" rel="noopener noreferrer" class="d-flex justify-content-center align-items-center">
-                        <i class="fab fa-twitter" style="font-size: 15px; color: #ffffff; margin: 0 10px;"></i>
+                        <i class="fab fa-twitter" style="font-size: 17px; color: #ffffff; margin: 0 10px;"></i>
                     </a>
                 </li>
+            
         
                 <!-- Connect Wallet -->
                 <li class="nav-item d-sm-block d-lg-inline">
@@ -77,11 +88,6 @@
         <img src="./img/logo.jpg" alt="Flip coin" class="rounded-circle rotating-image">
       </div>
 
-      <h3 class="justify-content-center text-center">Choose your currency:</p>
-      <div class="button-container justify-content-center mb-4 mt-4">
-        <button class="btn-custom" id="hype">HYPE</button>
-        <button class="btn-custom" id="coin">KEI</button>
-      </div>
       <!-- Conteneur des boutons -->
       <h3 class="justify-content-center text-center">Choose your amount...</p>
       <div class="button-container justify-content-center mb-4 mt-4">
@@ -102,7 +108,7 @@
             type="text" 
             id="referralCodeInput" 
             class="form-control referral-input" 
-            placeholder="Enter referral code" 
+            placeholder="Enter CODE" 
             maxlength="8"
         />
       </div>

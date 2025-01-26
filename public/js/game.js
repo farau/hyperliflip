@@ -261,8 +261,6 @@ async function placeBet() {
     document.getElementById("result-div").style.display = 'block';
     document.getElementById("betAmt").innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Waiting...';
     document.getElementById("coinWait").innerHTML = `<img src="./img/logo.jpg" alt="Flip coin" class="rounded-circle rotating-image">`;
-    // Introduire un délai pour s'assurer que le message est visible (optionnel, pour UX)
-    await new Promise(resolve => setTimeout(resolve, 100)); 
 
     // Attendre la confirmation de la transaction
     const receipt = await txResponse.wait();

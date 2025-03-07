@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/farau/hyperliflip#readme",
   "dependencies": {
-    "@nktkas/hyperliquid": "npm:@jsr/nktkas__hyperliquid@^0.9.0",
+    "@nktkas/hyperliquid": "npm:@jsr/nktkas__hyperliquid@^0.16.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",

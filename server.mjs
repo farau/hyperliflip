@@ -326,19 +326,9 @@ let httpTransport, clientInfo;
 
 // Fonction pour appeler le client info qui ne nécessite pas de connexion Metamask
 async function initializeInfoClient() {
-       // HTTP Transport
-    httpTransport = new hyperliquid.HttpTransport({
-        url: "https://api.hyperliquid-testnet.xyz",   // API base URL
-        timeout: 10000,                       // Request timeout in ms
-        fetchOptions: {},                // Additional fetch options
-        retry: {
-        maxAttempts: 0,                               // Maximum retry attempts
-        delay: (attempt) => ~~(1 << attempt) * 150,   // Delay between retries in ms (default: Exponential backoff)
-        shouldReattempt: (error) => error instanceof TypeError || (error instanceof HttpRequestError && error.response.status >= 500 && error.response.status < 600) // Custom retry logic (default: Retries on network errors and 5xx status codes)
-        }
-    }); 
-
-    clientInfo = new hyperliquid.InfoClient(httpTransport);
+    // HTTP Transport
+    httpTransport = new hyperliquid.HttpTransport(); 
+    clientInfo = new hyperliquid.PublicClient({ transport: httpTransport });
 
 }
 
@@ -353,7 +343,7 @@ async function getVolumeDapp() {
 
         // Récupération des informations liées au contexte de l'asset
         const req = await clientInfo.metaAndAssetCtxs();
-        const hypeValue = req[1][135]?.markPx; // Prix du HYPE dans le contexte
+        const hypeValue = req[1][150]?.markPx; // Prix du HYPE dans le contexte
 
         if (!hypeValue) {
             console.error('HYPE price is undefined');

@@ -1,10 +1,10 @@
 // config.js
 
 const config = {
-    chain_id : '0x3e6', //Hyperliquid testnet
-	hyperflipAddress: '0x08b446235B52431dd1556DeF6eD7Aa0401400f02',
+    chain_id : '0x3e7', //Hyperliquid mainnet
+	hyperflipAddress: '0xFD4641B40cf433d9c3206D69A0414F6e371FddEb',
 	usdcTokenId : 0,
-	hypeTokenId : 1105, //testnet
+	hypeTokenId : 150, //mainnet
     hyperflipAbi : [
 		{
 		  "inputs": [
@@ -53,6 +53,31 @@ const config = {
 		  "anonymous": false,
 		  "inputs": [
 			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "auctionId",
+			  "type": "uint256"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "address",
+			  "name": "winner",
+			  "type": "address"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "amount",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "AuctionEnded",
+		  "type": "event"
+		},
+		{
+		  "anonymous": false,
+		  "inputs": [
+			{
 			  "indexed": true,
 			  "internalType": "address",
 			  "name": "player",
@@ -90,6 +115,31 @@ const config = {
 			}
 		  ],
 		  "name": "BetResult",
+		  "type": "event"
+		},
+		{
+		  "anonymous": false,
+		  "inputs": [
+			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "auctionId",
+			  "type": "uint256"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "address",
+			  "name": "bidder",
+			  "type": "address"
+			},
+			{
+			  "indexed": false,
+			  "internalType": "uint256",
+			  "name": "amount",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "HighestBidIncreased",
 		  "type": "event"
 		},
 		{
@@ -176,6 +226,84 @@ const config = {
 		},
 		{
 		  "inputs": [],
+		  "name": "auctionCounter",
+		  "outputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "auctions",
+		  "outputs": [
+			{
+			  "internalType": "address",
+			  "name": "highestBidder",
+			  "type": "address"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "highestBid",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "auctionEndTime",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "bool",
+			  "name": "ended",
+			  "type": "bool"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "auctionId",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "amount",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "bid",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "auctionId",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "endAuction",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [],
 		  "name": "feePercent",
 		  "outputs": [
 			{
@@ -208,6 +336,40 @@ const config = {
 			  "internalType": "address[]",
 			  "name": "",
 			  "type": "address[]"
+			}
+		  ],
+		  "stateMutability": "view",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
+			  "internalType": "uint256",
+			  "name": "id",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "getAuctionInfo",
+		  "outputs": [
+			{
+			  "internalType": "address",
+			  "name": "",
+			  "type": "address"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "uint256",
+			  "name": "",
+			  "type": "uint256"
+			},
+			{
+			  "internalType": "bool",
+			  "name": "",
+			  "type": "bool"
 			}
 		  ],
 		  "stateMutability": "view",
@@ -498,6 +660,19 @@ const config = {
 		{
 		  "inputs": [
 			{
+			  "internalType": "uint256",
+			  "name": "_biddingTime",
+			  "type": "uint256"
+			}
+		  ],
+		  "name": "startAuction",
+		  "outputs": [],
+		  "stateMutability": "nonpayable",
+		  "type": "function"
+		},
+		{
+		  "inputs": [
+			{
 			  "internalType": "address",
 			  "name": "",
 			  "type": "address"
@@ -668,7 +843,7 @@ const config = {
 		  "type": "receive"
 		}
 	  ],
-	usdcAddressEvm : '0x24ac48bf01fd6CB1C3836D08b3EdC70a9C4380cA', // testnet
+	usdcAddressEvm : '0xB5fE77d323d69eB352A02006eA8ecC38D882620C', // no USDC in mainnet, use KEI instead
 };
 
 // Exporter correctement l'objet config

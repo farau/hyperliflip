@@ -338,6 +338,8 @@ footer a:active {
     text-align: center;
     border-radius: 3px;
     border: 3px solid #08271f; /* Grosse bordure */
+    left: 22%; /* Décale le conteneur vers la gauche */
+    transform: translateX(-50%); /* Centre le conteneur */
 }
 
 
@@ -660,3 +662,54 @@ button[aria-expanded="true"] .rotate-icon {
     border-radius: 8px; /* Optional: Rounded corners */
   }
   
+
+/* Surcharge pour le bouton de bid auction*/
+.btn-bid-auction {
+    background-color: #0e4839; /* Couleur de fond jaune */
+    color: rgb(0, 0, 0); /* Couleur du texte noir */
+    border: none; /* Pas de bordure */
+}
+
+.btn-bid-auction:hover {
+    background-color: #0a372b; /* Couleur au survol */
+}
+
+
+/* Style pour le conteneur de auction */
+.auction-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Style pour chaque carte de boss */
+.auction-card {
+    background-color: #0e4839;
+    color: white;
+    border: 2px solid #2fb591; /* Bordure uniforme */
+    border-radius: 8px;        /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+}
+
+.auction-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.auction-info {
+    padding: 15px;
+}
+
+.auction-info h2 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.auction-info p {
+    margin: 5px 0;
+}

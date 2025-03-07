@@ -343,8 +343,8 @@ async function getVolumeDapp() {
 
         // Récupération des informations liées au contexte de l'asset
         const req = await clientInfo.metaAndAssetCtxs();
-        const hypeValue = req[1][150]?.markPx; // Prix du HYPE dans le contexte
-
+        const hypeValue = req[1][159]?.markPx; // Prix du HYPE dans le contexte
+        console.log('HYPE Price:', hypeValue); // Journalisation pour debug
         if (!hypeValue) {
             console.error('HYPE price is undefined');
             return;
